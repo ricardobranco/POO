@@ -4,13 +4,14 @@ package trasitarios;
  *
  * @author Ricardo Branco
  */
-public class Veiculo {
+public abstract class Veiculo {
 
     private String marca;
     private String matricula;
     private float custoKm;
     private float desgaste;
     private float carga;
+    private boolean refrigerado;
     
     public Veiculo()
     {
@@ -45,12 +46,15 @@ public class Veiculo {
     public float get_Desgaste(){return this.desgaste;}
     public float get_CustoKm(){return this.custoKm;}
     public float get_Carga(){return this.carga;}
+    public boolean get_Refrigerado(){return this.refrigerado;}
     
     public void set_Marca(String marca){this.marca = marca;}
     public void set_Matricula(String matricula){this.matricula = matricula;}
     public void set_CustoKm(float custoKm){this.custoKm = custoKm;}
     public void set_Desgaste(float desgaste){this.desgaste = desgaste;}
     public void set_Carga(float carga){this.carga = carga;}
+    public void set_Refrigerado(boolean refrigerado){this.refrigerado = refrigerado;}
+    
     
     @Override
     public String toString()
@@ -65,7 +69,7 @@ public class Veiculo {
     }
     
     @Override
-    public Veiculo clone(){return new Veiculo(this);}
+    public abstract Veiculo clone(); 
     
     @Override
     public boolean equals(Object o)
@@ -83,8 +87,7 @@ public class Veiculo {
     public int hashCode(){ return this.matricula.hashCode();}
     
     public int compareTo(Veiculo v){return this.matricula.compareTo(v.get_Matricula());}
-    
-    public abstract boolean refrigerado();
+ 
     
     
     
