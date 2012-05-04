@@ -6,6 +6,8 @@ package trasitarios;
 
 /**
  *
+ * @author Bruno Alves
+ * @author Daniel Carvalho
  * @author Ricardo Branco
  */
 public class Camiao extends Veiculo{
@@ -104,6 +106,8 @@ public class Camiao extends Veiculo{
     @Override
     public int compareTo(Veiculo v){return super.compareTo(v);}
 
+    
+    //public float custoEcomenda(float coefx, float coefy, float pbase)
     
     
    

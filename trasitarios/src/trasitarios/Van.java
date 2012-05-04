@@ -6,6 +6,8 @@ package trasitarios;
 
 /**
  *
+ * @author Bruno Alves
+ * @author Daniel Carvalho
  * @author Ricardo Branco
  */
 public class Van extends Veiculo{

@@ -2,6 +2,8 @@ package trasitarios;
 
 /**
  *
+ * @author Bruno Alves
+ * @author Daniel Carvalho
  * @author Ricardo Branco
  */
 public abstract class Veiculo {
