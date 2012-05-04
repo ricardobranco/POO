@@ -84,6 +84,13 @@ public class Veiculo {
     
     public int compareTo(Veiculo v){return this.matricula.compareTo(v.get_Matricula());}
     
+    public abstract boolean refrigerado();
+    
+    
+    
+    
+    
+    
     
     
     
