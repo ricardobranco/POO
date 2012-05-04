@@ -8,37 +8,32 @@ package trasitarios;
  *
  * @author Ricardo Branco
  */
-public class Camiao extends Veiculo{
-    private String condutor;
-    private boolean atrelado;
-    private float altura;
+public class Furgao extends Veiculo{
+    private String gasolina;
+    private float autonomia;
     
     
-    public Camiao()
+    public Furgao()
     {
         super();
         super.set_Refrigerado(false);
-        this.condutor = "";
-        this.atrelado = false;
-        this.altura = 0;
-    }
+        this.gasolina = "";
+        this.autonomia = 0;
+     }
     
-    public Camiao(String marca, String matricula, String condutor, float altura, float custoKm, float desgaste, float carga,boolean atrelado,boolean refrigerado)
+    public Furgao(String marca, String matricula, String gasolina, float autonomia, float custoKm, float desgaste, float carga, boolean refrigerado)
     {
         super(marca,matricula,custoKm,desgaste,carga);
-        super.set_Refrigerado(false);
-        this.condutor = condutor;
-        this.altura = altura;
-        this.atrelado = atrelado;
+        super.set_Refrigerado(refrigerado);
+        this.gasolina = gasolina;
+        this.autonomia = autonomia;
     }
     
-    public Camiao(Camiao c)
+    public Furgao(Furgao c)
     {
         super(c);
-        super.set_Refrigerado(false);
-        this.altura = c.get_Altura();
-        this.atrelado = c.get_Atrelado();
-        this.condutor = c.get_Condutor();
+        this.autonomia = c.get_Autonomia();
+        this.gasolina = c.get_Gasolina();
     }
     
     @Override
@@ -53,9 +48,8 @@ public class Camiao extends Veiculo{
     public float get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerado(){return super.get_Refrigerado();}
-    public float get_Altura(){return this.altura;}
-    public boolean get_Atrelado(){return this.atrelado;}
-    public String get_Condutor(){return this.condutor;}
+    public float get_Autonomia(){return this.autonomia;}
+    public String get_Gasolina(){return this.gasolina;}
     
     
     
@@ -73,11 +67,10 @@ public class Camiao extends Veiculo{
     public void set_Desgaste(float desgaste){super.set_Desgaste(desgaste);}
     @Override
     public void set_Carga(float carga){super.set_Carga(carga);}
-    public void set_Alura(float altura){this.altura = altura;}
-    public void set_Atrelado(boolean atrelado){this.atrelado = atrelado;}
-    public void set_Condutor(String condutor){this.condutor = condutor;}
+    public void set_Alura(float autonomia){this.autonomia = autonomia;}
+    public void set_gasolina(String gasolina){this.gasolina = gasolina;}
     @Override
-    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(false);}  
+    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(refrigeracao);}  
     
     
     @Override
@@ -85,14 +78,13 @@ public class Camiao extends Veiculo{
     {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append("Condutor ").append(this.condutor).append("\n");
-        sb.append("Atrelado: ").append(this.atrelado).append("\n");
-        sb.append("Altura ").append(this.altura).append("\n");
+        sb.append("Gasolina ").append(this.gasolina).append("\n");
+        sb.append("Autonomia ").append(this.autonomia).append("\n");
         return sb.toString();      
     }
     
     @Override
-    public Camiao clone(){return new Camiao(this);}
+    public Furgao clone(){return new Furgao(this);}
     
 
     @Override
