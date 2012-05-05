@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package trasitarios;
+package Veiculos;
 
 /**
  *
@@ -10,32 +10,25 @@ package trasitarios;
  * @author Daniel Carvalho
  * @author Ricardo Branco
  */
-public class Furgao extends Veiculo{
-    private String gasolina;
-    private float autonomia;
+public class Van extends Veiculo{
+   
     
-    
-    public Furgao()
+    public Van()
     {
         super();
-        super.set_Refrigerado(false);
-        this.gasolina = "";
-        this.autonomia = 0;
-     }
-    
-    public Furgao(String marca, String matricula, String gasolina, float autonomia, float custoKm, float desgaste, float carga, boolean refrigerado)
-    {
-        super(marca,matricula,custoKm,desgaste,carga);
-        super.set_Refrigerado(refrigerado);
-        this.gasolina = gasolina;
-        this.autonomia = autonomia;
+        super.set_Refrigerado(true);
     }
     
-    public Furgao(Furgao c)
+    public Van(String marca, String matricula, String gasolina, float autonomia, float custoKm, float desgaste, float carga,boolean refrigerado)
+    {
+        super(marca,matricula,custoKm,desgaste,carga);
+        super.set_Refrigerado(true);
+    }
+    
+    public Van(Van c)
     {
         super(c);
-        this.autonomia = c.get_Autonomia();
-        this.gasolina = c.get_Gasolina();
+        super.set_Refrigerado(true);
     }
     
     @Override
@@ -50,14 +43,7 @@ public class Furgao extends Veiculo{
     public float get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerado(){return super.get_Refrigerado();}
-    public float get_Autonomia(){return this.autonomia;}
-    public String get_Gasolina(){return this.gasolina;}
-    
-    
-    
-    
-    
-    
+       
     
     @Override
     public void set_Marca(String marca){super.set_Marca(marca);}
@@ -69,10 +55,8 @@ public class Furgao extends Veiculo{
     public void set_Desgaste(float desgaste){super.set_Desgaste(desgaste);}
     @Override
     public void set_Carga(float carga){super.set_Carga(carga);}
-    public void set_Alura(float autonomia){this.autonomia = autonomia;}
-    public void set_gasolina(String gasolina){this.gasolina = gasolina;}
     @Override
-    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(refrigeracao);}  
+    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(true);}  
     
     
     @Override
@@ -80,13 +64,11 @@ public class Furgao extends Veiculo{
     {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
-        sb.append("Gasolina ").append(this.gasolina).append("\n");
-        sb.append("Autonomia ").append(this.autonomia).append("\n");
         return sb.toString();      
     }
     
     @Override
-    public Furgao clone(){return new Furgao(this);}
+    public Van clone(){return new Van(this);}
     
 
     @Override

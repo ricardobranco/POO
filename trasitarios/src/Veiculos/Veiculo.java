@@ -1,4 +1,4 @@
-package trasitarios;
+package Veiculos;
 
 /**
  *

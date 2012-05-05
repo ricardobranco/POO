@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package trasitarios;
+package Veiculos;
 
 /**
  *
@@ -10,25 +10,37 @@ package trasitarios;
  * @author Daniel Carvalho
  * @author Ricardo Branco
  */
-public class Van extends Veiculo{
-   
+public class Camiao extends Veiculo{
+    private String condutor;
+    private boolean atrelado;
+    private float altura;
     
-    public Van()
+    
+    public Camiao()
     {
         super();
-        super.set_Refrigerado(true);
+        super.set_Refrigerado(false);
+        this.condutor = "";
+        this.atrelado = false;
+        this.altura = 0;
     }
     
-    public Van(String marca, String matricula, String gasolina, float autonomia, float custoKm, float desgaste, float carga,boolean refrigerado)
+    public Camiao(String marca, String matricula, String condutor, float altura, float custoKm, float desgaste, float carga,boolean atrelado,boolean refrigerado)
     {
         super(marca,matricula,custoKm,desgaste,carga);
-        super.set_Refrigerado(true);
+        super.set_Refrigerado(false);
+        this.condutor = condutor;
+        this.altura = altura;
+        this.atrelado = atrelado;
     }
     
-    public Van(Van c)
+    public Camiao(Camiao c)
     {
         super(c);
-        super.set_Refrigerado(true);
+        super.set_Refrigerado(false);
+        this.altura = c.get_Altura();
+        this.atrelado = c.get_Atrelado();
+        this.condutor = c.get_Condutor();
     }
     
     @Override
@@ -43,7 +55,15 @@ public class Van extends Veiculo{
     public float get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerado(){return super.get_Refrigerado();}
-       
+    public float get_Altura(){return this.altura;}
+    public boolean get_Atrelado(){return this.atrelado;}
+    public String get_Condutor(){return this.condutor;}
+    
+    
+    
+    
+    
+    
     
     @Override
     public void set_Marca(String marca){super.set_Marca(marca);}
@@ -55,8 +75,11 @@ public class Van extends Veiculo{
     public void set_Desgaste(float desgaste){super.set_Desgaste(desgaste);}
     @Override
     public void set_Carga(float carga){super.set_Carga(carga);}
+    public void set_Alura(float altura){this.altura = altura;}
+    public void set_Atrelado(boolean atrelado){this.atrelado = atrelado;}
+    public void set_Condutor(String condutor){this.condutor = condutor;}
     @Override
-    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(true);}  
+    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(false);}  
     
     
     @Override
@@ -64,11 +87,14 @@ public class Van extends Veiculo{
     {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString());
+        sb.append("Condutor ").append(this.condutor).append("\n");
+        sb.append("Atrelado: ").append(this.atrelado).append("\n");
+        sb.append("Altura ").append(this.altura).append("\n");
         return sb.toString();      
     }
     
     @Override
-    public Van clone(){return new Van(this);}
+    public Camiao clone(){return new Camiao(this);}
     
 
     @Override
@@ -80,6 +106,8 @@ public class Van extends Veiculo{
     @Override
     public int compareTo(Veiculo v){return super.compareTo(v);}
 
+    
+    //public float custoEcomenda(float coefx, float coefy, float pbase)
     
     
    
