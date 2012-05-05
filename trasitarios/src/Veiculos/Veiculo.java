@@ -2,10 +2,15 @@ package Veiculos;
 
 /**
  *
- * @author Bruno Alves
+ * @author Bruno Ferreira
  * @author Daniel Carvalho
  * @author Ricardo Branco
  */
+import Cargas.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public abstract class Veiculo {
 
     private String marca;
@@ -14,6 +19,9 @@ public abstract class Veiculo {
     private double desgaste;
     private double carga;
     private boolean refrigerado;
+    private List<Carga> mercadoria;
+    
+    
     
     public Veiculo()
     {
@@ -22,15 +30,22 @@ public abstract class Veiculo {
         this.custoKm = 0;
         this.desgaste = 0;
         this.carga = 0;
+        this.mercadoria = new ArrayList<Carga>();
     }
     
-    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga)
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga, List<Carga> mercadoria)
     {
         this.marca = marca;
         this.matricula = matricula;
         this.desgaste = desgaste;
         this.custoKm = custoKm;
         this.carga = carga;
+        this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
+        for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) {
+            Carga c = it.next();
+            this.mercadoria.add(c);
+        }
+        
     }
     
     public Veiculo(Veiculo v)
@@ -40,6 +55,12 @@ public abstract class Veiculo {
         this.desgaste = v.get_Desgaste();
         this.custoKm = v.get_CustoKm();
         this.carga = v.get_Carga();
+        this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
+        for (Iterator<Carga> it = v.get_Mercadoria().iterator(); it.hasNext();) {
+            Carga c = it.next();
+            this.mercadoria.add(c);
+        }
+        
     }
     
     
@@ -49,6 +70,18 @@ public abstract class Veiculo {
     public double get_CustoKm(){return this.custoKm;}
     public double get_Carga(){return this.carga;}
     public boolean get_Refrigerado(){return this.refrigerado;}
+    public List<Carga> get_Mercadoria()
+    {
+        List<Carga> res = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
+        for (Iterator<Carga> it = this.mercadoria.iterator(); it.hasNext();) 
+        {
+            Carga c = it.next();
+            res.add(c.clone());
+        }
+          
+            return res;
+    }
+    
     
     public void set_Marca(String marca){this.marca = marca;}
     public void set_Matricula(String matricula){this.matricula = matricula;}
@@ -56,7 +89,15 @@ public abstract class Veiculo {
     public void set_Desgaste(double desgaste){this.desgaste = desgaste;}
     public void set_Carga(double carga){this.carga = carga;}
     public void set_Refrigerado(boolean refrigerado){this.refrigerado = refrigerado;}
-    
+    public void set_Mercadoria(List<Carga> mercadoria)
+    {
+        this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
+        for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) 
+        {
+            Carga c = it.next();
+            this.mercadoria.add(c);
+        }
+    }
     
     @Override
     public String toString()
@@ -90,6 +131,19 @@ public abstract class Veiculo {
     
     public int compareTo(Veiculo v){return this.matricula.compareTo(v.get_Matricula());}
  
+    
+    
+    public abstract boolean addCarga(Carga c);
+    public abstract void addCargas(List<Carga> c);
+    public boolean mais60()
+    {
+        double res = 0;
+        for(Carga c : this.mercadoria)
+            res+=c.get_Carga();
+        return res/(this.carga) >= 0.6;
+    }
+    
+    
     
     
     

@@ -6,7 +6,7 @@ package Veiculos;
 
 /**
  *
- * @author Bruno Alves
+ * @author Bruno Ferreira
  * @author Daniel Carvalho
  * @author Ricardo Branco
  */
