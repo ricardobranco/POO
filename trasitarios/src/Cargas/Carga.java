@@ -13,7 +13,6 @@ package Cargas;
 public abstract class Carga {
 
     private double carga;
-    private boolean refrigerada;
     
     public Carga()
     {
@@ -33,10 +32,8 @@ public abstract class Carga {
     
     
     public double get_Carga(){return this.carga;}
-    public boolean get_Refrigerada(){return this.refrigerada;}
     
     public void set_Carga(double carga){this.carga = carga;}
-    public void set_Refrigerada(boolean refrigerada){this.refrigerada = refrigerada;}
     
     @Override
     public boolean equals(Object o)
@@ -58,7 +55,6 @@ public abstract class Carga {
     {
         StringBuilder sb = new StringBuilder();
         sb.append("Carga: ").append(this.carga).append("\n");
-        sb.append("Refrigerada: ").append(this.refrigerada).append("\n");
         return sb.toString();
     }
     

@@ -14,33 +14,25 @@ public class Perecivel extends Carga{
     public Perecivel()
     {
         super();
-        super.set_Refrigerada(true);
     }
     
     public Perecivel(double carga, boolean refrigerada)
     {
         super(carga);
-        super.set_Refrigerada(true);
     }
     
     public Perecivel(Perecivel p)
     {
         super(p);
-        super.set_Refrigerada(true);
-        
     }
 
     
     @Override
     public double get_Carga(){return super.get_Carga();}
-    @Override
-    public boolean get_Refrigerada(){return super.get_Refrigerada();}
     
     
     @Override
     public void set_Carga(double carga){super.set_Carga(carga);}
-    @Override
-    public void set_Refrigerada(boolean refrigerada){super.set_Refrigerada(true);}
     
     @Override
     public boolean equals(Object o){return super.equals(o);}

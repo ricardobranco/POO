@@ -14,33 +14,25 @@ public class Toxica extends Carga{
     public Toxica()
     {
         super();
-        super.set_Refrigerada(false);
     }
     
     public Toxica(double carga, boolean refrigerada)
     {
         super(carga);
-        super.set_Refrigerada(false);
     }
     
     public Toxica(Toxica p)
     {
         super(p);
-        super.set_Refrigerada(false);
-        
     }
 
     
     @Override
     public double get_Carga(){return super.get_Carga();}
-    @Override
-    public boolean get_Refrigerada(){return super.get_Refrigerada();}
     
     
     @Override
     public void set_Carga(double carga){super.set_Carga(carga);}
-    @Override
-    public void set_Refrigerada(boolean refrigerada){super.set_Refrigerada(false);}
     
     @Override
     public boolean equals(Object o){return super.equals(o);}
