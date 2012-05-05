@@ -12,7 +12,7 @@ package Veiculos;
  */
 public class Furgao extends Veiculo{
     private String gasolina;
-    private float autonomia;
+    private double autonomia;
     
     
     public Furgao()
@@ -23,7 +23,7 @@ public class Furgao extends Veiculo{
         this.autonomia = 0;
      }
     
-    public Furgao(String marca, String matricula, String gasolina, float autonomia, float custoKm, float desgaste, float carga, boolean refrigerado)
+    public Furgao(String marca, String matricula, String gasolina, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado)
     {
         super(marca,matricula,custoKm,desgaste,carga);
         super.set_Refrigerado(refrigerado);
@@ -43,14 +43,14 @@ public class Furgao extends Veiculo{
     @Override
     public String get_Matricula(){return super.get_Matricula();}
     @Override
-    public float get_Desgaste(){return super.get_Desgaste();}
+    public double get_Desgaste(){return super.get_Desgaste();}
     @Override
-    public float get_CustoKm(){return super.get_CustoKm();}
+    public double get_CustoKm(){return super.get_CustoKm();}
     @Override
-    public float get_Carga(){return super.get_Carga();}
+    public double get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerado(){return super.get_Refrigerado();}
-    public float get_Autonomia(){return this.autonomia;}
+    public double get_Autonomia(){return this.autonomia;}
     public String get_Gasolina(){return this.gasolina;}
     
     
@@ -64,12 +64,12 @@ public class Furgao extends Veiculo{
     @Override
     public void set_Matricula(String matricula){super.set_Matricula(matricula);}
     @Override
-    public void set_CustoKm(float custoKm){super.set_CustoKm(custoKm);}
+    public void set_CustoKm(double custoKm){super.set_CustoKm(custoKm);}
     @Override
-    public void set_Desgaste(float desgaste){super.set_Desgaste(desgaste);}
+    public void set_Desgaste(double desgaste){super.set_Desgaste(desgaste);}
     @Override
-    public void set_Carga(float carga){super.set_Carga(carga);}
-    public void set_Alura(float autonomia){this.autonomia = autonomia;}
+    public void set_Carga(double carga){super.set_Carga(carga);}
+    public void set_Alura(double autonomia){this.autonomia = autonomia;}
     public void set_gasolina(String gasolina){this.gasolina = gasolina;}
     @Override
     public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(refrigeracao);}  

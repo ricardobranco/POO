@@ -12,7 +12,7 @@ package Cargas;
 
 public abstract class Carga {
 
-    private float carga;
+    private double carga;
     private boolean refrigerada;
     
     public Carga()
@@ -20,7 +20,7 @@ public abstract class Carga {
         this.carga = 0;
     }
     
-    public Carga(float carga)
+    public Carga(double carga)
     {
         this.carga = carga;
     }
@@ -32,10 +32,10 @@ public abstract class Carga {
     
     
     
-    public float get_Carga(){return this.carga;}
+    public double get_Carga(){return this.carga;}
     public boolean get_Refrigerada(){return this.refrigerada;}
     
-    public void set_Carga(float carga){this.carga = carga;}
+    public void set_Carga(double carga){this.carga = carga;}
     public void set_Refrigerada(boolean refrigerada){this.refrigerada = refrigerada;}
     
     @Override
@@ -67,8 +67,8 @@ public abstract class Carga {
 
     public int compareTo(Carga c)
     {
-        Float f1 = new Float(this.carga);
-        Float f2 = new Float(c.get_Carga());
+        Double f1 = new Double(this.carga);
+        Double f2 = new Double(c.get_Carga());
         return f1.compareTo(f2);
     }
     

@@ -10,9 +10,9 @@ public abstract class Veiculo {
 
     private String marca;
     private String matricula;
-    private float custoKm;
-    private float desgaste;
-    private float carga;
+    private double custoKm;
+    private double desgaste;
+    private double carga;
     private boolean refrigerado;
     
     public Veiculo()
@@ -24,7 +24,7 @@ public abstract class Veiculo {
         this.carga = 0;
     }
     
-    public Veiculo(String marca, String matricula, float custoKm, float desgaste, float carga)
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga)
     {
         this.marca = marca;
         this.matricula = matricula;
@@ -45,16 +45,16 @@ public abstract class Veiculo {
     
     public String get_Marca(){return this.marca;}
     public String get_Matricula(){return this.matricula;}
-    public float get_Desgaste(){return this.desgaste;}
-    public float get_CustoKm(){return this.custoKm;}
-    public float get_Carga(){return this.carga;}
+    public double get_Desgaste(){return this.desgaste;}
+    public double get_CustoKm(){return this.custoKm;}
+    public double get_Carga(){return this.carga;}
     public boolean get_Refrigerado(){return this.refrigerado;}
     
     public void set_Marca(String marca){this.marca = marca;}
     public void set_Matricula(String matricula){this.matricula = matricula;}
-    public void set_CustoKm(float custoKm){this.custoKm = custoKm;}
-    public void set_Desgaste(float desgaste){this.desgaste = desgaste;}
-    public void set_Carga(float carga){this.carga = carga;}
+    public void set_CustoKm(double custoKm){this.custoKm = custoKm;}
+    public void set_Desgaste(double desgaste){this.desgaste = desgaste;}
+    public void set_Carga(double carga){this.carga = carga;}
     public void set_Refrigerado(boolean refrigerado){this.refrigerado = refrigerado;}
     
     

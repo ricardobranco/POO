@@ -13,7 +13,7 @@ package Veiculos;
 public class Camiao extends Veiculo{
     private String condutor;
     private boolean atrelado;
-    private float altura;
+    private double altura;
     
     
     public Camiao()
@@ -25,7 +25,7 @@ public class Camiao extends Veiculo{
         this.altura = 0;
     }
     
-    public Camiao(String marca, String matricula, String condutor, float altura, float custoKm, float desgaste, float carga,boolean atrelado,boolean refrigerado)
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado,boolean refrigerado)
     {
         super(marca,matricula,custoKm,desgaste,carga);
         super.set_Refrigerado(false);
@@ -48,14 +48,14 @@ public class Camiao extends Veiculo{
     @Override
     public String get_Matricula(){return super.get_Matricula();}
     @Override
-    public float get_Desgaste(){return super.get_Desgaste();}
+    public double get_Desgaste(){return super.get_Desgaste();}
     @Override
-    public float get_CustoKm(){return super.get_CustoKm();}
+    public double get_CustoKm(){return super.get_CustoKm();}
     @Override
-    public float get_Carga(){return super.get_Carga();}
+    public double get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerado(){return super.get_Refrigerado();}
-    public float get_Altura(){return this.altura;}
+    public double get_Altura(){return this.altura;}
     public boolean get_Atrelado(){return this.atrelado;}
     public String get_Condutor(){return this.condutor;}
     
@@ -70,12 +70,12 @@ public class Camiao extends Veiculo{
     @Override
     public void set_Matricula(String matricula){super.set_Matricula(matricula);}
     @Override
-    public void set_CustoKm(float custoKm){super.set_CustoKm(custoKm);}
+    public void set_CustoKm(double custoKm){super.set_CustoKm(custoKm);}
     @Override
-    public void set_Desgaste(float desgaste){super.set_Desgaste(desgaste);}
+    public void set_Desgaste(double desgaste){super.set_Desgaste(desgaste);}
     @Override
-    public void set_Carga(float carga){super.set_Carga(carga);}
-    public void set_Alura(float altura){this.altura = altura;}
+    public void set_Carga(double carga){super.set_Carga(carga);}
+    public void set_Alura(double altura){this.altura = altura;}
     public void set_Atrelado(boolean atrelado){this.atrelado = atrelado;}
     public void set_Condutor(String condutor){this.condutor = condutor;}
     @Override
@@ -107,7 +107,7 @@ public class Camiao extends Veiculo{
     public int compareTo(Veiculo v){return super.compareTo(v);}
 
     
-    //public float custoEcomenda(float coefx, float coefy, float pbase)
+    //public double custoEcomenda(double coefx, double coefy, double pbase)
     
     
    

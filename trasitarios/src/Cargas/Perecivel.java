@@ -17,7 +17,7 @@ public class Perecivel extends Carga{
         super.set_Refrigerada(true);
     }
     
-    public Perecivel(float carga, boolean refrigerada)
+    public Perecivel(double carga, boolean refrigerada)
     {
         super(carga);
         super.set_Refrigerada(true);
@@ -32,13 +32,13 @@ public class Perecivel extends Carga{
 
     
     @Override
-    public float get_Carga(){return super.get_Carga();}
+    public double get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerada(){return super.get_Refrigerada();}
     
     
     @Override
-    public void set_Carga(float carga){super.set_Carga(carga);}
+    public void set_Carga(double carga){super.set_Carga(carga);}
     @Override
     public void set_Refrigerada(boolean refrigerada){super.set_Refrigerada(true);}
     
