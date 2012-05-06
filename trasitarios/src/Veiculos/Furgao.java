@@ -4,6 +4,9 @@
  */
 package Veiculos;
 
+import Cargas.*;
+import java.util.List;
+
 /**
  *
  * @author Bruno Ferreira
@@ -11,6 +14,8 @@ package Veiculos;
  * @author Ricardo Branco
  */
 public class Furgao extends Veiculo{
+    
+    
     private String gasolina;
     private double autonomia;
     
@@ -31,6 +36,16 @@ public class Furgao extends Veiculo{
         this.autonomia = autonomia;
     }
     
+    public Furgao(String marca, String matricula, String gasolina, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado,List<Carga> mercadoria)
+    {
+        super(marca,matricula,custoKm,desgaste,carga,mercadoria);
+        super.set_Refrigerado(refrigerado);
+        this.gasolina = gasolina;
+        this.autonomia = autonomia;
+    }
+    
+    
+    
     public Furgao(Furgao c)
     {
         super(c);
@@ -50,6 +65,8 @@ public class Furgao extends Veiculo{
     public double get_Carga(){return super.get_Carga();}
     @Override
     public boolean get_Refrigerado(){return super.get_Refrigerado();}
+    @Override
+    public List<Carga> get_Mercadoria(){return super.get_Mercadoria();}
     public double get_Autonomia(){return this.autonomia;}
     public String get_Gasolina(){return this.gasolina;}
     
@@ -73,7 +90,7 @@ public class Furgao extends Veiculo{
     public void set_gasolina(String gasolina){this.gasolina = gasolina;}
     @Override
     public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(refrigeracao);}  
-    
+    public void set_Mercardorias(List<Carga> mercadoria){super.set_Mercadoria(mercadoria);}
     
     @Override
     public String toString()
@@ -98,17 +115,23 @@ public class Furgao extends Veiculo{
     @Override
     public int compareTo(Veiculo v){return super.compareTo(v);}
 
+    @Override
+     public double totalCarga(){return super.totalCarga();}
+    
+    @Override
+    public boolean mais60(){return super.mais60();}
+    
+    @Override
+    public boolean addCarga(Carga c){return super.addCarga(c);}
     
     
-   
+   // public void addCargas(List<Carga> c);
+
+    @Override
+    public void addCargas(List<Carga> c) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
-    
-    
-    
-    
-    
-    
-            
     
     
 

@@ -48,6 +48,18 @@ public abstract class Veiculo {
         
     }
     
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga)
+    {
+        this.marca = marca;
+        this.matricula = matricula;
+        this.desgaste = desgaste;
+        this.custoKm = custoKm;
+        this.carga = carga;
+        this.mercadoria = new ArrayList<Carga>();
+        
+    }
+    
+    
     public Veiculo(Veiculo v)
     {
         this.marca = v.get_Marca();
@@ -132,15 +144,23 @@ public abstract class Veiculo {
     public int compareTo(Veiculo v){return this.matricula.compareTo(v.get_Matricula());}
  
     
-    
-    public abstract boolean addCarga(Carga c);
-    public abstract void addCargas(List<Carga> c);
-    public boolean mais60()
+    public double totalCarga()
     {
         double res = 0;
         for(Carga c : this.mercadoria)
             res+=c.get_Carga();
-        return res/(this.carga) >= 0.6;
+        return res;
+    }
+    public boolean addCarga(Carga c)
+    {
+        return c.get_Carga()+this.totalCarga() <= this.get_Carga() && this.mercadoria.add(c);
+    }
+    
+    
+    public abstract void addCargas(List<Carga> c);
+    public boolean mais60()
+    {
+        return this.totalCarga()/(this.carga) >= 0.6;
     }
     
     
