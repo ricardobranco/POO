@@ -19,9 +19,9 @@ public class Van extends Veiculo{
         super.set_Refrigerado(true);
     }
     
-    public Van(String marca, String matricula, String gasolina, double autonomia, double custoKm, double desgaste, double carga,boolean refrigerado)
+    public Van(String marca, String matricula, String gasolina, double autonomia, double custoKm, double carga,boolean refrigerado)
     {
-        super(marca,matricula,custoKm,desgaste,carga);
+        super(marca,matricula,custoKm,carga);
         super.set_Refrigerado(true);
     }
     
@@ -31,33 +31,7 @@ public class Van extends Veiculo{
         super.set_Refrigerado(true);
     }
     
-    @Override
-    public String get_Marca(){return super.get_Marca();}
-    @Override
-    public String get_Matricula(){return super.get_Matricula();}
-    @Override
-    public double get_Desgaste(){return super.get_Desgaste();}
-    @Override
-    public double get_CustoKm(){return super.get_CustoKm();}
-    @Override
-    public double get_Carga(){return super.get_Carga();}
-    @Override
-    public boolean get_Refrigerado(){return super.get_Refrigerado();}
-       
-    
-    @Override
-    public void set_Marca(String marca){super.set_Marca(marca);}
-    @Override
-    public void set_Matricula(String matricula){super.set_Matricula(matricula);}
-    @Override
-    public void set_CustoKm(double custoKm){super.set_CustoKm(custoKm);}
-    @Override
-    public void set_Desgaste(double desgaste){super.set_Desgaste(desgaste);}
-    @Override
-    public void set_Carga(double carga){super.set_Carga(carga);}
-    @Override
-    public void set_Refrigerado(boolean refrigeracao){super.set_Refrigerado(true);}  
-    
+   
     
     @Override
     public String toString()

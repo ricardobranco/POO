@@ -16,7 +16,6 @@ public abstract class Veiculo {
     private String marca;
     private String matricula;
     private double custoKm;
-    private double desgaste;
     private double carga;
     private boolean refrigerado;
     private List<Carga> mercadoria;
@@ -28,7 +27,6 @@ public abstract class Veiculo {
         this.marca = "";
         this.matricula = "";
         this.custoKm = 0;
-        this.desgaste = 0;
         this.carga = 0;
         this.mercadoria = new ArrayList<Carga>();
     }
@@ -37,22 +35,23 @@ public abstract class Veiculo {
     {
         this.marca = marca;
         this.matricula = matricula;
-        this.desgaste = desgaste;
         this.custoKm = custoKm;
         this.carga = carga;
         this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
-        for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) {
+        for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) 
+        {
             Carga c = it.next();
             this.mercadoria.add(c);
         }
         
     }
     
-    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga)
+    
+    
+    public Veiculo(String marca, String matricula, double custoKm, double carga)
     {
         this.marca = marca;
         this.matricula = matricula;
-        this.desgaste = desgaste;
         this.custoKm = custoKm;
         this.carga = carga;
         this.mercadoria = new ArrayList<Carga>();
@@ -64,7 +63,6 @@ public abstract class Veiculo {
     {
         this.marca = v.get_Marca();
         this.matricula = v.get_Matricula();
-        this.desgaste = v.get_Desgaste();
         this.custoKm = v.get_CustoKm();
         this.carga = v.get_Carga();
         this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
@@ -78,13 +76,13 @@ public abstract class Veiculo {
     
     public String get_Marca(){return this.marca;}
     public String get_Matricula(){return this.matricula;}
-    public double get_Desgaste(){return this.desgaste;}
     public double get_CustoKm(){return this.custoKm;}
     public double get_Carga(){return this.carga;}
     public boolean get_Refrigerado(){return this.refrigerado;}
     public List<Carga> get_Mercadoria()
     {
-        List<Carga> res = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
+        List<Carga> res = new ArrayList();
+        
         for (Iterator<Carga> it = this.mercadoria.iterator(); it.hasNext();) 
         {
             Carga c = it.next();
@@ -95,10 +93,11 @@ public abstract class Veiculo {
     }
     
     
+    
+    
     public void set_Marca(String marca){this.marca = marca;}
     public void set_Matricula(String matricula){this.matricula = matricula;}
     public void set_CustoKm(double custoKm){this.custoKm = custoKm;}
-    public void set_Desgaste(double desgaste){this.desgaste = desgaste;}
     public void set_Carga(double carga){this.carga = carga;}
     public void set_Refrigerado(boolean refrigerado){this.refrigerado = refrigerado;}
     public void set_Mercadoria(List<Carga> mercadoria)
@@ -118,7 +117,6 @@ public abstract class Veiculo {
         sb.append("Marca: ").append(this.marca).append("\n");
         sb.append("Matricula: ").append(this.matricula).append("\n");
         sb.append("Custo Km: ").append(this.custoKm).append("\n");
-        sb.append("Desgate: ").append(this.desgaste).append("\n");
         sb.append("Capacidade: ").append(this.carga).append("\n");
         return sb.toString();
     }
@@ -157,7 +155,7 @@ public abstract class Veiculo {
     }
     
     
-    public abstract void addCargas(List<Carga> c);
+ //   public abstract void addCargas(List<Carga> c);
     public boolean mais60()
     {
         return this.totalCarga()/(this.carga) >= 0.6;
