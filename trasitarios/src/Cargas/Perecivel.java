@@ -6,9 +6,9 @@ public class Perecivel extends Carga{
     public Perecivel(){
         super();
     }
-    
-    public Perecivel(double carga){
-        super(carga);
+
+    public Perecivel(double carga, String descricao) {
+        super(carga, descricao);
     }
     
     public Perecivel(Perecivel p){
@@ -22,10 +22,12 @@ public class Perecivel extends Carga{
         sb.append(super.toString());
         return sb.toString();
     }
-
-    @Override
-    public int compareTo(Carga c){ return super.compareTo(c); }
     
     @Override
     public Perecivel clone(){ return new Perecivel(this); }
+
+    @Override
+    public int precisaRefrigeracao() {
+        return Carga.REFRIGERACAO_SIM;
+    }
 }

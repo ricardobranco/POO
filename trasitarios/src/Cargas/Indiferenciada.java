@@ -4,9 +4,9 @@ public class Indiferenciada extends Carga{
     public Indiferenciada(){
         super();
     }
-    
-    public Indiferenciada(double carga){
-        super(carga);
+
+    public Indiferenciada(double carga, String descricao) {
+        super(carga, descricao);
     }
     
     public Indiferenciada(Indiferenciada p){
@@ -23,4 +23,9 @@ public class Indiferenciada extends Carga{
     
     @Override
     public Indiferenciada clone(){ return new Indiferenciada(this); }
+
+    @Override
+    public int precisaRefrigeracao() {
+        return Carga.REFRIGERACAO_INDIFERENTE;
+    }
 }

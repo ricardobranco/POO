@@ -10,7 +10,6 @@ public abstract class Cliente {
     String nif; //numero de contribuinte
     LinkedList<Servico> servicos; //serviços, adicionar sempre à cabeça
     
-
     public Cliente() {
     }
 
@@ -60,4 +59,17 @@ public abstract class Cliente {
         }
         return str.toString();
     }
+    
+    @Override
+    public boolean equals(Object o){
+        if(o==this)
+            return true;
+        if((o==null)||(o.getClass() != this.getClass()))
+            return false;
+        
+        Cliente c = (Cliente) o;
+        return this.nif.equals(c.nif);
+    }
+    
+    
 }

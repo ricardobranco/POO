@@ -128,18 +128,18 @@ public abstract class Veiculo {
     public double getCargaActual(){
         double res = 0;
         for(Carga c : this.mercadoria)
-            res+=c.get_Carga();
+            res+=c.getCarga();
         return res;
     }
     
     public boolean addCarga(Carga c){
-        return c.get_Carga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
+        return c.getCarga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
     }
     
     public boolean addCarga(List<Carga> c){
         double cargaTotal = 0;
         for( Carga valor : c )
-            cargaTotal += valor.get_Carga(); //conta o tamanho total da carga a ser adicionada
+            cargaTotal += valor.getCarga(); //conta o tamanho total da carga a ser adicionada
         
         if( cargaTotal + this.getCargaActual() <= this.capacidade ){ //verifica se cabe tudo
             for( Carga valor : c )

@@ -4,9 +4,9 @@ public class Toxica extends Carga{
     public Toxica(){
         super();
     }
-    
-    public Toxica(double carga){
-        super(carga);
+
+    public Toxica(double carga, String descricao) {
+        super(carga, descricao);
     }
     
     public Toxica(Toxica p){
@@ -23,4 +23,9 @@ public class Toxica extends Carga{
     
     @Override
     public Toxica clone(){return new Toxica(this);}
+
+    @Override
+    public int precisaRefrigeracao() {
+        return Carga.REFRIGERACAO_NAO;
+    }
 }

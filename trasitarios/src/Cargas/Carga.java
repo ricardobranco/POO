@@ -1,23 +1,32 @@
 package Cargas;
 
 public abstract class Carga {
+    public static final int REFRIGERACAO_INDIFERENTE = 0;
+    public static final int REFRIGERACAO_SIM = 1;
+    public static final int REFRIGERACAO_NAO = 2;
+    
     private double carga;
+    private String descricao;
     
     public Carga(){
         this.carga = 0;
+        this.descricao = "";
     }
     
-    public Carga(double carga){
+    public Carga(double carga, String descricao){
         this.carga = carga;
+        this.descricao = descricao;
     }
     
     public Carga(Carga c){
-        this.carga = c.get_Carga();
+        this.carga = c.getCarga();
+        this.descricao = c.getDescricao();
     }
     
-    public double get_Carga(){return this.carga;}
+    public double getCarga(){return this.carga;}
+    public String getDescricao(){return this.descricao;}
     
-    public void set_Carga(double carga){this.carga = carga;}
+    public void setCarga(double carga){this.carga = carga;}
     
     @Override
     public boolean equals(Object o)
@@ -28,7 +37,7 @@ public abstract class Carga {
             return false;
         
         Carga c = (Carga) o;
-        return c.get_Carga() == this.carga;
+        return c.getCarga() == this.carga;
     }
     
     @Override
@@ -46,7 +55,15 @@ public abstract class Carga {
 
     public int compareTo(Carga c){
         Double f1 = new Double(this.carga);
-        Double f2 = new Double(c.get_Carga());
+        Double f2 = new Double(c.getCarga());
         return f1.compareTo(f2);
+    }
+    
+    public abstract int precisaRefrigeracao();
+    
+    public boolean tipo( String nomeClasse ){
+        if( this.getClass().getName().compareTo("transitarios.Cargas." + nomeClasse) == 0 )
+            return true;
+        return false;
     }
 }
