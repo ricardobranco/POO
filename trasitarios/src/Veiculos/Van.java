@@ -4,6 +4,13 @@ import Cargas.Carga;
 import java.util.ArrayList;
 
 public class Van extends Veiculo{
+    
+    //Variaveis de Classe
+    private static double pbase = 28;
+    
+    
+    
+    //Construtores
     public Van(){
         super();
     }
@@ -20,9 +27,21 @@ public class Van extends Veiculo{
         super(c);
     }
     
+    //Metodos de Classe
+    public static double getPBase(){return Van.pbase;}
+    public static void setPBase(double pbase){Van.pbase = pbase;}
+    
+    
+    //Metodos de instancia
+    
+    
     @Override
     public Van clone(){ return new Van(this); }
     
     @Override
     public int compareTo(Veiculo v){ return super.compareTo(v); }
+    
+    public double preco(){return getPBase();}
+    
 }
+

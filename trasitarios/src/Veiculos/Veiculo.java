@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class Veiculo {
+public abstract class Veiculo 
+{
+    //Variaveis de instancia
     private String marca;
     private String matricula;
     private double custoKm;
@@ -15,6 +17,8 @@ public abstract class Veiculo {
     private boolean parado; 
     private List<Carga> mercadoria;
     
+    
+    //Construtores
     public Veiculo(){
         this.marca = "";
         this.matricula = "";
@@ -62,9 +66,11 @@ public abstract class Veiculo {
             Carga c = it.next();
             this.mercadoria.add(c);
         }
-        this.parado = v.isParado();
+        this.parado = v.getParado();
     }
     
+    
+    //Metodos de instancia
     
     public String getMarca(){return this.marca;}
     public String getMatricula(){return this.matricula;}
@@ -80,7 +86,7 @@ public abstract class Veiculo {
         return res;
     }
     
-    public boolean isParado(){ return this.parado; }
+    public boolean getParado(){ return this.parado; }
     public void setParado( boolean valor ){ this.parado = valor; }
     
     public void setCustoKm(double custoKm){this.custoKm = custoKm;}
@@ -123,6 +129,7 @@ public abstract class Veiculo {
     @Override
     public int hashCode(){ return this.matricula.hashCode(); }
     
+    
     public int compareTo(Veiculo v){ return this.matricula.compareTo(v.getMatricula()); }
     
     public double getCargaActual(){
@@ -131,6 +138,7 @@ public abstract class Veiculo {
             res+=c.getCarga();
         return res;
     }
+    
     
     public boolean addCarga(Carga c){
         return c.getCarga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
@@ -150,39 +158,10 @@ public abstract class Veiculo {
         return false;
     }
     
+    public abstract double preco();
+    
+    //FALTA METODO QUE ESVAZIA UM VEICULO
+    //VAI SER TRATADO QUANDO COMEÇAR A TRABALHAR NO AMBIENTE GRAFICO
+    //public void esvazia(List<Carga>)
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+    }

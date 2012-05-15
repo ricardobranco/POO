@@ -4,14 +4,18 @@ import Cargas.Carga;
 import java.util.ArrayList;
 
 public class Furgao extends Veiculo{
+    
+    //Variaveis de Classe
+    private static double pbase = 85;
+    
+    //Variaveis de Instancia
     private String combustivel;
     private double autonomia;
     
-    private void construtor_auxiliar(String combustivel, double autonomia){
-        this.combustivel = combustivel;
-        this.autonomia = autonomia;
-    }
     
+    
+    
+    //Construtores
     public Furgao(){
         super();
         construtor_auxiliar("", 0);
@@ -32,6 +36,18 @@ public class Furgao extends Veiculo{
         construtor_auxiliar(c.getCombustivel(), c.getAutonomia());
     }
     
+    
+    //Metodos de Classe
+    public static double getPBase(){return Furgao.pbase;}
+    public static void setPBase(double pbase){Furgao.pbase = pbase;}
+    
+    
+    //Metodos de instancia
+    private void construtor_auxiliar(String combustivel, double autonomia){
+        this.combustivel = combustivel;
+        this.autonomia = autonomia;
+    }
+    
     public double getAutonomia(){return this.autonomia;}
     public String getCombustivel(){return this.combustivel;}
     
@@ -49,4 +65,6 @@ public class Furgao extends Veiculo{
     
     @Override
     public Furgao clone(){return new Furgao(this);}
+    
+    public double preco(){return  (getPBase() + this.getCargaActual() * (this.getCapacidade()-this.getCargaActual()));}   
 }
