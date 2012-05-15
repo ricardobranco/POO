@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class Veiculo {
+public abstract class Veiculo 
+{
+    //Variaveis de instancia
     private String marca;
     private String matricula;
     private double custoKm;
@@ -15,6 +17,8 @@ public abstract class Veiculo {
     private boolean parado; 
     private List<Carga> mercadoria;
     
+    
+    //Construtores
     public Veiculo(){
         this.marca = "";
         this.matricula = "";
@@ -65,6 +69,8 @@ public abstract class Veiculo {
         this.parado = v.isParado();
     }
     
+    
+    //Metodos de instancia
     
     public String getMarca(){return this.marca;}
     public String getMatricula(){return this.matricula;}

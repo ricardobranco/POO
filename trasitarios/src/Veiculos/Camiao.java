@@ -4,17 +4,17 @@ import Cargas.Carga;
 import java.util.ArrayList;
 
 public class Camiao extends Veiculo{
-    private static final double pbase = 60;
     
+    //Variaveis de Classe
+    private static double pbase = 60;
+    
+    
+    //Variaveis de instancia
     private String condutor;
     private boolean atrelado;
     private double altura;
     
-    private void construtor_auxiliar(String condutor, boolean atrelado, double altura){
-        this.condutor = condutor;
-        this.atrelado = atrelado;
-        this.altura = altura;
-    }
+    //Construtores
     
     public Camiao(){
         super();
@@ -34,6 +34,20 @@ public class Camiao extends Veiculo{
     public Camiao(Camiao c){
         super(c);
         construtor_auxiliar(c.getCondutor(), c.getAtrelado(), c.getAltura());
+    }
+    
+    
+    //Metodos de Classe
+    public static double getPBase(){return Camiao.pbase;}
+    public static void setPBase(double pbase){Camiao.pbase = pbase;}
+    
+    
+    //Metodos de instancia
+    private void construtor_auxiliar(String condutor, boolean atrelado, double altura)
+    {
+        this.condutor = condutor;
+        this.atrelado = atrelado;
+        this.altura = altura;
     }
     
     public double getAltura(){return this.altura;}
