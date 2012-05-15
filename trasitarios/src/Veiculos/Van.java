@@ -1,15 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Veiculos;
 
-/**
- *
- * @author Bruno Ferreira
- * @author Daniel Carvalho
- * @author Ricardo Branco
- */
 public class Van extends Veiculo{
    
     

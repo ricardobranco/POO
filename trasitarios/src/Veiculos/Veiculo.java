@@ -1,11 +1,5 @@
 package Veiculos;
 
-/**
- *
- * @author Bruno Ferreira
- * @author Daniel Carvalho
- * @author Ricardo Branco
- */
 import Cargas.*;
 import java.util.ArrayList;
 import java.util.Iterator;

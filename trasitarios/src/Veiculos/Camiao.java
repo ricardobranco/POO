@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Veiculos;
 
-/**
- *
- * @author Bruno Ferreira
- * @author Daniel Carvalho
- * @author Ricardo Branco
- */
+import Cargas.Carga;
+import java.util.List;
+
 public class Camiao extends Veiculo{
     private String condutor;
     private boolean atrelado;
@@ -43,18 +36,6 @@ public class Camiao extends Veiculo{
         this.condutor = c.get_Condutor();
     }
     
-    @Override
-    public String get_Marca(){return super.get_Marca();}
-    @Override
-    public String get_Matricula(){return super.get_Matricula();}
-    @Override
-    public double get_Desgaste(){return super.get_Desgaste();}
-    @Override
-    public double get_CustoKm(){return super.get_CustoKm();}
-    @Override
-    public double get_Carga(){return super.get_Carga();}
-    @Override
-    public boolean get_Refrigerado(){return super.get_Refrigerado();}
     public double get_Altura(){return this.altura;}
     public boolean get_Atrelado(){return this.atrelado;}
     public String get_Condutor(){return this.condutor;}
@@ -108,6 +89,11 @@ public class Camiao extends Veiculo{
 
     
     //public double custoEcomenda(double coefx, double coefy, double pbase)
+
+    @Override
+    public void addCargas(List<Carga> c) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     
    
