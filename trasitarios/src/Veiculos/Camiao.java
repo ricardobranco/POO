@@ -70,4 +70,7 @@ public class Camiao extends Veiculo{
     
     @Override
     public Camiao clone(){return new Camiao(this);}
+    
+    public double preco(){return  (this.getCargaActual() * getPBase() + this.getCapacidade() * (this.getCapacidade()-this.getCargaActual()));}   
+
 }

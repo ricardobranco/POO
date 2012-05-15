@@ -40,4 +40,8 @@ public class Van extends Veiculo{
     
     @Override
     public int compareTo(Veiculo v){ return super.compareTo(v); }
+    
+    public double preco(){return getPBase();}
+    
 }
+

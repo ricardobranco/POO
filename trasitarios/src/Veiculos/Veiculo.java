@@ -66,7 +66,7 @@ public abstract class Veiculo
             Carga c = it.next();
             this.mercadoria.add(c);
         }
-        this.parado = v.isParado();
+        this.parado = v.getParado();
     }
     
     
@@ -86,7 +86,7 @@ public abstract class Veiculo
         return res;
     }
     
-    public boolean isParado(){ return this.parado; }
+    public boolean getParado(){ return this.parado; }
     public void setParado( boolean valor ){ this.parado = valor; }
     
     public void setCustoKm(double custoKm){this.custoKm = custoKm;}
@@ -129,6 +129,7 @@ public abstract class Veiculo
     @Override
     public int hashCode(){ return this.matricula.hashCode(); }
     
+    
     public int compareTo(Veiculo v){ return this.matricula.compareTo(v.getMatricula()); }
     
     public double getCargaActual(){
@@ -137,6 +138,7 @@ public abstract class Veiculo
             res+=c.get_Carga();
         return res;
     }
+    
     
     public boolean addCarga(Carga c){
         return c.get_Carga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
@@ -156,39 +158,10 @@ public abstract class Veiculo
         return false;
     }
     
+    public abstract double preco();
+    
+    //FALTA METODO QUE ESVAZIA UM VEICULO
+    //VAI SER TRATADO QUANDO COMEÇAR A TRABALHAR NO AMBIENTE GRAFICO
+    //public void esvazia(List<Carga>)
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
+    }

@@ -65,4 +65,6 @@ public class Furgao extends Veiculo{
     
     @Override
     public Furgao clone(){return new Furgao(this);}
+    
+    public double preco(){return  (getPBase() + this.getCargaActual() * (this.getCapacidade()-this.getCargaActual()));}   
 }
