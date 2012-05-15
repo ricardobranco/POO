@@ -1,6 +1,11 @@
 package Veiculos;
 
+import Cargas.Carga;
+import java.util.ArrayList;
+
 public class Camiao extends Veiculo{
+    private static final double pbase = 60;
+    
     private String condutor;
     private boolean atrelado;
     private double altura;
@@ -18,6 +23,11 @@ public class Camiao extends Veiculo{
     
     public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado){
         super(marca,matricula,custoKm,desgaste,carga,false);
+        construtor_auxiliar(condutor, atrelado, altura);
+    }
+    
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,desgaste,carga,false, mercadoria);
         construtor_auxiliar(condutor, atrelado, altura);
     }
     

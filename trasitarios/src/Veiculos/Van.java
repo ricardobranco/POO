@@ -1,5 +1,8 @@
 package Veiculos;
 
+import Cargas.Carga;
+import java.util.ArrayList;
+
 public class Van extends Veiculo{
     public Van(){
         super();
@@ -7,6 +10,10 @@ public class Van extends Veiculo{
     
     public Van(String marca, String matricula, double custoKm, double desgaste, double carga){
         super(marca,matricula,custoKm,desgaste,carga, true);
+    }
+    
+    public Van(String marca, String matricula, double custoKm, double desgaste, double carga, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,desgaste,carga, true, mercadoria);
     }
     
     public Van(Van c){
@@ -19,13 +26,3 @@ public class Van extends Veiculo{
     @Override
     public int compareTo(Veiculo v){ return super.compareTo(v); }
 }
-    
-    
-            
-    
-    
-    
-    
-   
-
-   

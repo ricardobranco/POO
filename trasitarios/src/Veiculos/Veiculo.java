@@ -12,6 +12,7 @@ public abstract class Veiculo {
     private double desgaste;
     private double capacidade;
     private boolean refrigerado;
+    private boolean parado; 
     private List<Carga> mercadoria;
     
     public Veiculo(){
@@ -22,33 +23,32 @@ public abstract class Veiculo {
         this.capacidade = 0;
         this.refrigerado = false;
         this.mercadoria = new ArrayList<Carga>();
-    }
-    
-    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade, boolean refrigerado, List<Carga> mercadoria){
-        this.marca = marca;
-        this.matricula = matricula;
-        this.desgaste = desgaste;
-        this.custoKm = custoKm;
-        this.capacidade = capacidade;
-        this.refrigerado = refrigerado;
-        this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
-        for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) {
-            Carga c = it.next();
-            this.mercadoria.add(c);
-        }
-        
+        this.parado = true;
     }
     
     public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade, boolean refrigerado){
         this.marca = marca;
         this.matricula = matricula;
-        this.desgaste = desgaste;
         this.custoKm = custoKm;
         this.capacidade = capacidade;
         this.mercadoria = new ArrayList<Carga>();
         this.refrigerado = refrigerado;
+        this.parado = true;
     }
     
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade, boolean refrigerado, ArrayList<Carga> mercadoria){
+        this.marca = marca;
+        this.matricula = matricula;
+        this.custoKm = custoKm;
+        this.capacidade = capacidade;
+        this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
+        for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) {
+            Carga c = it.next();
+            this.mercadoria.add(c);
+        }
+        this.refrigerado = refrigerado;
+        this.parado = true;
+    }
     
     public Veiculo(Veiculo v){
         this.marca = v.getMarca();
@@ -62,6 +62,7 @@ public abstract class Veiculo {
             Carga c = it.next();
             this.mercadoria.add(c);
         }
+        this.parado = v.isParado();
     }
     
     
@@ -79,16 +80,19 @@ public abstract class Veiculo {
         return res;
     }
     
-    public void set_Refrigerado(){this.refrigerado = true;}
+    public boolean isParado(){ return this.parado; }
+    public void setParado( boolean valor ){ this.parado = valor; }
     
-    public void set_CustoKm(double custoKm){this.custoKm = custoKm;}
-    public void set_Desgaste(double desgaste){this.desgaste = desgaste;}
-    public void set_Mercadoria(List<Carga> mercadoria){
+    public void setCustoKm(double custoKm){this.custoKm = custoKm;}
+    public void setDesgaste(double desgaste){this.desgaste = desgaste;}
+    public void setMercadoria(List<Carga> mercadoria){
         this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
         for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext(); ){
             this.mercadoria.add(it.next().clone());
         }
     }
+    
+    
     
     @Override
     public String toString(){
@@ -109,7 +113,7 @@ public abstract class Veiculo {
     public boolean equals(Object o){
       if(this == o)
           return true;
-      if((o==null) || (this.getClass() != o.getClass()))
+      if((o==null) || !(o instanceof Veiculo))  //INTERESSA NOS COMPARAR OS 2 VEICULOS A NIVEL DA SUPER CLASSE
           return false;
       
       Veiculo v = (Veiculo) o;
@@ -146,9 +150,7 @@ public abstract class Veiculo {
         return false;
     }
     
-    public boolean mais60(){
-        return this.getCargaActual()/(this.capacidade) >= 0.6;
-    }
+
     
     
     

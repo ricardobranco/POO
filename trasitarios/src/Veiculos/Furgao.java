@@ -1,11 +1,9 @@
 package Veiculos;
 
 import Cargas.Carga;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Furgao extends Veiculo{
-    
-    
     private String combustivel;
     private double autonomia;
     
@@ -17,15 +15,15 @@ public class Furgao extends Veiculo{
     public Furgao(){
         super();
         construtor_auxiliar("", 0);
-     }
+    }
     
     public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado){
         super(marca,matricula,custoKm,desgaste,carga, refrigerado);
         construtor_auxiliar(combustivel, autonomia);
     }
     
-    public Furgao(String marca, String matricula, String gasolina, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado,List<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga,refrigerado,mercadoria);
+    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,desgaste,carga, refrigerado, mercadoria);
         construtor_auxiliar(combustivel, autonomia);
     }
     
