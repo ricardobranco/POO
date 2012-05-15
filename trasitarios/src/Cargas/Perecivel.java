@@ -3,53 +3,29 @@ package Cargas;
 public class Perecivel extends Carga{
     
     
-    public Perecivel()
-    {
+    public Perecivel(){
         super();
     }
     
-    public Perecivel(double carga, boolean refrigerada)
-    {
+    public Perecivel(double carga){
         super(carga);
     }
     
-    public Perecivel(Perecivel p)
-    {
+    public Perecivel(Perecivel p){
         super(p);
     }
-
     
     @Override
-    public double get_Carga(){return super.get_Carga();}
-    
-    
-    @Override
-    public void set_Carga(double carga){super.set_Carga(carga);}
-    
-    @Override
-    public boolean equals(Object o){return super.equals(o);}
-    
-    @Override
-    public String toString()
-    {
+    public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("CARGA PERECEVIVEL");
+        sb.append("CARGA PERECÍVEL");
         sb.append(super.toString());
         return sb.toString();
     }
-    
-    @Override
-    public int hashCode(){ return super.hashCode();}
 
     @Override
-    public int compareTo(Carga c){return super.compareTo(c);}
-    
+    public int compareTo(Carga c){ return super.compareTo(c); }
     
     @Override
-    public Perecivel clone(){return new Perecivel(this);}
-    
-    
-    
-    
-    
+    public Perecivel clone(){ return new Perecivel(this); }
 }

@@ -1,26 +1,26 @@
 package Cargas;
 
-public class Toxica extends Carga{
-    public Toxica(){
+public class Indiferenciada extends Carga{
+    public Indiferenciada(){
         super();
     }
     
-    public Toxica(double carga){
+    public Indiferenciada(double carga){
         super(carga);
     }
     
-    public Toxica(Toxica p){
+    public Indiferenciada(Indiferenciada p){
         super(p);
     }
     
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("CARGA TÓXICA");
+        sb.append("CARGA INDIFERENCIADA");
         sb.append(super.toString());
         return sb.toString();
     }
     
     @Override
-    public Toxica clone(){return new Toxica(this);}
+    public Indiferenciada clone(){ return new Indiferenciada(this); }
 }

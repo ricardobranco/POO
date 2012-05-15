@@ -1,25 +1,19 @@
 package Cargas;
 
 public abstract class Carga {
-
     private double carga;
     
-    public Carga()
-    {
+    public Carga(){
         this.carga = 0;
     }
     
-    public Carga(double carga)
-    {
+    public Carga(double carga){
         this.carga = carga;
     }
     
-    public Carga(Carga c)
-    {
+    public Carga(Carga c){
         this.carga = c.get_Carga();
     }
-    
-    
     
     public double get_Carga(){return this.carga;}
     
@@ -41,8 +35,7 @@ public abstract class Carga {
     public abstract Carga clone();
     
     @Override
-    public String toString()
-    {
+    public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Carga: ").append(this.carga).append("\n");
         return sb.toString();
@@ -51,47 +44,9 @@ public abstract class Carga {
     @Override
     public int hashCode(){ return (int) this.carga;}
 
-    public int compareTo(Carga c)
-    {
+    public int compareTo(Carga c){
         Double f1 = new Double(this.carga);
         Double f2 = new Double(c.get_Carga());
         return f1.compareTo(f2);
     }
-    
-    
-    
-    
-    
-    
-    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    
-    
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
