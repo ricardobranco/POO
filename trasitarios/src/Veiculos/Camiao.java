@@ -4,6 +4,9 @@
  */
 package Veiculos;
 
+import Cargas.*;
+import java.util.List;
+
 /**
  *
  * @author Bruno Ferreira
@@ -11,10 +14,15 @@ package Veiculos;
  * @author Ricardo Branco
  */
 public class Camiao extends Veiculo{
+    
+    private static final double pbase = 60;
+    
+    
     private String condutor;
     private boolean atrelado;
     private double altura;
-    
+    private double coefx;
+    private double coefy;
     
     public Camiao()
     {
@@ -25,6 +33,16 @@ public class Camiao extends Veiculo{
         this.altura = 0;
     }
     
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm,double carga,boolean atrelado,boolean refrigerado, List<Carga> mercadoria)
+    {
+        super(marca, matricula, custoKm, carga, carga, mercadoria);
+        super.set_Refrigerado(false);
+        this.condutor = condutor;
+        this.altura = altura;
+        this.atrelado = atrelado;
+    }
+    
+    
     public Camiao(String marca, String matricula, String condutor, double altura, double custoKm,double carga,boolean atrelado,boolean refrigerado)
     {
         super(marca,matricula,custoKm,carga);
@@ -33,10 +51,6 @@ public class Camiao extends Veiculo{
         this.altura = altura;
         this.atrelado = atrelado;
     }
-    
-    
-    
-    
     
     
     public Camiao(Camiao c)

@@ -18,6 +18,7 @@ public abstract class Veiculo {
     private double custoKm;
     private double carga;
     private boolean refrigerado;
+    private boolean parado; 
     private List<Carga> mercadoria;
     
     
@@ -28,15 +29,17 @@ public abstract class Veiculo {
         this.matricula = "";
         this.custoKm = 0;
         this.carga = 0;
+        this.parado = true;
         this.mercadoria = new ArrayList<Carga>();
     }
     
-    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga, List<Carga> mercadoria)
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double carga, List<Carga> mercadoria, boolean parado)
     {
         this.marca = marca;
         this.matricula = matricula;
         this.custoKm = custoKm;
         this.carga = carga;
+        this.parado = parado;
         this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
         for (Iterator<Carga> it = mercadoria.iterator(); it.hasNext();) 
         {
@@ -55,7 +58,7 @@ public abstract class Veiculo {
         this.custoKm = custoKm;
         this.carga = carga;
         this.mercadoria = new ArrayList<Carga>();
-        
+        this.parado = true;
     }
     
     
@@ -65,6 +68,7 @@ public abstract class Veiculo {
         this.matricula = v.get_Matricula();
         this.custoKm = v.get_CustoKm();
         this.carga = v.get_Carga();
+        this.parado = v.get_Parado();
         this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
         for (Iterator<Carga> it = v.get_Mercadoria().iterator(); it.hasNext();) {
             Carga c = it.next();
@@ -79,6 +83,7 @@ public abstract class Veiculo {
     public double get_CustoKm(){return this.custoKm;}
     public double get_Carga(){return this.carga;}
     public boolean get_Refrigerado(){return this.refrigerado;}
+    public boolean get_Parado(){return this.parado;}
     public List<Carga> get_Mercadoria()
     {
         List<Carga> res = new ArrayList();
@@ -100,6 +105,7 @@ public abstract class Veiculo {
     public void set_CustoKm(double custoKm){this.custoKm = custoKm;}
     public void set_Carga(double carga){this.carga = carga;}
     public void set_Refrigerado(boolean refrigerado){this.refrigerado = refrigerado;}
+    public void set_Parado(boolean parado){this.parado = parado;}
     public void set_Mercadoria(List<Carga> mercadoria)
     {
         this.mercadoria = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
@@ -110,6 +116,8 @@ public abstract class Veiculo {
         }
     }
     
+    
+    
     @Override
     public String toString()
     {
@@ -118,6 +126,7 @@ public abstract class Veiculo {
         sb.append("Matricula: ").append(this.matricula).append("\n");
         sb.append("Custo Km: ").append(this.custoKm).append("\n");
         sb.append("Capacidade: ").append(this.carga).append("\n");
+        sb.append("PARADO: ").append(this.parado).append("\n");
         return sb.toString();
     }
     
@@ -129,7 +138,7 @@ public abstract class Veiculo {
     {
       if(this == o)
           return true;
-      if((o==null) || (this.getClass() != o.getClass()))
+      if((o==null) || (o instanceof Veiculo))  //INTERESSA NOS COMPARAR OS 2 VEICULOS A NIVEL DA SUPER CLASSE
           return false;
       
       Veiculo v = (Veiculo) o;
@@ -142,6 +151,9 @@ public abstract class Veiculo {
     public int compareTo(Veiculo v){return this.matricula.compareTo(v.get_Matricula());}
  
     
+    
+    
+    
     public double totalCarga()
     {
         double res = 0;
@@ -149,17 +161,11 @@ public abstract class Veiculo {
             res+=c.get_Carga();
         return res;
     }
-    public boolean addCarga(Carga c)
-    {
-        return c.get_Carga()+this.totalCarga() <= this.get_Carga() && this.mercadoria.add(c);
-    }
     
+    public abstract double preco();
+    public abstract boolean addCarga();
     
- //   public abstract void addCargas(List<Carga> c);
-    public boolean mais60()
-    {
-        return this.totalCarga()/(this.carga) >= 0.6;
-    }
+
     
     
     
