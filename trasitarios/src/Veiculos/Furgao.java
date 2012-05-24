@@ -3,7 +3,7 @@ package Veiculos;
 import Cargas.Carga;
 import java.util.ArrayList;
 
-public class Furgao extends Veiculo{
+public abstract class  Furgao extends Veiculo{
     
     //Variaveis de Classe
     private static double pbase = 85;
@@ -21,13 +21,13 @@ public class Furgao extends Veiculo{
         construtor_auxiliar("", 0);
     }
     
-    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado){
-        super(marca,matricula,custoKm,desgaste,carga, refrigerado);
+    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga){
+        super(marca,matricula,custoKm,desgaste,carga);
         construtor_auxiliar(combustivel, autonomia);
     }
     
-    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga, refrigerado, mercadoria);
+    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,desgaste,carga, mercadoria);
         construtor_auxiliar(combustivel, autonomia);
     }
     
@@ -64,7 +64,7 @@ public class Furgao extends Veiculo{
     }
     
     @Override
-    public Furgao clone(){return new Furgao(this);}
+    public abstract Furgao clone();
     
     public double preco(){return  (getPBase() + this.getCargaActual() * (this.getCapacidade()-this.getCargaActual()));}   
 }

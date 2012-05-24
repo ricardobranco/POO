@@ -16,11 +16,11 @@ public class Van extends Veiculo{
     }
     
     public Van(String marca, String matricula, double custoKm, double desgaste, double carga){
-        super(marca,matricula,custoKm,desgaste,carga, true);
+        super(marca,matricula,custoKm,desgaste,carga);
     }
     
     public Van(String marca, String matricula, double custoKm, double desgaste, double carga, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga, true, mercadoria);
+        super(marca,matricula,custoKm,desgaste,carga,mercadoria);
     }
     
     public Van(Van c){
