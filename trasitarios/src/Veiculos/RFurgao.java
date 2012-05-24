@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 
-public class RFurgao extends Furgao{
+public class RFurgao extends Furgao implements Refrigerado{
     
     public RFurgao()
     {
@@ -29,5 +29,14 @@ public class RFurgao extends Furgao{
     @Override
     public RFurgao clone() {return new RFurgao(this);} 
     
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("REFRIGERADO\n");
+        return sb.toString();
+        
+    }
     
 }

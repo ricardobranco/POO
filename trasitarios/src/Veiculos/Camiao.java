@@ -65,6 +65,8 @@ public class Camiao extends Veiculo{
         sb.append("Condutor: ").append(this.condutor).append("\n");
         sb.append("Atrelado: ").append(this.atrelado).append("\n");
         sb.append("Altura: ").append(this.altura).append("\n");
+        sb.append("NÃO REFRIGERADO\n");
+        
         return sb.toString();      
     }
     

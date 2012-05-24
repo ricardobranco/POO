@@ -3,7 +3,7 @@ package Veiculos;
 import Cargas.Carga;
 import java.util.ArrayList;
 
-public class Van extends Veiculo{
+public class Van extends Veiculo implements Refrigerado{
     
     //Variaveis de Classe
     private static double pbase = 28;
@@ -41,7 +41,17 @@ public class Van extends Veiculo{
     @Override
     public int compareTo(Veiculo v){ return super.compareTo(v); }
     
+    @Override
     public double preco(){return getPBase();}
+    
+     @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("REFRIGERADO\n");
+        return sb.toString();
+    }
     
 }
 

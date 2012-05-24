@@ -27,7 +27,17 @@ public class NRFurgao extends Furgao{
     }
 
     @Override
-    public NRFurgao clone() {return new NRFurgao(this);} 
+    public NRFurgao clone() {return new NRFurgao(this);}
+    
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append("NÃO REFRIGERADO\n");
+        return sb.toString();
+        
+    }
     
     
 }
