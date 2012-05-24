@@ -37,7 +37,7 @@ public abstract class Veiculo
         this.parado = true;
     }
     
-    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade ArrayList<Carga> mercadoria){
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade, ArrayList<Carga> mercadoria){
         this.marca = marca;
         this.matricula = matricula;
         this.custoKm = custoKm;
@@ -71,7 +71,8 @@ public abstract class Veiculo
     public String getMatricula(){return this.matricula;}
     public double getDesgaste(){return this.desgaste;}
     public double getCustoKm(){return this.custoKm;}
-    public double getCapacidade(){return this.capacidade;}}
+    public double getCapacidade(){return this.capacidade;}
+    
     public List<Carga> getMercadoria(){
         List<Carga> res = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
         for (Iterator<Carga> it = this.mercadoria.iterator(); it.hasNext(); )
@@ -80,7 +81,7 @@ public abstract class Veiculo
         return res;
     }
     
-    public boolean getParado(){ return this.parado; }
+    public boolean getParado(){ return this.parado;}
     public void setParado( boolean valor ){ this.parado = valor; }
     
     public void setCustoKm(double custoKm){this.custoKm = custoKm;}

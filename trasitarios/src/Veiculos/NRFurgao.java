@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 
-public class NRFurgao {
+public class NRFurgao extends Furgao{
     
     public NRFurgao()
     {
@@ -16,16 +16,18 @@ public class NRFurgao {
     
     public NRFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga){
         super(marca, matricula, combustivel, autonomia, custoKm, desgaste, carga);
-    
-    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, boolean refrigerado, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga, refrigerado, mercadoria);
-        construtor_auxiliar(combustivel, autonomia);
     }
     
-    public Furgao(Furgao c){
+    public NRFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, ArrayList<Carga> mercadoria){
+        super(marca, matricula, combustivel, autonomia, custoKm, desgaste,carga,mercadoria);
+    }
+    
+    public NRFurgao(Furgao c){
         super(c);
-        construtor_auxiliar(c.getCombustivel(), c.getAutonomia());
     }
+
+    @Override
+    public NRFurgao clone() {return new NRFurgao(this);} 
     
     
 }
