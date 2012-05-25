@@ -26,8 +26,8 @@ public abstract class  Furgao extends Veiculo{
         construtor_auxiliar(combustivel, autonomia);
     }
     
-    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga, mercadoria);
+    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, double total, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,desgaste,carga,total, mercadoria);
         construtor_auxiliar(combustivel, autonomia);
     }
     

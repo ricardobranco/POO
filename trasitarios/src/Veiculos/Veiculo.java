@@ -13,7 +13,8 @@ public abstract class Veiculo
     private double custoKm;
     private double desgaste;
     private double capacidade;
-    private boolean parado; 
+    private boolean parado;
+    private double total;
     private List<Carga> mercadoria;
     
     
@@ -26,6 +27,7 @@ public abstract class Veiculo
         this.capacidade = 0;
         this.mercadoria = new ArrayList<Carga>();
         this.parado = true;
+        this.total = 0;
     }
     
     public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade){
@@ -35,9 +37,10 @@ public abstract class Veiculo
         this.capacidade = capacidade;
         this.mercadoria = new ArrayList<Carga>();
         this.parado = true;
+        this.total = 0;
     }
     
-    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade, ArrayList<Carga> mercadoria){
+    public Veiculo(String marca, String matricula, double custoKm, double desgaste, double capacidade, double total, ArrayList<Carga> mercadoria){
         this.marca = marca;
         this.matricula = matricula;
         this.custoKm = custoKm;
@@ -48,6 +51,7 @@ public abstract class Veiculo
             this.mercadoria.add(c);
         }
         this.parado = true;
+        this.total = total;
     }
     
     public Veiculo(Veiculo v){
@@ -62,6 +66,7 @@ public abstract class Veiculo
             this.mercadoria.add(c);
         }
         this.parado = v.getParado();
+        this.total = getTotal();
     }
     
     
@@ -72,6 +77,8 @@ public abstract class Veiculo
     public double getDesgaste(){return this.desgaste;}
     public double getCustoKm(){return this.custoKm;}
     public double getCapacidade(){return this.capacidade;}
+    public double getTotal(){return this.total;}
+    
     
     public List<Carga> getMercadoria(){
         List<Carga> res = new ArrayList<Carga>((int)(1.4*mercadoria.size()));
@@ -83,7 +90,7 @@ public abstract class Veiculo
     
     public boolean getParado(){ return this.parado;}
     public void setParado( boolean valor ){ this.parado = valor; }
-    
+    public void setTotal(double total){this.total = total;}
     public void setCustoKm(double custoKm){this.custoKm = custoKm;}
     public void setDesgaste(double desgaste){this.desgaste = desgaste;}
     public void setMercadoria(List<Carga> mercadoria){
@@ -94,6 +101,7 @@ public abstract class Veiculo
     }
     
     
+    public void incTotal(double inc){this.total+=inc;}
     
     @Override
     public String toString(){
