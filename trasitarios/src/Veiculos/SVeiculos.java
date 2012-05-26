@@ -147,7 +147,7 @@ public class SVeiculos implements Serializable{
          for(Veiculo v : this.veiculos.values())
          {
              if(v.getParado())
-                 ref.add(v);
+                 ref.add(v.clone());
          }
          
          return ref;
@@ -161,7 +161,7 @@ public class SVeiculos implements Serializable{
          for(Veiculo v : this.veiculos.values())
          {
              if(!(v.getParado()))
-                 ref.add(v);
+                 ref.add(v.clone());
          }
          
          return ref;
@@ -173,7 +173,7 @@ public class SVeiculos implements Serializable{
           TreeSet<Veiculo> res = new TreeSet<Veiculo>(new VComparaTotal());
           for(Veiculo v : this.veiculos.values())
           {
-              res.add(v);
+              res.add(v.clone());
           }
           return res.iterator();
       }
@@ -183,7 +183,7 @@ public class SVeiculos implements Serializable{
           TreeSet<Veiculo> res = new TreeSet<Veiculo>(new VComparaLivre());
           for(Veiculo v : this.veiculos.values())
           {
-              res.add(v);
+              res.add(v.clone());
           }
           return res.iterator();
       }
@@ -193,7 +193,7 @@ public class SVeiculos implements Serializable{
           TreeSet<Veiculo> res = new TreeSet<Veiculo>();
           for(Veiculo v : this.veiculos.values())
           {
-              res.add(v);
+              res.add(v.clone());
           }
           return res.iterator();
           
