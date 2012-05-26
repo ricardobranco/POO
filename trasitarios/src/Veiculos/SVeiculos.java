@@ -170,14 +170,32 @@ public class SVeiculos implements Serializable{
       
       public Iterator<Veiculo> sortTransportado()
       {
-          TreeMap<Double,Veiculo> res = new TreeMap<Double,Veiculo>();
+          TreeSet<Veiculo> res = new TreeSet<Veiculo>(new VComparaTotal());
           for(Veiculo v : this.veiculos.values())
           {
-              Double d = new Double(v.getTotal()); 
-              res.put(d,v);
+              res.add(v);
           }
-          return res.values().iterator();
-          
+          return res.iterator();
+      }
+      
+      public Iterator<Veiculo> sortLivre()
+      {
+          TreeSet<Veiculo> res = new TreeSet<Veiculo>(new VComparaLivre());
+          for(Veiculo v : this.veiculos.values())
+          {
+              res.add(v);
+          }
+          return res.iterator();
+      }
+      
+      public Iterator<Veiculo> sortMatricula()
+      { 
+          TreeSet<Veiculo> res = new TreeSet<Veiculo>();
+          for(Veiculo v : this.veiculos.values())
+          {
+              res.add(v);
+          }
+          return res.iterator();
           
       }
       
@@ -200,25 +218,4 @@ public class SVeiculos implements Serializable{
           fis.close();
       }
       
-      
-      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-    
-     
-     
-    
-    
 }

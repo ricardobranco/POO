@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class Veiculo 
+public abstract class Veiculo implements Comparable<Veiculo>
 {
     //Variaveis de instancia
     private String marca;
