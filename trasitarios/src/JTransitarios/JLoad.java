@@ -67,7 +67,7 @@ public class JLoad extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Carregar Clientes");
+        jButton2.setText("Carregar Clientes e Veiculos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

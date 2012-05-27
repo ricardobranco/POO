@@ -65,7 +65,7 @@ public class JSave extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Gravar Localidades:");
+        jLabel2.setText("Gravar Veiculos:");
 
         jButton3.setText("Gravar Clientes");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -100,14 +100,14 @@ public class JSave extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Gravar Localidades e Clientes");
+        jButton2.setText("Gravar Veiculos e Clientes");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Gravar Localidades");
+        jButton5.setText("Gravar Veiculos");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
