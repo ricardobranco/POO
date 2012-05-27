@@ -21,13 +21,13 @@ public abstract class  Furgao extends Veiculo{
         construtor_auxiliar("", 0);
     }
     
-    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga){
-        super(marca,matricula,custoKm,desgaste,carga);
+    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double carga){
+        super(marca,matricula,custoKm,carga);
         construtor_auxiliar(combustivel, autonomia);
     }
     
-    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, double total, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga,total, mercadoria);
+    public Furgao(String marca, String matricula, String combustivel, double autonomia, double custoKm,double carga, double total, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,carga,total, mercadoria);
         construtor_auxiliar(combustivel, autonomia);
     }
     

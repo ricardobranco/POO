@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class SClientes implements Serializable{
+public class SClientes extends Observable implements Serializable{
     
     private Map<Long,Cliente> clientes;
     
@@ -19,6 +19,12 @@ public class SClientes implements Serializable{
     {
         this.setMClientes(clientes);
     }
+    
+    public SClientes(Observer o){
+        this.clientes = new TreeMap<Long,Cliente>();
+        addObserver(o);
+    }
+    
     
     public SClientes(Collection<Cliente> clientes)
     {

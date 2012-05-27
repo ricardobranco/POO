@@ -21,13 +21,13 @@ public class Camiao extends Veiculo{
         construtor_auxiliar("", false, 0);
     }
     
-    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado){
-        super(marca,matricula,custoKm,desgaste,carga);
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double carga,boolean atrelado){
+        super(marca,matricula,custoKm,carga);
         construtor_auxiliar(condutor, atrelado, altura);
     }
     
-    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado, double total, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga,total, mercadoria);
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double carga,boolean atrelado, double total, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,carga,total, mercadoria);
         construtor_auxiliar(condutor, atrelado, altura);
     }
     

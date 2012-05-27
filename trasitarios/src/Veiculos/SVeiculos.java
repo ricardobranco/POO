@@ -3,7 +3,7 @@ package Veiculos;
 import java.io.*;
 import java.util.*;
 
-public class SVeiculos implements Serializable{
+public class SVeiculos extends Observable implements Serializable{
     
    
     
@@ -17,7 +17,10 @@ public class SVeiculos implements Serializable{
         this.veiculos = new HashMap<String,Veiculo>();
     }
     
-    
+    public SVeiculos(Observer o){
+        this.veiculos = new HashMap<String,Veiculo>();
+        addObserver(o);
+    }
     public SVeiculos(Map<String,Veiculo> veiculos)
     {
        this.setveiculos(veiculos);
@@ -217,5 +220,7 @@ public class SVeiculos implements Serializable{
           ois.close();
           fis.close();
       }
+      
+      public int total(){return this.veiculos.size();}
       
 }

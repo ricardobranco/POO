@@ -14,12 +14,12 @@ public class RFurgao extends Furgao implements Refrigerado{
         super();
     }
     
-    public RFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga){
-        super(marca, matricula, combustivel, autonomia, custoKm, desgaste, carga);
+    public RFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double carga){
+        super(marca, matricula, combustivel, autonomia, custoKm, carga);
     }
     
-    public RFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga,double total, ArrayList<Carga> mercadoria){
-        super(marca, matricula, combustivel, autonomia, custoKm, desgaste,carga,total,mercadoria);
+    public RFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double carga,double total, ArrayList<Carga> mercadoria){
+        super(marca, matricula, combustivel, autonomia, custoKm,carga,total,mercadoria);
     }
     
     public RFurgao(Furgao c){

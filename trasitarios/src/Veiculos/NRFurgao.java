@@ -14,12 +14,12 @@ public class NRFurgao extends Furgao{
         super();
     }
     
-    public NRFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga){
-        super(marca, matricula, combustivel, autonomia, custoKm, desgaste, carga);
+    public NRFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double carga){
+        super(marca, matricula, combustivel, autonomia, custoKm, carga);
     }
     
-    public NRFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double desgaste, double carga, double total, ArrayList<Carga> mercadoria){
-        super(marca, matricula, combustivel, autonomia, custoKm, desgaste,carga,total,mercadoria);
+    public NRFurgao(String marca, String matricula, String combustivel, double autonomia, double custoKm, double carga, double total, ArrayList<Carga> mercadoria){
+        super(marca, matricula, combustivel, autonomia, custoKm,carga,total,mercadoria);
     }
     
     public NRFurgao(Furgao c){

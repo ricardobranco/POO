@@ -4,14 +4,15 @@
  */
 package JTransitarios;
 
-import Veiculos.SVeiculos;
+import Veiculos.*;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Ricardo Branco
  */
-public class JAddVec extends javax.swing.JFrame {
+public class JAddVeic extends javax.swing.JFrame {
 
      SVeiculos veiculos;
      JMain root;
@@ -19,21 +20,21 @@ public class JAddVec extends javax.swing.JFrame {
     /**
      * Creates new form JCriaVeiculo
      */
-    public JAddVec(JMain root, SVeiculos veiculos) {
+    public JAddVeic(JMain root, SVeiculos nveiculos) {
         initComponents();
-        this.veiculos = veiculos;
+        this.veiculos = nveiculos;
         this.root = root;
         jPanel5.setVisible(false);
         
-        btiposV.add(van);
-        btiposV.add(camiao);
-        btiposV.add(furgao);
+        btiposV.add(bvan);
+        btiposV.add(bcamiao);
+        btiposV.add(bfurgao);
         
         
     }
     
      
-     public JAddVec() {
+     public JAddVeic() {
         initComponents();
     }
 
@@ -58,9 +59,9 @@ public class JAddVec extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        van = new javax.swing.JRadioButton();
-        furgao = new javax.swing.JRadioButton();
-        camiao = new javax.swing.JRadioButton();
+        bvan = new javax.swing.JRadioButton();
+        bfurgao = new javax.swing.JRadioButton();
+        bcamiao = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -68,6 +69,9 @@ public class JAddVec extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -76,7 +80,7 @@ public class JAddVec extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jCheckBox2 = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,25 +167,25 @@ public class JAddVec extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        van.setText("Van");
-        van.addActionListener(new java.awt.event.ActionListener() {
+        bvan.setText("Van");
+        bvan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vanActionPerformed(evt);
+                bvanActionPerformed(evt);
             }
         });
 
-        furgao.setText("Furgão");
-        furgao.addActionListener(new java.awt.event.ActionListener() {
+        bfurgao.setText("Furgão");
+        bfurgao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                furgaoActionPerformed(evt);
+                bfurgaoActionPerformed(evt);
             }
         });
 
-        camiao.setSelected(true);
-        camiao.setText("Camião");
-        camiao.addActionListener(new java.awt.event.ActionListener() {
+        bcamiao.setSelected(true);
+        bcamiao.setText("Camião");
+        bcamiao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                camiaoActionPerformed(evt);
+                bcamiaoActionPerformed(evt);
             }
         });
 
@@ -192,27 +196,29 @@ public class JAddVec extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(camiao)
+                    .addComponent(bcamiao)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(van))
-                            .addComponent(furgao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(bvan))
+                    .addComponent(bfurgao))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(camiao)
+                .addComponent(bcamiao)
                 .addGap(18, 18, 18)
-                .addComponent(furgao)
+                .addComponent(bfurgao)
                 .addGap(18, 18, 18)
-                .addComponent(van))
+                .addComponent(bvan))
         );
 
         jButton1.setText("Adicionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
 
@@ -227,6 +233,8 @@ public class JAddVec extends javax.swing.JFrame {
             }
         });
 
+        jLabel10.setText("Refrigeração");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -234,12 +242,16 @@ public class JAddVec extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,8 +261,14 @@ public class JAddVec extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox1))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         jPanel5.setBounds(0, 0, 180, 187);
@@ -360,32 +378,34 @@ public class JAddVec extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void camiaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camiaoActionPerformed
+    private void bcamiaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcamiaoActionPerformed
         // TODO add your handling code here:
         
         jPanel4.setVisible(true);
+        jPanel5.setVisible(false);
         
-    }//GEN-LAST:event_camiaoActionPerformed
+        
+    }//GEN-LAST:event_bcamiaoActionPerformed
 
-    private void furgaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_furgaoActionPerformed
+    private void bfurgaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bfurgaoActionPerformed
         // TODO add your handling code here:
         jPanel4.setVisible(false);
         jPanel5.setVisible(true);
 
-    }//GEN-LAST:event_furgaoActionPerformed
+    }//GEN-LAST:event_bfurgaoActionPerformed
 
-    private void vanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vanActionPerformed
+    private void bvanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bvanActionPerformed
         // TODO add your handling code here:
         jPanel4.setVisible(false);
         jPanel5.setVisible(false);
 
-    }//GEN-LAST:event_vanActionPerformed
+    }//GEN-LAST:event_bvanActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -411,19 +431,135 @@ public class JAddVec extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        if (jTextField1.getText().equals("") ||
+            jTextField2.getText().equals("") ||
+            jTextField3.getText().equals("") ||
+            jTextField4.getText().equals(""))
+        {
+               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+               return;
+        }
+        try{Double d1 = Double.valueOf(jTextField2.getText());
+            Double d2 = Double.valueOf(jTextField4.getText());
+        }
+           catch (NumberFormatException ex)
+           {
+            JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
+           }
+        String smatricula = jTextField3.getText();
+        String smarca = jTextField1.getText();
+        double dcusto = Double.valueOf(jTextField2.getText()).doubleValue();
+        double dcarga = Double.valueOf(jTextField4.getText()).doubleValue();
+                
+        
+        
+        //SE FOR CAMIAO
+        if(bcamiao.isSelected())
+        {
+            
+            if (jTextField8.getText().equals("") ||jTextField7.getText().equals(""))
+            {
+               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+               return;
+            }
+            
+            try{
+                Double d3 = Double.valueOf(jTextField8.getText());
+            }
+            
+            catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            double daltura = Double.valueOf(jTextField8.getText()).doubleValue();
+            String scondutor = jTextField7.getText();
+            boolean batrelado = jCheckBox2.isSelected();
+            
+            Veiculo v = new Camiao(smarca, smatricula, scondutor, daltura, dcusto, dcarga, batrelado);
+            
+            if (this.veiculos.addVeiculo(v))
+            {
+                this.dispose();
+                root.update();
+            }else {
+                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        //Se for um furgao
+        
+        else if(bfurgao.isSelected())
+        {
+            
+            if (jTextField5.getText().equals(""))
+            {
+               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+               return;
+            }
+            
+            try{
+                Double autonomia = Double.valueOf(jTextField5.getText());
+                        }
+            
+            catch (NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            
+            String scomb = jComboBox1.getActionCommand();
+            
+            Veiculo v;
+            double Autonomia = Double.valueOf(jTextField5.getText()).doubleValue();
+            
+            
+            if(jCheckBox1.isSelected())
+                v = new RFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
+            else
+                v = new NRFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
+            
+            if (this.veiculos.addVeiculo(v))
+            {
+                this.dispose();
+            root.update();
+        }else {
+                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else
+        {
+            Veiculo v = new Van(smarca, smatricula, dcusto, dcarga);
+            if (this.veiculos.addVeiculo(v))
+            {
+                this.dispose();
+                root.update();
+        }else{
+                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton bcamiao;
+    private javax.swing.JRadioButton bfurgao;
     private javax.swing.ButtonGroup btiposV;
-    private javax.swing.JRadioButton camiao;
-    private javax.swing.JRadioButton furgao;
+    private javax.swing.JRadioButton bvan;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -442,8 +578,8 @@ public class JAddVec extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JRadioButton van;
     // End of variables declaration//GEN-END:variables
 }

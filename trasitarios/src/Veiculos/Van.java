@@ -15,12 +15,12 @@ public class Van extends Veiculo implements Refrigerado{
         super();
     }
     
-    public Van(String marca, String matricula, double custoKm, double desgaste, double carga){
-        super(marca,matricula,custoKm,desgaste,carga);
+    public Van(String marca, String matricula, double custoKm, double carga){
+        super(marca,matricula,custoKm,carga);
     }
     
-    public Van(String marca, String matricula, double custoKm, double desgaste, double carga, double total,ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga,total,mercadoria);
+    public Van(String marca, String matricula, double custoKm, double carga, double total,ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,carga,total,mercadoria);
     }
     
     public Van(Van c){
