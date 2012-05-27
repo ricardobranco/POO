@@ -4,6 +4,9 @@
  */
 package JTransitarios;
 
+import Clientes.Cliente;
+import Clientes.Empresarial;
+import Clientes.Individual;
 import Clientes.SClientes;
 import Veiculos.*;
 import javax.swing.JOptionPane;
@@ -26,10 +29,11 @@ public class JAddCliente extends javax.swing.JFrame {
         this.clientes = clientes;
         this.root = root;
         
-        
-       
         btiposV.add(bemp);
         btiposV.add(bind);
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(true);
+        
         
         
     }
@@ -56,8 +60,9 @@ public class JAddCliente extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         bind = new javax.swing.JRadioButton();
         bemp = new javax.swing.JRadioButton();
@@ -65,6 +70,7 @@ public class JAddCliente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Novo Cliente");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,13 +90,34 @@ public class JAddCliente extends javax.swing.JFrame {
 
         jLabel3.setText("Morada");
 
-        jLabel11.setText("Empresa");
-
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
+
+        jLabel11.setText("Empresa");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField6)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,15 +128,14 @@ public class JAddCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +153,8 @@ public class JAddCliente extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         bind.setText("Individual");
@@ -176,6 +200,11 @@ public class JAddCliente extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,7 +219,7 @@ public class JAddCliente extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +233,7 @@ public class JAddCliente extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,8 +241,10 @@ public class JAddCliente extends javax.swing.JFrame {
 
     private void bindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bindActionPerformed
         // TODO add your handling code here:
-        jTextField6.setVisible(false);
-        jLabel11.setVisible(false);
+        jPanel1.setVisible(true);
+        
+        jPanel2.setVisible(false);
+        
     }//GEN-LAST:event_bindActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -226,120 +257,76 @@ public class JAddCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        /*
-        
         if (jTextField1.getText().equals("") ||
             jTextField2.getText().equals("") ||
-            jTextField3.getText().equals("") ||
-            jTextField4.getText().equals(""))
+            jTextField3.getText().equals(""))
         {
                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
                return;
         }
-        try{Double d1 = Double.valueOf(jTextField2.getText());
-            Double d2 = Double.valueOf(jTextField4.getText());
-        }
+        
+        try{Long l1 = Long.valueOf(jTextField2.getText());
+           }
            catch (NumberFormatException ex)
            {
             JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
             return;
            }
-        String smatricula = jTextField3.getText();
-        String smarca = jTextField1.getText();
-        double dcusto = Double.valueOf(jTextField2.getText()).doubleValue();
-        double dcarga = Double.valueOf(jTextField4.getText()).doubleValue();
+        long nif = Long.valueOf(jTextField1.getText()).longValue();
+        String nome = jTextField3.getText();
+        String morada = jTextField2.getText();
                 
         
         
-        //SE FOR CAMIAO
+        //SE EMPRESARIO
         if(bemp.isSelected())
         {
             
-            if (jTextField8.getText().equals("") ||jTextField7.getText().equals(""))
+            if (jTextField6.getText().equals(""))
             {
                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
                return;
             }
             
-            try{
-                Double d3 = Double.valueOf(jTextField8.getText());
-            }
+            String empresa = jTextField6.getText();
             
-            catch (NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
+            Cliente c = new Empresarial(nome, morada, nif, empresa); 
             
-            double daltura = Double.valueOf(jTextField8.getText()).doubleValue();
-            String scondutor = jTextField7.getText();
-            boolean batrelado = jCheckBox2.isSelected();
-            
-            Veiculo v = new Camiao(smarca, smatricula, scondutor, daltura, dcusto, dcarga, batrelado);
-            
-            if (this.veiculos.addVeiculo(v))
+            if (this.clientes.addCliente(c))
             {
                 this.dispose();
                 root.update();
-            }else {
-                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        //Se for um furgao
-        
-        else if(bind.isSelected())
-        {
-            
-            if (jTextField5.getText().equals(""))
-            {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
-            }
-            
-            try{
-                Double autonomia = Double.valueOf(jTextField5.getText());
-                        }
-            
-            catch (NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            
-            String scomb = jComboBox1.getActionCommand();
-            
-            Veiculo v;
-            double Autonomia = Double.valueOf(jTextField5.getText()).doubleValue();
-            
-            
-            if(jCheckBox1.isSelected())
-                v = new RFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
             else
-                v = new NRFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
-            
-            if (this.veiculos.addVeiculo(v))
             {
-                this.dispose();
-            root.update();
-        }else {
-                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Já existe um cliente com esse NIF", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        else
-        {
-            Veiculo v = new Van(smarca, smatricula, dcusto, dcarga);
-            if (this.veiculos.addVeiculo(v))
+        
+        //Se for individual
+        
+        else{
+            Cliente c = new Individual (nome, morada, nif);
+         
+            
+            if (this.clientes.addCliente(c))
             {
                 this.dispose();
                 root.update();
-        }else{
-                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-            
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Já existe um cliente com esse NIF", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-        */
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bempActionPerformed
         // TODO add your handling code here:
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(true);
+        
         
        
 
@@ -348,6 +335,11 @@ public class JAddCliente extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,6 +356,7 @@ public class JAddCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
