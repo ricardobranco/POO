@@ -1,9 +1,10 @@
 package Veiculos;
 
 import Cargas.Carga;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Van extends Veiculo implements Refrigerado{
+public class Van extends Veiculo implements Refrigeravel,Serializable{
     
     //Variaveis de Classe
     private static double pbase = 28;

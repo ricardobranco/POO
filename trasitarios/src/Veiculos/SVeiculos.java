@@ -53,7 +53,7 @@ public class SVeiculos extends Observable implements Serializable{
     
      public Collection<Veiculo> getCVeiculos()
     {
-        Collection<Veiculo> clientes =  new TreeSet<Veiculo>();
+        Collection<Veiculo> clientes =  new HashSet<Veiculo>();
         for(Veiculo v : this.veiculos.values())
         {
             clientes.add(v.clone());

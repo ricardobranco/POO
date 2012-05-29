@@ -2,12 +2,13 @@
 package Veiculos;
 
 import Cargas.Carga;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 
-public class RFurgao extends Furgao implements Refrigerado{
+public class RFurgao extends Furgao implements Refrigeravel,Serializable{
     
     public RFurgao()
     {
