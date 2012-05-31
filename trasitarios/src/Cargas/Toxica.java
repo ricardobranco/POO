@@ -5,8 +5,8 @@ public class Toxica extends Carga implements NaoRefrigerados{
         super();
     }
 
-    public Toxica(double carga, String descricao) {
-        super(carga, descricao);
+    public Toxica(double carga) {
+        super(carga);
     }
     
     public Toxica(Toxica p){

@@ -5,8 +5,8 @@ public class Indiferenciada extends Carga implements NaoRefrigerados{
         super();
     }
 
-    public Indiferenciada(double carga, String descricao) {
-        super(carga, descricao);
+    public Indiferenciada(double carga) {
+        super(carga);
     }
     
     public Indiferenciada(Indiferenciada p){

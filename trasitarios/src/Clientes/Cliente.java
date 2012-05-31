@@ -12,6 +12,10 @@ public abstract class Cliente implements Comparable<Cliente> {
     LinkedList<Servico> servicos; //serviços, adicionar sempre à cabeça
     
     public Cliente() {
+        this.nome="";
+        this.morada="";
+        this.nif=0;
+        this.servicos=new LinkedList<Servico>();
     }
 
     public Cliente(String nome, String morada, long nif) {

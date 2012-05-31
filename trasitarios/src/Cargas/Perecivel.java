@@ -7,8 +7,8 @@ public class Perecivel extends Carga{
         super();
     }
 
-    public Perecivel(double carga, String descricao) {
-        super(carga, descricao);
+    public Perecivel(double carga) {
+        super(carga);
     }
     
     public Perecivel(Perecivel p){
