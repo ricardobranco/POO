@@ -1,77 +1,61 @@
 package Servicos;
 
+import Cargas.Carga;
+import Veiculos.SVeiculos;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
-public class Servico {
-    GregorianCalendar data;
-    String matricula;
-    String tipoTransporte; //daqueles dos produtos comerciais
-    double custo;
+public abstract class Servico {
     
-    Servico(){
-        this.data = new GregorianCalendar();
-        this.matricula = "";
-        this.tipoTransporte = "";
-        this.custo = 0;
-    }
     
-    public Servico(String maricula, String tipoTransporte, double custo) {
-        this.data = new GregorianCalendar();
-        this.matricula = maricula;
-        this.tipoTransporte = tipoTransporte;
-        this.custo = custo;
+    private GregorianCalendar inicio;
+    private SVeiculos veiculos;
+    
+    
+    public Servico() {
+        this.inicio = new GregorianCalendar();
+        this.veiculos = new SVeiculos();
     }
     
-    public Servico(Servico outroServico){
-        this.data = (GregorianCalendar) outroServico.getData().clone();
-        this.matricula = outroServico.getMaricula();
-        this.tipoTransporte = outroServico.getTipoTransporte();
-        this.custo = outroServico.getCusto();
+    
+    public Servico(GregorianCalendar inicio,SVeiculos veiculos) {
+        this.inicio = inicio;
+        this.veiculos = veiculos;
+    }
+    
+    public Servico(Servico s)
+    {
+        this.inicio = s.getInicio();
+        this.veiculos = s.getVeiculos();
+    }
+    
+    
+    public GregorianCalendar getInicio() {
+        return inicio;
     }
 
-    public double getCusto() {
-        return custo;
+    public SVeiculos getVeiculos() {
+        return veiculos.clone();
     }
 
-    public GregorianCalendar getData() {
-        return data;
-    }
-
-    public String getMaricula() {
-        return matricula;
-    }
-
-    public String getTipoTransporte() {
-        return tipoTransporte;
-    }
+    
+    
     
     @Override
-    public Servico clone(){
-        return new Servico(this);
-    }
-    
-    @Override
-    public String toString(){
-        StringBuilder str = new StringBuilder();
-        str.append("Data: ")
-                .append(this.getData().get(GregorianCalendar.YEAR))
-                .append("/")
-                .append(this.getData().get(GregorianCalendar.MONTH))
-                .append("/")
-                .append(this.getData().get(GregorianCalendar.DAY_OF_MONTH))
-                .append(" ")
-                .append(this.getData().get(GregorianCalendar.HOUR_OF_DAY))
-                .append(":")
-                .append(this.getData().get(GregorianCalendar.MINUTE))
-                .append(":")
-                .append(this.getData().get(GregorianCalendar.SECOND))
-                .append("; Tipo de Transporte: ")
-                .append(this.tipoTransporte)
-                .append("; Matrícula: ")
-                .append(this.matricula)
-                .append("; Custo: ")
-                .append(this.custo);
+    public boolean equals(Object obj){
         
-        return str.toString();
+        if(obj == this)
+            return true;
+        
+        if ((obj == null)|| (this.getClass() != obj.getClass())) 
+            return false;
+        
+        Servico s = (Servico) obj;
+        return s.getVeiculos().equals(this.veiculos) &&
+               s.getInicio().equals(this.inicio);
     }
+    
+    public abstract Servico clone();
+    public abstract double preco();
 }

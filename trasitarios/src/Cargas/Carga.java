@@ -59,11 +59,7 @@ public abstract class Carga {
         return f1.compareTo(f2);
     }
     
-    public abstract int precisaRefrigeracao();
-    
     public boolean tipo( String nomeClasse ){
-        if( this.getClass().getName().compareTo("transitarios.Cargas." + nomeClasse) == 0 )
-            return true;
-        return false;
+        return this.getClass().getName().equals("transitarios.Cargas." + nomeClasse);
     }
 }
