@@ -4,7 +4,7 @@
  */
 package Servicos;
 
-import Cargas.Carga;
+import Cargas.Toxica;
 import Cargas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
@@ -19,7 +19,7 @@ public class ServTox extends Servico{
 
     private static double custo = 25; 
     
-    private Carga carga;
+    private Toxica carga;
 
     
     
@@ -28,7 +28,7 @@ public class ServTox extends Servico{
         this.carga = new Indiferenciada();
     }
 
-    public ServTox(Carga carga, GregorianCalendar inicio, SVeiculos veiculos) {
+    public ServTox(Toxica carga, GregorianCalendar inicio, SVeiculos veiculos) {
         super(inicio, veiculos);
         this.carga = carga;
     }
@@ -49,11 +49,11 @@ public class ServTox extends Servico{
     }
 
     
-    public Carga getCarga() {
+    public Toxica getCarga() {
         return carga;
     }
 
-    public void setCarga(Carga carga) {
+    public void setCarga(Toxica carga) {
         this.carga = carga;
     }
 

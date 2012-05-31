@@ -4,7 +4,8 @@
  */
 package Servicos;
 
-import Cargas.Carga;
+import Cargas.Perecivel;
+import Cargas.Perecivel;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
 import java.util.GregorianCalendar;
@@ -18,21 +19,21 @@ public class ServPPD extends Servico{
 
     private static double custo = 20;
 
-    private Carga[] carga;
+    private Perecivel[] carga;
 
     public ServPPD() {
         super();
-        this.carga = new Carga[10];
+        this.carga = new Perecivel[10];
     }
 
-    public ServPPD(Carga[] carga, GregorianCalendar inicio, SVeiculos veiculos) {
+    public ServPPD(Perecivel[] carga, GregorianCalendar inicio, SVeiculos veiculos) {
         super(inicio, veiculos);
         this.carga = carga;
     }
 
     public ServPPD(ServPPD s) {
         super(s);
-        this.carga = s.getCarga();
+        this.carga = s.getPerecivel();
     }
 
     
@@ -45,19 +46,19 @@ public class ServPPD extends Servico{
     }
     
     
-    public Carga[] getCarga() {
+    public Perecivel[] getPerecivel() {
         
-        Carga[] aux = new Carga[3];
+        Perecivel[] aux = new Perecivel[3];
         for(int i = 0; i<this.carga.length;i++)
             aux[i] = this.carga[i].clone();
         return aux;
     }
 
-    public void setCarga(Carga[] carga) {
+    public void setPerecivel(Perecivel[] carga) {
         this.carga = carga;
     }
     
-   private boolean contemCarga(Carga c)
+   private boolean contemPerecivel(Perecivel c)
    {
        for(int i = 0; i<this.carga.length;i++ )
        {
@@ -76,11 +77,11 @@ public class ServPPD extends Servico{
            return false;
        
        ServPPD s = (ServPPD) o;
-       if(s.getCarga().length != this.carga.length)
+       if(s.getPerecivel().length != this.carga.length)
            return false;
        for(int i = 0; i<this.carga.length;i++)
        {
-           if(!(s.contemCarga(this.carga[i])))
+           if(!(s.contemPerecivel(this.carga[i])))
                return false;
        }
        return true;

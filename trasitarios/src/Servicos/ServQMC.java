@@ -4,7 +4,8 @@
  */
 package Servicos;
 
-import Cargas.Carga;
+import Cargas.Indiferenciada;
+import Indiferenciadas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
 import java.util.GregorianCalendar;
@@ -18,21 +19,21 @@ public class ServQMC extends Servico{
 
     private static double custo = 15;
 
-    private Carga[] carga;
+    private Indiferenciada[] carga;
 
     public ServQMC() {
         super();
-        this.carga = new Carga[10];
+        this.carga = new Indiferenciada[10];
     }
 
-    public ServQMC(Carga[] carga, GregorianCalendar inicio, SVeiculos veiculos) {
+    public ServQMC(Indiferenciada[] carga, GregorianCalendar inicio, SVeiculos veiculos) {
         super(inicio, veiculos);
         this.carga = carga;
     }
 
     public ServQMC(ServQMC s) {
         super(s);
-        this.carga = s.getCarga();
+        this.carga = s.getIndiferenciada();
     }
 
     
@@ -45,19 +46,19 @@ public class ServQMC extends Servico{
     }
     
     
-    public Carga[] getCarga() {
+    public Indiferenciada[] getIndiferenciada() {
         
-        Carga[] aux = new Carga[3];
+        Indiferenciada[] aux = new Indiferenciada[3];
         for(int i = 0; i<this.carga.length;i++)
             aux[i] = this.carga[i].clone();
         return aux;
     }
 
-    public void setCarga(Carga[] carga) {
+    public void setIndiferenciada(Indiferenciada[] carga) {
         this.carga = carga;
     }
     
-   private boolean contemCarga(Carga c)
+   private boolean contemIndiferenciada(Indiferenciada c)
    {
        for(int i = 0; i<this.carga.length;i++ )
        {
@@ -76,11 +77,11 @@ public class ServQMC extends Servico{
            return false;
        
        ServQMC s = (ServQMC) o;
-       if(s.getCarga().length != this.carga.length)
+       if(s.getIndiferenciada().length != this.carga.length)
            return false;
        for(int i = 0; i<this.carga.length;i++)
        {
-           if(!(s.contemCarga(this.carga[i])))
+           if(!(s.contemIndiferenciada(this.carga[i])))
                return false;
        }
        return true;
