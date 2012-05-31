@@ -1,6 +1,6 @@
 package Cargas;
 
-public class Toxica extends Carga{
+public class Toxica extends Carga implements NaoRefrigerados{
     public Toxica(){
         super();
     }
@@ -24,8 +24,10 @@ public class Toxica extends Carga{
     @Override
     public Toxica clone(){return new Toxica(this);}
 
+    
+
     @Override
-    public int precisaRefrigeracao() {
-        return Carga.REFRIGERACAO_NAO;
+    public boolean eObrigatorio() {
+        return true;
     }
 }

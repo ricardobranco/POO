@@ -26,8 +26,5 @@ public class Perecivel extends Carga{
     @Override
     public Perecivel clone(){ return new Perecivel(this); }
 
-    @Override
-    public int precisaRefrigeracao() {
-        return Carga.REFRIGERACAO_SIM;
-    }
+    
 }

@@ -1,6 +1,6 @@
 package Cargas;
 
-public class Indiferenciada extends Carga{
+public class Indiferenciada extends Carga implements NaoRefrigerados{
     public Indiferenciada(){
         super();
     }
@@ -25,7 +25,8 @@ public class Indiferenciada extends Carga{
     public Indiferenciada clone(){ return new Indiferenciada(this); }
 
     @Override
-    public int precisaRefrigeracao() {
-        return Carga.REFRIGERACAO_INDIFERENTE;
+    public boolean eObrigatorio() {
+        return false;
     }
+
 }

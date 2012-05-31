@@ -1,9 +1,10 @@
 package Veiculos;
 
 import Cargas.Carga;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Camiao extends Veiculo{
+public class Camiao extends Veiculo implements Serializable{
     
     //Variaveis de Classe
     private static double pbase = 60;
@@ -21,13 +22,13 @@ public class Camiao extends Veiculo{
         construtor_auxiliar("", false, 0);
     }
     
-    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado){
-        super(marca,matricula,custoKm,desgaste,carga,false);
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double carga,boolean atrelado){
+        super(marca,matricula,custoKm,carga);
         construtor_auxiliar(condutor, atrelado, altura);
     }
     
-    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double desgaste, double carga,boolean atrelado, ArrayList<Carga> mercadoria){
-        super(marca,matricula,custoKm,desgaste,carga,false, mercadoria);
+    public Camiao(String marca, String matricula, String condutor, double altura, double custoKm, double carga,boolean atrelado, double total, ArrayList<Carga> mercadoria){
+        super(marca,matricula,custoKm,carga,total, mercadoria);
         construtor_auxiliar(condutor, atrelado, altura);
     }
     
@@ -65,6 +66,8 @@ public class Camiao extends Veiculo{
         sb.append("Condutor: ").append(this.condutor).append("\n");
         sb.append("Atrelado: ").append(this.atrelado).append("\n");
         sb.append("Altura: ").append(this.altura).append("\n");
+        sb.append("NÃO REFRIGERADO\n");
+        
         return sb.toString();      
     }
     

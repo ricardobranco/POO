@@ -4,15 +4,27 @@ import Servicos.Servico;
 import java.util.LinkedList;
 
 public class Individual extends Cliente {
-    public Individual(String nome, String morada, String nif, LinkedList<Servico> servicos) {
+    
+    
+    public Individual() {
+        super();
+    }
+    
+    public Individual(String nome, String morada, long nif, LinkedList<Servico> servicos) {
         super(nome, morada, nif, servicos);
     }
 
-    public Individual(String nome, String morada, String nif) {
+    public Individual(String nome, String morada, long nif) {
         super(nome, morada, nif);
     }
-
-    public Individual() {
+    
+    public Individual(Individual i) {
+        super(i);
     }
+
+    @Override
+    public Individual clone() {return new Individual(this);}
+
+    
     
 }
