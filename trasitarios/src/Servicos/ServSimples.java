@@ -18,7 +18,7 @@ import java.util.List;
 public class ServSimples extends Servico{
 
     private static double custo = 25; 
-    
+    private static final int size = 1;        
     private Carga carga;
 
     
@@ -28,8 +28,8 @@ public class ServSimples extends Servico{
         this.carga = new Indiferenciada();
     }
 
-    public ServSimples(Carga carga, GregorianCalendar inicio, SVeiculos veiculos) {
-        super(inicio, veiculos);
+    public ServSimples(Carga carga, GregorianCalendar inicio, SVeiculos veiculos, List<Carga> cargas) {
+        super(inicio, veiculos, cargas);
         this.carga = carga;
     }
 

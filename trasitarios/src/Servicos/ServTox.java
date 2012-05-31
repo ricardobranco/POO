@@ -4,6 +4,7 @@
  */
 package Servicos;
 
+import Cargas.Carga;
 import Cargas.Toxica;
 import Cargas.Toxica;
 import Veiculos.SVeiculos;
@@ -28,8 +29,8 @@ public class ServTox extends Servico{
         this.carga = new Toxica();
     }
 
-    public ServTox(Toxica carga, GregorianCalendar inicio, SVeiculos veiculos) {
-        super(inicio, veiculos);
+    public ServTox(Toxica carga, GregorianCalendar inicio, SVeiculos veiculos, List<Carga> cargas) {
+        super(inicio, veiculos,cargas);
         this.carga = carga;
     }
 

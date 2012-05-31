@@ -202,8 +202,6 @@ public class SVeiculos extends Observable implements Serializable{
           
       }
       
-      
-      
       public void alteraEstado(Veiculo c)
       {
           Veiculo aux = this.veiculos.get(c.getMatricula());
@@ -213,25 +211,7 @@ public class SVeiculos extends Observable implements Serializable{
       
       
       
-      public void save(String path)throws FileNotFoundException, IOException 
-      {
-         FileOutputStream fos = new FileOutputStream(path);
-         ObjectOutputStream oos = new ObjectOutputStream(fos);
-         oos.writeObject(this.veiculos);
-         oos.close();
-         fos.close();
-      }
-      
-      public void load(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException 
-      {
-          FileInputStream fis = new FileInputStream(fileName);
-          ObjectInputStream ois = new ObjectInputStream(fis);
-          this.veiculos = (HashMap<String,Veiculo>) ois.readObject();
-          ois.close();
-          fis.close();
-      }
-      
-      public int total(){return this.veiculos.size();}
+     
       
       public String[][] getMatrix(String pesquisa, boolean filtrarMatricula){
 	  Collection<Veiculo> col = this.veiculos.values();
