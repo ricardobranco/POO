@@ -94,41 +94,136 @@ public class Sistema implements Serializable {
     }
 
     public boolean criaPedido(Servico s, List<Carga> lcarga) {
-        
-        
+
+        //ORDENAR LCARGA
+
+
         for (Carga c : lcarga) {
-            
-            
+
+
             Class[] interfaces = c.getClass().getInterfaces();
-            
+
             boolean flag = true;
             for (int i = 0; i < interfaces.length && flag; i++) {
-                
-                if (interfaces[i].getSimpleName().equals("NaoRefrigerados")) 
-                {
+
+                if (interfaces[i].getSimpleName().equals("NaoRefrigerados")) {
                     flag = false;
-                    
-                    
+
+
                     NaoRefrigerados nr = (NaoRefrigerados) c;
-                    
-                    
-                    if(nr.eObrigatorio())
+
+
+                    if (nr.eObrigatorio()) //POR EXEMPLO ESTAMOS PERANTE UMA CARGA PERECIVEL OU SEMELHANTE
                     {
                         SVeiculos svec1 = new SVeiculos(this.veiculos.naoRefrigerados());
                         SVeiculos svec2 = new SVeiculos(svec1.parados());
                         Iterator<Veiculo> ivec = svec2.sortLivre();
-                        
-                        
-                        boolean flag2 = true;
-                        while(ivec.hasNext() && flag2)
-                        {
-                            
+
+                        while (ivec.hasNext()) {
+                            boolean flag2 = true;
+                            for (Veiculo v : s.getVeiculos().getCVeiculos()) {
+                                if (v.addCarga(c)) {
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+
+                                    flag2 = false;
+                                    break;
+                                }
+
+                            }
+                            if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
+                            {
+                                Veiculo v = ivec.next();
+                                if (v.addCarga(c)) {
+                                    s.addVeiculo(v);
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+                                }
+                            }
+
+
+                            break;
+                        }
+                    } else {
+                        SVeiculos svec1 = new SVeiculos(this.veiculos.parados());
+                        Iterator<Veiculo> ivec = svec1.sortLivre();
+
+                        while (ivec.hasNext()) {
+                            boolean flag2 = true;
+
+                            for (Veiculo v : s.getVeiculos().getCVeiculos()) {
+                                if (v.addCarga(c)) {
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+                                    flag2 = true;
+                                    break;
+                                }
+
+                            }
+
+                            if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
+                            {
+                                Veiculo v = ivec.next();
+                                if (v.addCarga(c)) {
+                                    s.addVeiculo(v);
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+                                }
+                            }
+
+
+                            break;
                         }
                     }
                 }
             }
+            if (flag) //NAO DESCOBRIU A INTERFACE PRETENDIDA LOGO É UMA CARGA REFRIGERADA
+            {
+                SVeiculos svec1 = new SVeiculos(this.veiculos.refrigerados());
+                SVeiculos svec2 = new SVeiculos(svec1.parados());
+                Iterator<Veiculo> ivec = svec2.sortLivre();
+
+                while (ivec.hasNext()) {
+
+                    boolean flag2 = true;
+                    for (Veiculo v : s.getVeiculos().getCVeiculos()) {
+                        if (v.addCarga(c)) {
+                            this.veiculos.remove(v);
+                            this.veiculos.addVeiculo(v);
+
+                            if (v.mais60()) {
+                                this.veiculos.alteraEstado(v);
+                            }
+                            flag2 = false;
+                            break;
+                        }
+                    }
+
+
+
+                    break;
+                }
+            } else {
+                return false; //A CARGA NAO PODE SER TRANSPORTADA
+            }
         }
-        return false;
+
+        return true;
     }
 }
-                            

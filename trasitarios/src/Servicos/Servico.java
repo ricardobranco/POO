@@ -2,6 +2,7 @@ package Servicos;
 
 import Cargas.Carga;
 import Veiculos.SVeiculos;
+import Veiculos.Veiculo;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -73,6 +74,12 @@ public abstract class Servico{
         for(Carga c : this.cargas)
             res+=c.getCarga();
      return res;   
+    }
+    
+    
+    public boolean addVeiculo(Veiculo v)
+    {
+        return this.veiculos.addVeiculo(v);
     }
     
     
