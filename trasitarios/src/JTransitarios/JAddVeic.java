@@ -23,6 +23,7 @@ public class JAddVeic extends javax.swing.JFrame {
     public JAddVeic(JMain root, SVeiculos nveiculos) {
         this.veiculos = nveiculos;
         this.root = root;
+	this.root.setVisible(false);
         initComponents();
         jPanel5.setVisible(false);
         
@@ -79,6 +80,11 @@ public class JAddVeic extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Veiculo");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -555,6 +561,10 @@ public class JAddVeic extends javax.swing.JFrame {
                 this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+	this.root.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -22,6 +22,7 @@ public class JLoad extends javax.swing.JFrame {
      */
     public JLoad(JMain root, SClientes sclientes, SVeiculos veiculos) {
         this.root = root;
+	this.root.setVisible(false);
         this.clientes = sclientes;
         this.veiculos = veiculos;
         fileChooser = new JFileChooser();
@@ -59,6 +60,11 @@ public class JLoad extends javax.swing.JFrame {
         setTitle("Carregar");
         setAlwaysOnTop(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton6.setText("Procurar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +274,10 @@ public class JLoad extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+	this.root.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

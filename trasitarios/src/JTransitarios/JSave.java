@@ -22,10 +22,14 @@ public class JSave extends javax.swing.JFrame {
     SClientes clientes;
     SVeiculos veiculos;
     JFileChooser fileChooser;
+    JMain root;
     /**
      * Creates new form JSave
      */
     public JSave(SClientes sclientes, SVeiculos sveiculos) { 
+        this.root = root;
+	this.root.setVisible(false);
+	
         fileChooser = new JFileChooser();
 	fileChooser.setCurrentDirectory(new File("").getAbsoluteFile());
         
@@ -63,6 +67,11 @@ public class JSave extends javax.swing.JFrame {
         setTitle("Gravar");
         setAlwaysOnTop(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Gravar Veiculos:");
@@ -251,6 +260,10 @@ public class JSave extends javax.swing.JFrame {
             jTextField2.setText(f.getAbsolutePath());
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+	this.root.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -85,6 +85,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jRBmatriculaNome = new javax.swing.JRadioButton();
         jRBmarcaNif = new javax.swing.JRadioButton();
         jTFpesquisar = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -139,6 +140,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 return canEdit [columnIndex];
             }
         });
+        jTVeiculos.setColumnSelectionAllowed(true);
         jScrollPane3.setViewportView(jTVeiculos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -212,19 +214,20 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         });
 
+        jButton2.setText("Novo Serviço");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRBmarcaNif, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRBmatriculaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTFpesquisar)
-                .addContainerGap())
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTFpesquisar)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +240,8 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 .addComponent(jRBmatriculaNome)
                 .addGap(48, 48, 48)
                 .addComponent(jButton1)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(jButton2))
         );
 
         jPanel1.setBounds(0, 0, 160, 310);
@@ -405,9 +409,8 @@ public class JMain extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(jPanel3.isVisible())
-            new JAddVeic(this,veiculos).setVisible(true);
+        if( jTabbedPane2.getSelectedIndex() == 0 )
+	    new JAddVeic(this,veiculos).setVisible(true);
         else
             new JAddCliente(this,clientes).setVisible(true);
 
@@ -565,6 +568,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
