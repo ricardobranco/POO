@@ -201,7 +201,7 @@ public class JLoad extends javax.swing.JFrame {
         }
 
         try {
-            veiculos.load(jTextField2.getText());
+           // veiculos.load(jTextField2.getText());
             clientes.load(jTextField1.getText());
             this.dispose();
             root.update();
@@ -238,7 +238,7 @@ public class JLoad extends javax.swing.JFrame {
             return;
         }
         try {
-            veiculos.load(jTextField2.getText());
+          //  veiculos.load(jTextField2.getText());
             root.update();
 
         } catch (Exception error) {

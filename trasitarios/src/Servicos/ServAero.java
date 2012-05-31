@@ -17,36 +17,34 @@ import java.util.List;
  */
 public class ServAero extends Servico{
 
-    private static double custo = 20;
-    private static final int size = 3;
+    private static double custo = 25; 
+    private static final int size = 3;        
     
-
+    
+    
     public ServAero() {
         super();
-        }
+    }
 
-    public ServAero(GregorianCalendar inicio, SVeiculos veiculos,List<Carga> cargas) {
-        super(inicio, veiculos);
+    public ServAero(GregorianCalendar inicio, SVeiculos veiculos, List<Carga> cargas) {
+        super(inicio, veiculos, cargas);
     }
 
     public ServAero(ServAero s) {
         super(s);
     }
 
-    
     public static double getCusto() {
         return custo;
     }
 
-    public static int getSize() {
-        return size;
-    }
-    
     public static void setCusto(double custo) {
         ServAero.custo = custo;
     }
+
     
-    public ServAero clone(){return new ServAero(this);}
+    public  ServAero clone() {return new ServAero(this);}
+
     
     public String toString()
     {
@@ -55,13 +53,30 @@ public class ServAero extends Servico{
         return sb.toString();
     }
     
-    public double preco()
-    {
+    public double preco() {
         double res = 0;
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
-        return getCusto()*super.pesoTotal();     
+        return res+getCusto();
     }
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

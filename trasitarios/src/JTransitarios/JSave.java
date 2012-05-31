@@ -221,7 +221,7 @@ public class JSave extends javax.swing.JFrame {
         File f3 = new File(jTextField1.getText());
 
         try {
-            veiculos.save(jTextField2.getText());
+           // veiculos.save(jTextField2.getText());
             clientes.save(jTextField1.getText());
             this.dispose();
 
@@ -235,7 +235,7 @@ public class JSave extends javax.swing.JFrame {
         File f = new File(jTextField2.getText());
 
         try {
-            veiculos.save(jTextField2.getText());
+           // veiculos.save(jTextField2.getText());
 
         } catch (Exception error) {
             JOptionPane.showMessageDialog(this, error, "Operação Falhada", JOptionPane.ERROR_MESSAGE);
