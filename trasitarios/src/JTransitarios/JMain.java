@@ -7,8 +7,11 @@ package JTransitarios;
 import Clientes.SClientes;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
+import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -29,8 +32,6 @@ public class JMain extends javax.swing.JFrame implements Observer {
         initComponents();
         clientes = new SClientes(this);
         veiculos = new SVeiculos(this);
-        buttonGroup1.add(jRadioButton1);
-        buttonGroup1.add(jRadioButton2);
         
         
     }
@@ -73,18 +74,17 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTVeiculos = new JTransitarios.JCustomTable();
         jPanel4 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTClientes = new JTransitarios.JCustomTable();
         jLayeredPane4 = new javax.swing.JLayeredPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        jRBmatriculaNome = new javax.swing.JRadioButton();
+        jRBmarcaNif = new javax.swing.JRadioButton();
+        jTFpesquisar = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -116,19 +116,16 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTVeiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Tipo", "Matricula", "Marca", "Carga", "Carga Livre", "Carga Transportada", "Parado"
+                "Tipo", "Matricula", "Marca", "Carga", "Carga Livre", "Carga Transporte", "Estado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -142,44 +139,40 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTVeiculos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Veiculos", jPanel3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Tipo", "NIF", "Nome", "Morada"
+                "Tipo", "Nome", "Nif", "Morada"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane4.setViewportView(jTClientes);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Clientes", jPanel4);
@@ -194,18 +187,30 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jRadioButton2.setText("Matricula");
+        buttonGroup1.add(jRBmatriculaNome);
+        jRBmatriculaNome.setText("Matricula");
 
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Marca");
+        buttonGroup1.add(jRBmarcaNif);
+        jRBmarcaNif.setSelected(true);
+        jRBmarcaNif.setText("Marca");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTFpesquisar.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actualizaTabelaVeiculos();
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actualizaTabelaVeiculos();
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {}
+        });
+        jTFpesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTFpesquisarActionPerformed(evt);
             }
         });
-
-        jButton3.setText("Apagar Seleccionados");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,29 +218,26 @@ public class JMain extends javax.swing.JFrame implements Observer {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRBmarcaNif, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRBmatriculaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTextField1)
+                .addComponent(jTFpesquisar)
                 .addContainerGap())
             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTFpesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(jRBmarcaNif)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(jRBmatriculaNome)
                 .addGap(48, 48, 48)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         jPanel1.setBounds(0, 0, 160, 310);
@@ -428,20 +430,20 @@ public class JMain extends javax.swing.JFrame implements Observer {
         new JVeicPref(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTFpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFpesquisarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTFpesquisarActionPerformed
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
         // TODO add your handling code here:
         if(jPanel3.isVisible()){
-            jRadioButton1.setText("Marca");
-            jRadioButton2.setText("Matricula");
+            jRBmarcaNif.setText("Marca");
+            jRBmatriculaNome.setText("Matricula");
         }
         else
         {
-            jRadioButton1.setText("NIF");
-            jRadioButton2.setText("Nome");
+            jRBmarcaNif.setText("NIF");
+            jRBmatriculaNome.setText("Nome");
             
         }
             
@@ -451,7 +453,68 @@ public class JMain extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+    
+    private void actualizaTabelaVeiculos(){
+	String texto = jTFpesquisar.getText();
+	JCustomTable tabela;
+	if( !texto.isEmpty() ){
+	    Object [][]dados;
+	    
+	    if( jTabbedPane2.getSelectedIndex() == 0 )
+		tabela = jTVeiculos;
+	    else
+		tabela = jTClientes;
 
+	    String []nomesColunas = new String[tabela.getModel().getColumnCount()];
+	    for(int i=0; i<nomesColunas.length; i++)
+		nomesColunas[i] = tabela.getModel().getColumnName(i);
+
+
+
+
+	    DefaultTableModel tmpModel = new DefaultTableModel(null, nomesColunas);
+	    DefaultTableModel model;
+	    tabela.setModel(tmpModel);
+
+	    if( jTFpesquisar.getText().isEmpty() || (!jRBmarcaNif.isSelected() && !jRBmatriculaNome.isSelected()))
+		return;
+	    
+	    
+	    if( jTabbedPane2.getSelectedIndex() == 0 )
+		tmpModel.addRow(new Object[]{"... Aguarde ...","","","","","",""});
+	    else
+		tmpModel.addRow(new Object[]{"... Aguarde ...","","",""});
+
+	    if (texto.equals(jTFpesquisar.getText())) {
+		
+		//recolher dados
+		if( jTabbedPane2.getSelectedIndex() == 0 ){ //veiculos
+		    if (jRBmarcaNif.isSelected()) {
+			dados = veiculos.getMatrix(texto, false);
+		    } else {
+			dados = veiculos.getMatrix(texto, true);
+		    }
+		}else{ //clientes
+		    if (jRBmarcaNif.isSelected()) {
+			dados = clientes.getMatrix(texto, false);
+		    } else {
+			dados = clientes.getMatrix(texto, true);
+		    }
+		}
+
+		if (texto.equals(jTFpesquisar.getText())){
+		    model = new DefaultTableModel(dados, nomesColunas);
+		    tabela.setModel(model);
+		}
+	    }
+
+	    tabela.setPreferredSize( new Dimension(tabela.getPreferredSize().width,
+		    tabela.getRowCount()*tabela.getRowHeight()) );
+
+
+	}
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -502,7 +565,6 @@ public class JMain extends javax.swing.JFrame implements Observer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
@@ -528,14 +590,14 @@ public class JMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton jRBmarcaNif;
+    private javax.swing.JRadioButton jRBmatriculaNome;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private JTransitarios.JCustomTable jTClientes;
+    private javax.swing.JTextField jTFpesquisar;
+    private JTransitarios.JCustomTable jTVeiculos;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     @Override

@@ -21,8 +21,8 @@ public class JVeicPref extends javax.swing.JFrame {
     JMain root;
     
     public JVeicPref(JMain root) {
-        initComponents();
         this.root = root;
+        initComponents();
         jTextField2.setText(new Double(Camiao.getPBase()).toString());
         jTextField3.setText(new Double(Van.getPBase()).toString());
         jTextField4.setText(new Double(Furgao.getPBase()).toString());

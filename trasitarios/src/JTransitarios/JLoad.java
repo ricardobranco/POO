@@ -22,13 +22,13 @@ public class JLoad extends javax.swing.JFrame {
      */
     public JLoad(JMain root, SClientes sclientes, SVeiculos veiculos) {
         this.root = root;
-        initComponents();
-        
-        fileChooser = new JFileChooser();
-	fileChooser.setCurrentDirectory(new File("").getAbsoluteFile());
-        
         this.clientes = sclientes;
         this.veiculos = veiculos;
+        fileChooser = new JFileChooser();
+	fileChooser.setCurrentDirectory(new File("").getAbsoluteFile());
+        initComponents();
+        
+        
     }
 
     private JLoad() {

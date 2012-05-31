@@ -1,6 +1,8 @@
 
 package Clientes;
 
+import Veiculos.VComparaTotal;
+import Veiculos.Veiculo;
 import java.io.*;
 import java.util.*;
 
@@ -187,6 +189,38 @@ public class SClientes extends Observable implements Serializable{
       }
     
     
-    
-    
+      
+      public String[][] getMatrix(String pesquisa, boolean filtrarNome){
+	  Collection<Cliente> col = this.clientes.values();
+	  ArrayList<Cliente> arr = new ArrayList<Cliente>(col.size());
+	  
+	  if( filtrarNome ){
+	    for( Cliente c : col ){
+		if( c.getNome().contains(pesquisa) )
+		    arr.add(c);
+	    }
+	  }else{
+	    for( Cliente c : col ){
+		if( Long.toString( c.getNif() ).toString().contains(pesquisa) )
+		    arr.add(c);
+	    }
+	  }
+	  
+	  
+	  String[][] res = new String[ col.size() ][7];
+	  
+	  if( filtrarNome )
+	    Collections.sort(arr, new CComparaNome());
+	  else
+	    Collections.sort(arr, new CComparaNif());
+	  
+	  for( int i=0; i<arr.size(); i++ ){
+	      res[i][0] = arr.get(i).getClass().getSimpleName();
+	      res[i][1] = arr.get(i).getNome();
+	      res[i][2] = Long.toString(arr.get(i).getNif());
+	      res[i][3] = arr.get(i).getMorada();
+	  }
+	  
+	  return res;
+      }
 }

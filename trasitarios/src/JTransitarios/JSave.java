@@ -26,13 +26,13 @@ public class JSave extends javax.swing.JFrame {
      * Creates new form JSave
      */
     public JSave(SClientes sclientes, SVeiculos sveiculos) { 
-        initComponents();
-        
         fileChooser = new JFileChooser();
 	fileChooser.setCurrentDirectory(new File("").getAbsoluteFile());
         
         this.clientes = sclientes;
         this.veiculos = sveiculos;
+	
+        initComponents();
     }
 
     private JSave() {

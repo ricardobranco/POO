@@ -21,9 +21,9 @@ public class JAddVeic extends javax.swing.JFrame {
      * Creates new form JCriaVeiculo
      */
     public JAddVeic(JMain root, SVeiculos nveiculos) {
-        initComponents();
         this.veiculos = nveiculos;
         this.root = root;
+        initComponents();
         jPanel5.setVisible(false);
         
         btiposV.add(bvan);

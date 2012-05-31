@@ -25,9 +25,9 @@ public class JAddCliente extends javax.swing.JFrame {
      * Creates new form JCriaVeiculo
      */
     public JAddCliente(JMain root, SClientes clientes) {
-        initComponents();
         this.clientes = clientes;
         this.root = root;
+        initComponents();
         
         btiposV.add(bemp);
         btiposV.add(bind);
