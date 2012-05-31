@@ -5,7 +5,7 @@
 package Servicos;
 
 import Cargas.Indiferenciada;
-import Indiferenciadas.Indiferenciada;
+import Cargas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
 import java.util.GregorianCalendar;

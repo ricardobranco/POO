@@ -5,7 +5,7 @@
 package Servicos;
 
 import Cargas.Toxica;
-import Cargas.Indiferenciada;
+import Cargas.Toxica;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
 import java.util.GregorianCalendar;
@@ -25,7 +25,7 @@ public class ServTox extends Servico{
     
     public ServTox() {
         super();
-        this.carga = new Indiferenciada();
+        this.carga = new Toxica();
     }
 
     public ServTox(Toxica carga, GregorianCalendar inicio, SVeiculos veiculos) {
@@ -75,22 +75,5 @@ public class ServTox extends Servico{
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
         return res+getCusto();
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }    
 }
