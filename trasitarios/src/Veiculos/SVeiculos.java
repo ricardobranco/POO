@@ -123,6 +123,11 @@ public class SVeiculos extends Observable implements Serializable{
          }
      }
      
+     public void remove(Veiculo v)
+     {
+         this.veiculos.remove(v.getMatricula());
+     }
+     
      public Collection<Veiculo> refrigerados()
      {
          Collection<Veiculo> ref = new ArrayList<Veiculo>();
@@ -142,6 +147,28 @@ public class SVeiculos extends Observable implements Serializable{
          }
          return ref;
      }
+     
+     
+      public Collection<Veiculo> naoRefrigerados()
+     {
+         Collection<Veiculo> ref = new ArrayList<Veiculo>();
+              
+         for(Veiculo v : this.veiculos.values())
+         {
+             Class[] interfaces = v.getClass().getInterfaces();
+             boolean flag = true;
+             for(int i = 0; i<interfaces.length && flag; i++)
+             {
+                 if(!(interfaces[i].getSimpleName().equals("Refrigerado")))
+                 {
+                     ref.add(v.clone());
+                     flag = false;
+                 }
+             }
+         }
+         return ref;
+     }
+     
      
      public Collection<Veiculo> parados()
      {

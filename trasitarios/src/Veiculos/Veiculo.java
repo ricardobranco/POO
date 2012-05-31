@@ -137,6 +137,8 @@ public abstract class Veiculo implements Comparable<Veiculo>
     }
     
     
+    public boolean mais60(){return (this.getCargaActual()/this.capacidade) >= 0.6;}  
+    
     public boolean addCarga(Carga c){
         return c.getCarga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
     }
