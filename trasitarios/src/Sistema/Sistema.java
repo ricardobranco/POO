@@ -7,7 +7,7 @@ package Sistema;
 import Clientes.SClientes;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
-import java.io.Serializable;
+import java.io.*;
 
 /**
  *
@@ -70,6 +70,32 @@ public class Sistema implements Serializable{
         sb.append(this.veiculos.toString()).append("\n");
         return sb.toString();
     }
+    
+    public void save(String path)throws FileNotFoundException, IOException 
+      {
+         FileOutputStream fos = new FileOutputStream(path);
+         ObjectOutputStream oos = new ObjectOutputStream(fos);
+         oos.writeObject(this.veiculos);
+         oos.writeObject(this.clientes);
+         
+         oos.close();
+         fos.close();
+      }
+      
+    
+    public void load(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException 
+      {
+          FileInputStream fis = new FileInputStream(fileName);
+          ObjectInputStream ois = new ObjectInputStream(fis);
+          
+          this.veiculos = (SVeiculos) ois.readObject();
+          this.clientes = (SClientes) ois.readObject();
+          
+          ois.close();
+          fis.close();
+      }
+    
+    
     
     
     
