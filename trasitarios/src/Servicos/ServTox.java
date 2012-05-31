@@ -5,6 +5,7 @@
 package Servicos;
 
 import Cargas.Carga;
+import Cargas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
 import java.util.GregorianCalendar;
@@ -16,46 +17,80 @@ import java.util.List;
  */
 public class ServTox extends Servico{
 
-    private static double custo = 25;
+    private static double custo = 25; 
+    
+    private Carga carga;
 
     
     
-    public ServTox(Servico s) {
-        super(s);
-    }
-
-    public ServTox(GregorianCalendar inicio, GregorianCalendar duracao, SVeiculos veiculos, List<Carga> carga) {
-        super(inicio, duracao, veiculos, carga);
-    }
-
     public ServTox() {
+        super();
+        this.carga = new Indiferenciada();
     }
 
+    public ServTox(Carga carga, GregorianCalendar inicio, SVeiculos veiculos) {
+        super(inicio, veiculos);
+        this.carga = carga;
+    }
+
+    public ServTox(ServTox s) {
+        super(s);
+        this.carga = s.getCarga();
+    }
+
+    
     
     public static double getCusto() {
         return custo;
     }
-    
+
     public static void setCusto(double custo) {
         ServTox.custo = custo;
     }
+
     
-    public ServTox clone(){return new ServTox(this);}
+    public Carga getCarga() {
+        return carga;
+    }
+
+    public void setCarga(Carga carga) {
+        this.carga = carga;
+    }
+
+    
+    public  ServTox clone() {return new ServTox(this);}
+
     
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("ParaServiçosSecretos\n").append(super.toString());
+        sb.append("PARA SERVIÇOS SECRETOS\n").append(super.toString());
         return sb.toString();
     }
     
-    public double preco()
-    {
+    
+    
+    public double preco() {
         double res = 0;
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
-        for(Carga c : super.getCargas())
-            res+=(c.getCarga()*getCusto());
-        return res;
+        return res+getCusto();
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -203,6 +203,16 @@ public class SVeiculos extends Observable implements Serializable{
       }
       
       
+      
+      public void alteraEstado(Veiculo c)
+      {
+          Veiculo aux = this.veiculos.get(c.getMatricula());
+          aux.setParado(!(aux.getParado()));
+      }
+      
+      
+      
+      
       public void save(String path)throws FileNotFoundException, IOException 
       {
          FileOutputStream fos = new FileOutputStream(path);
