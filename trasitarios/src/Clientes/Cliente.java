@@ -33,6 +33,7 @@ public abstract class Cliente implements Serializable,Comparable<Cliente> {
     {
         this.nome = c.getNome();
         this.nif = c.getNif();
+        this.morada = c.getMorada();
         this.setServicos(c.getServicos());
     }
 

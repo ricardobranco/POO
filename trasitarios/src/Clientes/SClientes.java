@@ -134,7 +134,7 @@ public class SClientes extends Observable implements  Serializable{
         Collection<Cliente> res = new ArrayList<Cliente>(); 
         for(Cliente c : this.clientes.values())
         {
-            if(c.getClass().getSimpleName().equals(s));
+            if(c.getClass().getSimpleName().equals(s))
             res.add(c.clone());
         }
         return res;
