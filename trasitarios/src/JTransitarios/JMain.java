@@ -148,7 +148,6 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 return canEdit [columnIndex];
             }
         });
-        jTVeiculos.setColumnSelectionAllowed(true);
         jScrollPane3.setViewportView(jTVeiculos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
