@@ -298,8 +298,9 @@ public class JAddCliente extends javax.swing.JFrame {
             Cliente c = new Empresarial(nome, morada, nif, empresa);
 
             if (this.clientes.addCliente(c)) {
-                this.root.setVisible(true);
+                this.sistema.setClientes(this.clientes);
                 this.dispose();
+                this.root.setVisible(true);
                 root.update();
             } else {
                 JOptionPane.showMessageDialog(this, "Já existe um cliente com esse NIF", "Informação", JOptionPane.INFORMATION_MESSAGE);
@@ -310,7 +311,6 @@ public class JAddCliente extends javax.swing.JFrame {
 
 
             if (this.clientes.addCliente(c)) {
-                this.root.setVisible(true);
                 this.sistema.setClientes(this.clientes);
                 this.root.setVisible(true);
                 this.dispose();
