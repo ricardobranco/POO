@@ -10,6 +10,8 @@ import Clientes.SClientes;
 import Sistema.Sistema;
 import Veiculos.SVeiculos;
 import java.awt.Dimension;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -30,11 +32,12 @@ public class JMain extends javax.swing.JFrame implements Observer {
     
     Sistema sistema;
     
-    public JMain() {
+    public JMain(){
         initComponents();
         sistema = new Sistema(this);
-	
-	//sistema.getClientes().addCliente(new Individual("nome", "morada", 123456789));
+        
+        sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
+        sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
     }
     
     

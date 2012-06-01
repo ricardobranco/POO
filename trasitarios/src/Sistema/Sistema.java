@@ -6,15 +6,14 @@ package Sistema;
 
 import Cargas.Carga;
 import Cargas.NaoRefrigerados;
+import Clientes.Cliente;
+import Clientes.Empresarial;
+import Clientes.Individual;
 import Clientes.SClientes;
 import Servicos.Servico;
 import Veiculos.*;
 import java.io.*;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  *
@@ -254,4 +253,73 @@ public class Sistema extends Observable implements Serializable {
 
         return true;
     }
+    
+    public void leFileClientesa (String filepath)
+      {
+          
+        try{
+            FileInputStream fstream = new FileInputStream(filepath);
+    
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            String delimiter = ":";
+    
+            while ((strLine = br.readLine()) != null)   {
+                StringTokenizer tokens = new StringTokenizer(strLine, delimiter);
+                while (tokens.hasMoreTokens())
+                {
+                    Long nif = Long.parseLong(tokens.nextToken());
+                    String nome = new String(tokens.nextToken());
+                    String morada = new String(tokens.nextToken());
+                    Cliente c = new Individual(nome, morada, nif);
+                    this.clientes.addCliente(c);
+                    
+                    // Meter metodo de inserçao no TreeMap
+                }
+            }
+    
+            in.close();
+        }
+          catch (Exception e){
+          System.err.println("Error: " + e.getMessage());
+          }
+      }
+    
+    public void leFileClientesb (String filepath)
+      {
+          
+        try{
+            FileInputStream fstream = new FileInputStream(filepath);
+    
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            String delimiter = ";";
+    
+            while ((strLine = br.readLine()) != null)   {
+                StringTokenizer tokens = new StringTokenizer(strLine, delimiter);
+                while (tokens.hasMoreTokens())
+                {
+                    Long nif = Long.parseLong(tokens.nextToken());
+                    String nome = new String(tokens.nextToken());
+                    String morada = new String(tokens.nextToken());
+                    String emp = new String(tokens.nextToken());
+                    Cliente c = new Empresarial(nome, morada, nif,emp);
+                    this.clientes.addCliente(c);
+                    
+                    // Meter metodo de inserçao no TreeMap
+                }
+            }
+    
+            in.close();
+        }
+          catch (Exception e){
+          System.err.println("Error: " + e.getMessage());
+          }
+      }
+    
+    
+
+    
 }
