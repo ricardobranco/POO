@@ -134,7 +134,7 @@ public class SClientes extends Observable implements  Serializable{
         Collection<Cliente> res = new ArrayList<Cliente>(); 
         for(Cliente c : this.clientes.values())
         {
-            if(c.getClass().getSimpleName().equals(s));
+            if(c.getClass().getName().equals(s));
             res.add(c.clone());
         }
         return res;
@@ -182,7 +182,6 @@ public class SClientes extends Observable implements  Serializable{
          oos.close();
          fos.close();
       }
-      
       
       public void load(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException 
       {
