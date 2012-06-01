@@ -183,6 +183,7 @@ public class SClientes extends Observable implements  Serializable{
          fos.close();
       }
       
+      
       public void load(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException 
       {
           FileInputStream fis = new FileInputStream(fileName);
