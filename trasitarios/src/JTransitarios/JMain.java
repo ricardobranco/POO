@@ -5,6 +5,7 @@
 package JTransitarios;
 
 import Clientes.SClientes;
+import Sistema.Sistema;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
 import java.awt.Dimension;
@@ -25,14 +26,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
      * Creates new form JMain
      */
     
-    SClientes clientes;
-    SVeiculos veiculos; 
+    Sistema sistema;
     
     public JMain() {
         initComponents();
-        clientes = new SClientes(this);
-        veiculos = new SVeiculos(this);
-        
+        sistema = new Sistema(this);
         
     }
     
@@ -93,16 +91,12 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jCheckBoxMenuItem5 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem6 = new javax.swing.JCheckBoxMenuItem();
@@ -147,11 +141,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Veiculos", jPanel3);
@@ -170,11 +164,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Clientes", jPanel4);
@@ -240,7 +234,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 .addComponent(jRBmatriculaNome)
                 .addGap(48, 48, 48)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
 
@@ -288,12 +282,6 @@ public class JMain extends javax.swing.JFrame implements Observer {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("Apagar");
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setText("Procurar");
-        jMenu2.add(jMenuItem5);
-
         jMenu4.setText("Mostrar");
 
         jCheckBoxMenuItem1.setSelected(true);
@@ -335,12 +323,6 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         });
         jMenu5.add(jMenuItem7);
-
-        jMenuItem8.setText("Apagar");
-        jMenu5.add(jMenuItem8);
-
-        jMenuItem9.setText("Procurar");
-        jMenu5.add(jMenuItem9);
 
         jMenu7.setText("Mostrar");
 
@@ -385,19 +367,10 @@ public class JMain extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        new JAddVeic(this,veiculos).setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        new JAddCliente(this,clientes).setVisible(true);
+        new JAddCliente(this,sistema).setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
     private void jCheckBoxMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem5ActionPerformed
         // TODO add your handling code here:
@@ -410,28 +383,23 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if( jTabbedPane2.getSelectedIndex() == 0 )
-	    new JAddVeic(this,veiculos).setVisible(true);
+	    new JAddVeic(this,sistema).setVisible(true);
         else
-            new JAddCliente(this,clientes).setVisible(true);
+            new JAddCliente(this,sistema).setVisible(true);
 
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new JLoad(this, clientes, veiculos).setVisible(true);
+        new JLoad(this,sistema).setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        new JSave(clientes, veiculos).setVisible(true);
+        new JSave(this,sistema).setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        new JVeicPref(this).setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jTFpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFpesquisarActionPerformed
         // TODO add your handling code here:
@@ -456,6 +424,20 @@ public class JMain extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        new JVeicPref(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        new JAddVeic(this, sistema).setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
     
     private void actualizaTabelaVeiculos(){
 	String texto = jTFpesquisar.getText();
@@ -493,15 +475,15 @@ public class JMain extends javax.swing.JFrame implements Observer {
 		//recolher dados
 		if( jTabbedPane2.getSelectedIndex() == 0 ){ //veiculos
 		    if (jRBmarcaNif.isSelected()) {
-			dados = veiculos.getMatrix(texto, false);
+			dados = sistema.getVeiculos().getMatrix(texto, false);
 		    } else {
-			dados = veiculos.getMatrix(texto, true);
+			dados = sistema.getVeiculos().getMatrix(texto, true);
 		    }
 		}else{ //clientes
 		    if (jRBmarcaNif.isSelected()) {
-			dados = clientes.getMatrix(texto, false);
+			dados = sistema.getClientes().getMatrix(texto, false);
 		    } else {
-			dados = clientes.getMatrix(texto, true);
+			dados = sistema.getClientes().getMatrix(texto, true);
 		    }
 		}
 
@@ -585,12 +567,8 @@ public class JMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

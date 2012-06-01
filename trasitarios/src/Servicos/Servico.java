@@ -3,11 +3,12 @@ package Servicos;
 import Cargas.Carga;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public abstract class Servico{
+public abstract class Servico implements Serializable{
     
     
     private GregorianCalendar inicio;

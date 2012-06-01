@@ -1,9 +1,10 @@
 package Clientes;
 
 import Servicos.Servico;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Individual extends Cliente {
+public class Individual extends Cliente implements Serializable {
     
     
     public Individual() {

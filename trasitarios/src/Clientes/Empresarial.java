@@ -1,9 +1,10 @@
 package Clientes;
 
 import Servicos.Servico;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Empresarial extends Cliente {
+public class Empresarial extends Cliente implements Serializable{
     String nomeEmpresa;
     
     

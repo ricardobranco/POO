@@ -1,6 +1,8 @@
 package Cargas;
 
-public class Indiferenciada extends Carga implements NaoRefrigerados{
+import java.io.Serializable;
+
+public class Indiferenciada extends Carga implements Serializable, NaoRefrigerados{
     public Indiferenciada(){
         super();
     }

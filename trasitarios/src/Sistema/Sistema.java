@@ -13,13 +13,15 @@ import Veiculos.Veiculo;
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.TreeSet;
 
 /**
  *
  * @author Ricardo
  */
-public class Sistema implements Serializable {
+public class Sistema extends Observable implements Serializable {
 
     private SClientes clientes;
     private SVeiculos veiculos;
@@ -29,6 +31,12 @@ public class Sistema implements Serializable {
         this.veiculos = new SVeiculos();
     }
 
+    public Sistema(Observer o)
+    {
+        this.clientes = new SClientes();
+        this.veiculos = new SVeiculos();
+        addObserver(o);
+    }
     public Sistema(SClientes clientes, SVeiculos veiculos) {
         this.clientes = clientes;
         this.veiculos = veiculos;

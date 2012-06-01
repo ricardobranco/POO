@@ -1,12 +1,13 @@
 package Veiculos;
 
 import Cargas.Carga;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class Veiculo implements Comparable<Veiculo>
+public abstract class Veiculo implements Serializable,Comparable<Veiculo>
 {
     //Variaveis de instancia
     private String marca;

@@ -8,6 +8,7 @@ import Clientes.Cliente;
 import Clientes.Empresarial;
 import Clientes.Individual;
 import Clientes.SClientes;
+import Sistema.Sistema;
 import Veiculos.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -18,29 +19,30 @@ import javax.swing.JTextField;
  */
 public class JAddCliente extends javax.swing.JFrame {
 
-     SClientes clientes;
-     JMain root;
-    
+    Sistema sistema;
+    SClientes clientes;
+    JMain root;
+
     /**
      * Creates new form JCriaVeiculo
      */
-    public JAddCliente(JMain root, SClientes clientes) {
-        this.clientes = clientes;
+    public JAddCliente(JMain root, Sistema sistema) {
+        this.sistema = sistema;
+        this.clientes = sistema.getClientes();
         this.root = root;
-	this.root.setVisible(false);
+        this.root.setVisible(false);
         initComponents();
-        
+
         btiposV.add(bemp);
         btiposV.add(bind);
         jPanel1.setVisible(true);
         jPanel2.setVisible(true);
-        
-        
-        
+
+
+
     }
-    
-     
-     public JAddCliente() {
+
+    public JAddCliente() {
         initComponents();
     }
 
@@ -249,9 +251,9 @@ public class JAddCliente extends javax.swing.JFrame {
     private void bindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bindActionPerformed
         // TODO add your handling code here:
         jPanel1.setVisible(true);
-        
+
         jPanel2.setVisible(false);
-        
+
     }//GEN-LAST:event_bindActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -264,78 +266,69 @@ public class JAddCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (jTextField1.getText().equals("") ||
-            jTextField2.getText().equals("") ||
-            jTextField3.getText().equals(""))
-        {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+        if (jTextField1.getText().equals("")
+                || jTextField2.getText().equals("")
+                || jTextField3.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
-        
-        try{Long l1 = Long.valueOf(jTextField2.getText());
-           }
-           catch (NumberFormatException ex)
-           {
+
+        try {
+            Long l1 = Long.valueOf(jTextField1.getText());
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
             return;
-           }
+        }
         long nif = Long.valueOf(jTextField1.getText()).longValue();
         String nome = jTextField3.getText();
         String morada = jTextField2.getText();
-                
-        
-        
+
+
+
         //SE EMPRESARIO
-        if(bemp.isSelected())
-        {
-            
-            if (jTextField6.getText().equals(""))
-            {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+        if (bemp.isSelected()) {
+
+            if (jTextField6.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-            
+
             String empresa = jTextField6.getText();
-            
-            Cliente c = new Empresarial(nome, morada, nif, empresa); 
-            
-            if (this.clientes.addCliente(c))
-            {
+
+            Cliente c = new Empresarial(nome, morada, nif, empresa);
+
+            if (this.clientes.addCliente(c)) {
+                this.root.setVisible(true);
                 this.dispose();
                 root.update();
+            } else {
+                JOptionPane.showMessageDialog(this, "Já existe um cliente com esse NIF", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-            else
-            {
+        } //Se for individual
+        else {
+            Cliente c = new Individual(nome, morada, nif);
+
+
+            if (this.clientes.addCliente(c)) {
+                this.root.setVisible(true);
+                this.sistema.setClientes(this.clientes);
+                this.root.setVisible(true);
+                this.dispose();
+                root.update();
+            } else {
                 JOptionPane.showMessageDialog(this, "Já existe um cliente com esse NIF", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        
-        //Se for individual
-        
-        else{
-            Cliente c = new Individual (nome, morada, nif);
-         
-            
-            if (this.clientes.addCliente(c))
-            {
-                this.dispose();
-                root.update();
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this, "Já existe um cliente com esse NIF", "Informação", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-            
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bempActionPerformed
         // TODO add your handling code here:
         jPanel1.setVisible(true);
         jPanel2.setVisible(true);
-        
-        
-       
+
+
+
 
     }//GEN-LAST:event_bempActionPerformed
 
@@ -345,17 +338,16 @@ public class JAddCliente extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.root.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-	this.root.setVisible(true);
+        this.root.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
-
     /**
      * @param args the command line arguments
      */
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton bemp;
     private javax.swing.JRadioButton bind;

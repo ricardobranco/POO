@@ -1,6 +1,8 @@
 package Cargas;
 
-public abstract class Carga {
+import java.io.Serializable;
+
+public abstract class Carga implements Serializable {
     public static final int REFRIGERACAO_INDIFERENTE = 0;
     public static final int REFRIGERACAO_SIM = 1;
     public static final int REFRIGERACAO_NAO = 2;

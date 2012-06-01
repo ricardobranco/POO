@@ -1,6 +1,8 @@
 package Cargas;
 
-public class Toxica extends Carga implements NaoRefrigerados{
+import java.io.Serializable;
+
+public class Toxica extends Carga implements NaoRefrigerados, Serializable{
     public Toxica(){
         super();
     }

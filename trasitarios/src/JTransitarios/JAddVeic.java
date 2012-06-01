@@ -4,6 +4,7 @@
  */
 package JTransitarios;
 
+import Sistema.Sistema;
 import Veiculos.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -14,24 +15,25 @@ import javax.swing.JTextField;
  */
 public class JAddVeic extends javax.swing.JFrame {
 
-     SVeiculos veiculos;
-     JMain root;
-    
+    Sistema sistema;
+    SVeiculos veiculos;
+    JMain root;
+
     /**
      * Creates new form JCriaVeiculo
      */
-    public JAddVeic(JMain root, SVeiculos nveiculos) {
-        this.veiculos = nveiculos;
+    public JAddVeic(JMain root, Sistema sistema) {
+        this.sistema = sistema;
+        this.veiculos = this.sistema.getVeiculos();
         this.root = root;
-	this.root.setVisible(false);
+        this.root.setVisible(false);
         initComponents();
         jPanel5.setVisible(false);
-        
-        
+
+
     }
-    
-     
-     public JAddVeic() {
+
+    public JAddVeic() {
         initComponents();
     }
 
@@ -398,11 +400,11 @@ public class JAddVeic extends javax.swing.JFrame {
 
     private void bcamiaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcamiaoActionPerformed
         // TODO add your handling code here:
-        
+
         jPanel4.setVisible(true);
         jPanel5.setVisible(false);
-        
-        
+
+
     }//GEN-LAST:event_bcamiaoActionPerformed
 
     private void bfurgaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bfurgaoActionPerformed
@@ -445,131 +447,120 @@ public class JAddVeic extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        if (jTextField1.getText().equals("") ||
-            jTextField2.getText().equals("") ||
-            jTextField3.getText().equals("") ||
-            jTextField4.getText().equals(""))
-        {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+
+        if (jTextField1.getText().equals("")
+                || jTextField2.getText().equals("")
+                || jTextField3.getText().equals("")
+                || jTextField4.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
-        try{Double d1 = Double.valueOf(jTextField2.getText());
+        try {
+            Double d1 = Double.valueOf(jTextField2.getText());
             Double d2 = Double.valueOf(jTextField4.getText());
-        }
-           catch (NumberFormatException ex)
-           {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
             return;
-           }
+        }
         String smatricula = jTextField3.getText();
         String smarca = jTextField1.getText();
         double dcusto = Double.valueOf(jTextField2.getText()).doubleValue();
         double dcarga = Double.valueOf(jTextField4.getText()).doubleValue();
-                
-        
-        
+
+
+
         //SE FOR CAMIAO
-        if(bcamiao.isSelected())
-        {
-            
-            if (jTextField8.getText().equals("") ||jTextField7.getText().equals(""))
-            {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+        if (bcamiao.isSelected()) {
+
+            if (jTextField8.getText().equals("") || jTextField7.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-            
-            try{
+
+            try {
                 Double d3 = Double.valueOf(jTextField8.getText());
-            }
-            
-            catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            
+
             double daltura = Double.valueOf(jTextField8.getText()).doubleValue();
             String scondutor = jTextField7.getText();
             boolean batrelado = jCheckBox2.isSelected();
-            
+
             Veiculo v = new Camiao(smarca, smatricula, scondutor, daltura, dcusto, dcarga, batrelado);
-            
-            if (this.veiculos.addVeiculo(v))
-            {
+
+            if (this.veiculos.addVeiculo(v)) {
+                this.sistema.setVeiculos(this.veiculos);
+                this.root.setVisible(true);
                 this.dispose();
                 root.update();
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        //Se for um furgao
-        
-        else if(bfurgao.isSelected())
-        {
-            
-            if (jTextField5.getText().equals(""))
-            {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+        } //Se for um furgao
+        else if (bfurgao.isSelected()) {
+
+            if (jTextField5.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-            
-            try{
+
+            try {
                 Double autonomia = Double.valueOf(jTextField5.getText());
-                        }
-            
-            catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            
+
             String scomb = jComboBox1.getActionCommand();
-            
+
             Veiculo v;
             double Autonomia = Double.valueOf(jTextField5.getText()).doubleValue();
-            
-            
-            if(jCheckBox1.isSelected())
+
+
+            if (jCheckBox1.isSelected()) {
                 v = new RFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
-            else
+            } else {
                 v = new NRFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
-            
-            if (this.veiculos.addVeiculo(v))
-            {
-                this.dispose();
-            root.update();
-        }else {
-                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        else
-        {
-            Veiculo v = new Van(smarca, smatricula, dcusto, dcarga);
-            if (this.veiculos.addVeiculo(v))
-            {
+
+            if (this.veiculos.addVeiculo(v)) {
+                this.sistema.setVeiculos(this.veiculos);
+                this.root.setVisible(true);
                 this.dispose();
                 root.update();
-        }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-            
+        } else {
+            Veiculo v = new Van(smarca, smatricula, dcusto, dcarga);
+            if (this.veiculos.addVeiculo(v)) {
+                this.sistema.setVeiculos(this.veiculos);
+                this.root.setVisible(true);
+                this.dispose();
+                root.update();
+            } else {
+                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
+
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-                this.dispose();
+        this.root.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-	this.root.setVisible(true);
+        this.root.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
-
     /**
      * @param args the command line arguments
      */
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton bcamiao;
     private javax.swing.JRadioButton bfurgao;
