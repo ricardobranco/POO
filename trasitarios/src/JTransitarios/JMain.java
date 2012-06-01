@@ -4,6 +4,7 @@
  */
 package JTransitarios;
 
+import Clientes.Cliente;
 import Clientes.SClientes;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
@@ -32,8 +33,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
         initComponents();
         clientes = new SClientes(this);
         veiculos = new SVeiculos(this);
-        
-        
+	
     }
     
     
