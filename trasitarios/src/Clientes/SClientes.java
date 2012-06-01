@@ -113,7 +113,8 @@ public class SClientes extends Observable implements  Serializable{
     
     public boolean addCliente(Cliente c)
     {
-        if(this.clientes.containsValue(c)) return false;
+        if(this.clientes.containsValue(c)) 
+            return false;
         this.clientes.put(new Long(c.getNif()),c);
         return true;
     }

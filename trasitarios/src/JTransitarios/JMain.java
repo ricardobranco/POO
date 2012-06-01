@@ -91,6 +91,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
@@ -281,6 +282,9 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         });
         jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Estado");
+        jMenu2.add(jMenuItem4);
 
         jMenu4.setText("Mostrar");
 
@@ -567,6 +571,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
