@@ -4,10 +4,9 @@
  */
 package JTransitarios;
 
-import Clientes.SClientes;
+import Clientes.Cliente;
+import Clientes.Individual;
 import Sistema.Sistema;
-import Veiculos.SVeiculos;
-import Veiculos.Veiculo;
 import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,7 +30,8 @@ public class JMain extends javax.swing.JFrame implements Observer {
     public JMain() {
         initComponents();
         sistema = new Sistema(this);
-        
+	
+	//sistema.getClientes().addCliente(new Individual("nome", "morada", 123456789));
     }
     
     
@@ -111,6 +111,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 jTabbedPane2MouseClicked(evt);
             }
         });
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
 
         jTVeiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -142,11 +147,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Veiculos", jPanel3);
@@ -165,11 +170,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Clientes", jPanel4);
@@ -194,11 +199,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jTFpesquisar.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                actualizaTabelaVeiculos();
+                actualizaTabelas();
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
-                actualizaTabelaVeiculos();
+                actualizaTabelas();
             }
             @Override
             public void changedUpdate(DocumentEvent e) {}
@@ -235,7 +240,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 .addComponent(jRBmatriculaNome)
                 .addGap(48, 48, 48)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
 
@@ -442,66 +447,67 @@ public class JMain extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         new JAddVeic(this, sistema).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+	actualizaTabelas();  
+    }//GEN-LAST:event_jTabbedPane2StateChanged
     
-    private void actualizaTabelaVeiculos(){
+    private void actualizaTabelas(){
 	String texto = jTFpesquisar.getText();
 	JCustomTable tabela;
-	if( !texto.isEmpty() ){
-	    Object [][]dados;
-	    
-	    if( jTabbedPane2.getSelectedIndex() == 0 )
-		tabela = jTVeiculos;
-	    else
-		tabela = jTClientes;
+	
+	Object [][]dados;
 
-	    String []nomesColunas = new String[tabela.getModel().getColumnCount()];
-	    for(int i=0; i<nomesColunas.length; i++)
-		nomesColunas[i] = tabela.getModel().getColumnName(i);
+	if( jTabbedPane2.getSelectedIndex() == 0 )
+	    tabela = jTVeiculos;
+	else
+	    tabela = jTClientes;
+
+	String []nomesColunas = new String[tabela.getModel().getColumnCount()];
+	for(int i=0; i<nomesColunas.length; i++)
+	    nomesColunas[i] = tabela.getModel().getColumnName(i);
+
+	DefaultTableModel tmpModel = new DefaultTableModel(null, nomesColunas);
+	DefaultTableModel model;
+	tabela.setModel(tmpModel);
+
+	if( jTFpesquisar.getText().isEmpty() || (!jRBmarcaNif.isSelected() && !jRBmatriculaNome.isSelected()))
+	    return;
 
 
+	if( jTabbedPane2.getSelectedIndex() == 0 )
+	    tmpModel.addRow(new Object[]{"... Aguarde ...","","","","","",""});
+	else
+	    tmpModel.addRow(new Object[]{"... Aguarde ...","","",""});
 
+	if (texto.equals(jTFpesquisar.getText())) {
 
-	    DefaultTableModel tmpModel = new DefaultTableModel(null, nomesColunas);
-	    DefaultTableModel model;
-	    tabela.setModel(tmpModel);
-
-	    if( jTFpesquisar.getText().isEmpty() || (!jRBmarcaNif.isSelected() && !jRBmatriculaNome.isSelected()))
-		return;
-	    
-	    
-	    if( jTabbedPane2.getSelectedIndex() == 0 )
-		tmpModel.addRow(new Object[]{"... Aguarde ...","","","","","",""});
-	    else
-		tmpModel.addRow(new Object[]{"... Aguarde ...","","",""});
-
-	    if (texto.equals(jTFpesquisar.getText())) {
-		
-		//recolher dados
-		if( jTabbedPane2.getSelectedIndex() == 0 ){ //veiculos
-		    if (jRBmarcaNif.isSelected()) {
-			dados = sistema.getVeiculos().getMatrix(texto, false);
-		    } else {
-			dados = sistema.getVeiculos().getMatrix(texto, true);
-		    }
-		}else{ //clientes
-		    if (jRBmarcaNif.isSelected()) {
-			dados = sistema.getClientes().getMatrix(texto, false);
-		    } else {
-			dados = sistema.getClientes().getMatrix(texto, true);
-		    }
+	    //recolher dados
+	    if( jTabbedPane2.getSelectedIndex() == 0 ){ //veiculos
+		if (jRBmarcaNif.isSelected()) {
+		    dados = sistema.getVeiculos().getMatrix(texto, false);
+		} else {
+		    dados = sistema.getVeiculos().getMatrix(texto, true);
 		}
-
-		if (texto.equals(jTFpesquisar.getText())){
-		    model = new DefaultTableModel(dados, nomesColunas);
-		    tabela.setModel(model);
+	    }else{ //clientes
+		if (jRBmarcaNif.isSelected()) {
+		    dados = sistema.getClientes().getMatrix(texto, false);
+		} else {
+		    dados = sistema.getClientes().getMatrix(texto, true);
 		}
 	    }
 
-	    tabela.setPreferredSize( new Dimension(tabela.getPreferredSize().width,
-		    tabela.getRowCount()*tabela.getRowHeight()) );
-
-
+	    if (texto.equals(jTFpesquisar.getText())){
+		model = new DefaultTableModel(dados, nomesColunas);
+		tabela.setModel(model);
+	    }
 	}
+
+	tabela.setPreferredSize( new Dimension(tabela.getPreferredSize().width,
+		tabela.getRowCount()*tabela.getRowHeight()) );
+
+
+	
     }
     
     /**

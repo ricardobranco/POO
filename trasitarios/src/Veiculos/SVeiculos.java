@@ -244,18 +244,20 @@ public class SVeiculos extends Observable implements Serializable{
 	  Collection<Veiculo> col = this.veiculos.values();
 	  ArrayList<Veiculo> arr = new ArrayList<Veiculo>(col.size());
 	  
-	  if( filtrarMatricula ){
-	    for( Veiculo v : col ){
-		if( v.getMatricula().contains(pesquisa) )
-		    arr.add(v);
+	  if( !pesquisa.isEmpty() ){
+	    if( filtrarMatricula ){
+		for( Veiculo v : col ){
+		    if( v.getMatricula().contains(pesquisa) )
+			arr.add(v);
+		}
+	    }else{
+		for( Veiculo v : col ){
+		    if( v.getMarca().contains(pesquisa) )
+			arr.add(v);
+		}
 	    }
-	  }else{
-	    for( Veiculo v : col ){
-		if( v.getMarca().contains(pesquisa) )
-		    arr.add(v);
-	    }
-	  }
-	  
+	  }else
+	      arr.addAll(col);
 	  
 	  String[][] res = new String[ col.size() ][7];
 	  

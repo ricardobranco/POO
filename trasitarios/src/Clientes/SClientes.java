@@ -195,17 +195,20 @@ public class SClientes extends Observable implements  Serializable{
 	  Collection<Cliente> col = this.clientes.values();
 	  ArrayList<Cliente> arr = new ArrayList<Cliente>(col.size());
 	  
-	  if( filtrarNome ){
-	    for( Cliente c : col ){
-		if( c.getNome().contains(pesquisa) )
-		    arr.add(c);
+	  if( !pesquisa.isEmpty() ){
+	    if( filtrarNome ){
+		for( Cliente c : col ){
+		    if( c.getNome().contains(pesquisa) )
+			arr.add(c);
+		}
+	    }else{
+		for( Cliente c : col ){
+		    if( Long.toString( c.getNif() ).toString().contains(pesquisa) )
+			arr.add(c);
+		}
 	    }
-	  }else{
-	    for( Cliente c : col ){
-		if( Long.toString( c.getNif() ).toString().contains(pesquisa) )
-		    arr.add(c);
-	    }
-	  }
+	  }else
+	      arr.addAll(col);
 	  
 	  
 	  String[][] res = new String[ col.size() ][7];
