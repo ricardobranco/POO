@@ -138,7 +138,7 @@ public class SVeiculos extends Observable implements Serializable{
              boolean flag = true;
              for(int i = 0; i<interfaces.length && flag; i++)
              {
-                 if(interfaces[i].getName().equals("Refrigerado"))
+                 if(interfaces[i].getSimpleName().equals("Refrigerado"))
                  {
                      ref.add(v.clone());
                      flag = false;
