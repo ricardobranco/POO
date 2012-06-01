@@ -5,6 +5,7 @@
 package JTransitarios;
 
 import Clientes.SClientes;
+import Sistema.Sistema;
 import Veiculos.SVeiculos;
 
 /**
@@ -13,13 +14,13 @@ import Veiculos.SVeiculos;
  * chalkos
  */
 public class JEscolhaServico extends javax.swing.JFrame {
-    SVeiculos veiculos;
-    SClientes clientes;
+    
+    Sistema sistema;
+            
     JMain root;
     
-    public JEscolhaServico(JMain root, SVeiculos veiculos, SClientes clientes){
-	this.veiculos = veiculos;
-	this.clientes = clientes;
+    public JEscolhaServico(JMain root, Sistema sistema){
+	this.sistema = sistema;
 	this.root = root;
 	this.root.setVisible(false);
 	initComponents();
@@ -92,7 +93,7 @@ public class JEscolhaServico extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -116,7 +117,7 @@ public class JEscolhaServico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -125,12 +126,12 @@ public class JEscolhaServico extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 246, Short.MAX_VALUE)
+            .addGap(0, 203, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -141,23 +142,23 @@ public class JEscolhaServico extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-	new JAddCargas(this, veiculos, clientes, JAddCargas.SERVICO_SIMPLES).setVisible(true);
+	new JAddCargas(this,sistema, JAddCargas.SERVICO_SIMPLES).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-	new JAddCargas(this, veiculos, clientes, JAddCargas.SERVICO_AEROPORTO).setVisible(true);
+	new JAddCargas(this,sistema, JAddCargas.SERVICO_AEROPORTO).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-	new JAddCargas(this, veiculos, clientes, JAddCargas.SERVICO_QUERIDO_MUDEI_A_CASA).setVisible(true);
+	new JAddCargas(this,sistema, JAddCargas.SERVICO_QUERIDO_MUDEI_A_CASA).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-	new JAddCargas(this, veiculos, clientes, JAddCargas.SERVICO_PROFISSIONAIS_DISTRIBUICAO).setVisible(true);
+	new JAddCargas(this,sistema, JAddCargas.SERVICO_PROFISSIONAIS_DISTRIBUICAO).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-	new JAddCargas(this, veiculos, clientes, JAddCargas.SERVICO_SERVICOS_SECRETOS).setVisible(true);
+	new JAddCargas(this,sistema, JAddCargas.SERVICO_SERVICOS_SECRETOS).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     

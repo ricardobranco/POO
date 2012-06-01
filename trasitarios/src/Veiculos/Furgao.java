@@ -1,9 +1,10 @@
 package Veiculos;
 
 import Cargas.Carga;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class  Furgao extends Veiculo{
+public abstract class  Furgao extends Veiculo implements Serializable{
     
     //Variaveis de Classe
     private static double pbase = 85;

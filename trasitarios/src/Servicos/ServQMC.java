@@ -8,6 +8,7 @@ import Cargas.Carga;
 import Cargas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  *
  * @author Ricardo Branco
  */
-public class ServQMC extends Servico{
+public class ServQMC extends Servico implements Serializable{
 
     private static double custo = 25; 
     private static final int size = 1;        

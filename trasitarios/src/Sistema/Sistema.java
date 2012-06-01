@@ -8,17 +8,19 @@ import Cargas.Carga;
 import Cargas.NaoRefrigerados;
 import Clientes.SClientes;
 import Servicos.Servico;
-import Veiculos.SVeiculos;
-import Veiculos.Veiculo;
+import Veiculos.*;
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.TreeSet;
 
 /**
  *
  * @author Ricardo
  */
-public class Sistema implements Serializable {
+public class Sistema extends Observable implements Serializable {
 
     private SClientes clientes;
     private SVeiculos veiculos;
@@ -26,6 +28,12 @@ public class Sistema implements Serializable {
     public Sistema() {
         this.clientes = new SClientes();
         this.veiculos = new SVeiculos();
+    }
+
+    public Sistema(Observer o) {
+        this.clientes = new SClientes();
+        this.veiculos = new SVeiculos();
+        addObserver(o);
     }
 
     public Sistema(SClientes clientes, SVeiculos veiculos) {
@@ -75,8 +83,14 @@ public class Sistema implements Serializable {
     public void save(String path) throws FileNotFoundException, IOException {
         FileOutputStream fos = new FileOutputStream(path);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
+        
+        
         oos.writeObject(this.veiculos);
         oos.writeObject(this.clientes);
+        oos.writeObject(new Double(Furgao.getPBase()));
+        oos.writeObject(new Double(Camiao.getPBase()));
+        oos.writeObject(new Double(Van.getPBase()));
+        
 
         oos.close();
         fos.close();
@@ -88,47 +102,156 @@ public class Sistema implements Serializable {
 
         this.veiculos = (SVeiculos) ois.readObject();
         this.clientes = (SClientes) ois.readObject();
+        Furgao.setPBase(((Double) ois.readObject()).doubleValue());
+        Camiao.setPBase(((Double) ois.readObject()).doubleValue());
+        Van.setPBase(((Double) ois.readObject()).doubleValue());
+        
 
         ois.close();
         fis.close();
     }
 
-    public boolean criaPedido(Servico s, List<Carga> lcarga) {
-        
-        
+    public boolean criaPedido(Servico s, List<Carga> lcarga) { //O SERVIÇO E A LISTA DE CARGAS SÃO COMPATIVEIS
+
+        //ORDENAR CARGA
+        TreeSet<Carga> scarga = new TreeSet<Carga>();
         for (Carga c : lcarga) {
-            
-            
+            scarga.add(c);
+        }
+
+        Iterator<Carga> icarga = scarga.iterator();
+
+        //ENQUANTO HOUVER CARGA
+
+        while (icarga.hasNext()) {
+
+            Carga c = icarga.next();
+
+
+
             Class[] interfaces = c.getClass().getInterfaces();
-            
+
             boolean flag = true;
             for (int i = 0; i < interfaces.length && flag; i++) {
-                
-                if (interfaces[i].getSimpleName().equals("NaoRefrigerados")) 
-                {
+
+                if (interfaces[i].getSimpleName().equals("NaoRefrigerados")) {
                     flag = false;
-                    
-                    
+
+
                     NaoRefrigerados nr = (NaoRefrigerados) c;
-                    
-                    
-                    if(nr.eObrigatorio())
+
+
+                    if (nr.eObrigatorio()) //POR EXEMPLO ESTAMOS PERANTE UMA CARGA PERECIVEL OU SEMELHANTE
                     {
                         SVeiculos svec1 = new SVeiculos(this.veiculos.naoRefrigerados());
                         SVeiculos svec2 = new SVeiculos(svec1.parados());
                         Iterator<Veiculo> ivec = svec2.sortLivre();
-                        
-                        
-                        boolean flag2 = true;
-                        while(ivec.hasNext() && flag2)
-                        {
-                            
+
+                        while (ivec.hasNext()) {
+                            boolean flag2 = true;
+                            for (Veiculo v : s.getVeiculos().getCVeiculos()) {
+                                if (v.addCarga(c)) {
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+
+                                    flag2 = false;
+                                    break;
+                                }
+
+                            }
+                            if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
+                            {
+                                Veiculo v = ivec.next();
+                                if (v.addCarga(c)) {
+                                    s.addVeiculo(v);
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+                                }
+                            }
+
+
+                            break;
+                        }
+                    } else {
+                        SVeiculos svec1 = new SVeiculos(this.veiculos.parados());
+                        Iterator<Veiculo> ivec = svec1.sortLivre();
+
+                        while (ivec.hasNext()) {
+                            boolean flag2 = true;
+
+                            for (Veiculo v : s.getVeiculos().getCVeiculos()) {
+                                if (v.addCarga(c)) {
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+                                    flag2 = true;
+                                    break;
+                                }
+
+                            }
+
+                            if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
+                            {
+                                Veiculo v = ivec.next();
+                                if (v.addCarga(c)) {
+                                    s.addVeiculo(v);
+                                    this.veiculos.remove(v);
+                                    this.veiculos.addVeiculo(v);
+
+                                    if (v.mais60()) {
+                                        this.veiculos.alteraEstado(v);
+                                    }
+                                }
+                            }
+
+
+                            break;
                         }
                     }
                 }
             }
+            if (flag) //NAO DESCOBRIU A INTERFACE PRETENDIDA LOGO É UMA CARGA REFRIGERADA
+            {
+                SVeiculos svec1 = new SVeiculos(this.veiculos.refrigerados());
+                SVeiculos svec2 = new SVeiculos(svec1.parados());
+                Iterator<Veiculo> ivec = svec2.sortLivre();
+
+                while (ivec.hasNext()) {
+
+                    boolean flag2 = true;
+                    for (Veiculo v : s.getVeiculos().getCVeiculos()) {
+                        if (v.addCarga(c)) {
+                            this.veiculos.remove(v);
+                            this.veiculos.addVeiculo(v);
+
+                            if (v.mais60()) {
+                                this.veiculos.alteraEstado(v);
+                            }
+                            flag2 = false;
+                            break;
+                        }
+                    }
+
+
+
+                    break;
+                }
+            } else {
+                return false; //A CARGA NAO PODE SER TRANSPORTADA
+            }
         }
-        return false;
+
+        return true;
     }
 }
-                            

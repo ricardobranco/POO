@@ -2,11 +2,13 @@ package Servicos;
 
 import Cargas.Carga;
 import Veiculos.SVeiculos;
+import Veiculos.Veiculo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public abstract class Servico{
+public abstract class Servico implements Serializable{
     
     
     private GregorianCalendar inicio;
@@ -73,6 +75,17 @@ public abstract class Servico{
         for(Carga c : this.cargas)
             res+=c.getCarga();
      return res;   
+    }
+    
+    
+    public boolean addVeiculo(Veiculo v)
+    {
+        return this.veiculos.addVeiculo(v);
+    }
+    
+    public void addCarga(Carga c)
+    {
+        this.cargas.add(c);
     }
     
     

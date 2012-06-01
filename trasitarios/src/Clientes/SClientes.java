@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class SClientes extends Observable implements Serializable{
+public class SClientes extends Observable implements  Serializable{
     
     private Map<Long,Cliente> clientes;
     
@@ -17,7 +17,7 @@ public class SClientes extends Observable implements Serializable{
         this.clientes = new TreeMap<Long,Cliente>();
     }
     
-    public SClientes(Map<Long,Cliente> clientes)
+    public SClientes(Map<Long,? extends Cliente> clientes)
     {
         this.setMClientes(clientes);
     }
@@ -28,7 +28,7 @@ public class SClientes extends Observable implements Serializable{
     }
     
     
-    public SClientes(Collection<Cliente> clientes)
+    public SClientes(Collection<? extends Cliente> clientes)
     {
         this.setCClientes(clientes);
     }
@@ -64,7 +64,7 @@ public class SClientes extends Observable implements Serializable{
     }
      
      
-    public void setMClientes(Map<Long,Cliente> Clientes)
+    public void setMClientes(Map<Long,? extends Cliente> Clientes)
     {
         this.clientes = new TreeMap<Long,Cliente>();
         for(Cliente c : Clientes.values())
@@ -73,7 +73,7 @@ public class SClientes extends Observable implements Serializable{
         }
     }
     
-     public void setCClientes(Collection<Cliente> Clientes)
+     public void setCClientes(Collection<? extends Cliente> Clientes)
     {
         this.clientes = new TreeMap<Long,Cliente>();
         for(Cliente c : Clientes)

@@ -1,11 +1,12 @@
 package Clientes;
 
 import Servicos.Servico;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Cliente implements Comparable<Cliente> {
+public abstract class Cliente implements Serializable,Comparable<Cliente> {
     String nome;
     String morada;
     long nif; //numero de contribuinte

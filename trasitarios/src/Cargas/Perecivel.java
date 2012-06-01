@@ -1,6 +1,8 @@
 package Cargas;
 
-public class Perecivel extends Carga{
+import java.io.Serializable;
+
+public class Perecivel extends Carga implements Serializable{
     
     
     public Perecivel(){
