@@ -13,6 +13,7 @@ import Veiculos.Veiculo;
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  *
@@ -93,12 +94,22 @@ public class Sistema implements Serializable {
         fis.close();
     }
 
-    public boolean criaPedido(Servico s, List<Carga> lcarga) {
+    public boolean criaPedido(Servico s, List<Carga> lcarga) { //O SERVIÇO E A LISTA DE CARGAS SÃO COMPATIVEIS
 
-        //ORDENAR LCARGA
-
-
+        //ORDENAR CARGA
+        TreeSet<Carga> scarga = new TreeSet<Carga>();
         for (Carga c : lcarga) {
+            scarga.add(c);
+        }
+
+        Iterator<Carga> icarga = scarga.iterator();
+
+        //ENQUANTO HOUVER CARGA
+
+        while (icarga.hasNext()) {
+
+            Carga c = icarga.next();
+
 
 
             Class[] interfaces = c.getClass().getInterfaces();

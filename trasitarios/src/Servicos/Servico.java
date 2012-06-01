@@ -82,6 +82,11 @@ public abstract class Servico{
         return this.veiculos.addVeiculo(v);
     }
     
+    public void addCarga(Carga c)
+    {
+        this.cargas.add(c);
+    }
+    
     
     public abstract double preco();
 }
