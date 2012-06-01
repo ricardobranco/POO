@@ -8,8 +8,7 @@ import Cargas.Carga;
 import Cargas.NaoRefrigerados;
 import Clientes.SClientes;
 import Servicos.Servico;
-import Veiculos.SVeiculos;
-import Veiculos.Veiculo;
+import Veiculos.*;
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
@@ -31,12 +30,12 @@ public class Sistema extends Observable implements Serializable {
         this.veiculos = new SVeiculos();
     }
 
-    public Sistema(Observer o)
-    {
+    public Sistema(Observer o) {
         this.clientes = new SClientes();
         this.veiculos = new SVeiculos();
         addObserver(o);
     }
+
     public Sistema(SClientes clientes, SVeiculos veiculos) {
         this.clientes = clientes;
         this.veiculos = veiculos;
@@ -84,8 +83,14 @@ public class Sistema extends Observable implements Serializable {
     public void save(String path) throws FileNotFoundException, IOException {
         FileOutputStream fos = new FileOutputStream(path);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
+        
+        
         oos.writeObject(this.veiculos);
         oos.writeObject(this.clientes);
+        oos.writeObject(new Double(Furgao.getPBase()));
+        oos.writeObject(new Double(Camiao.getPBase()));
+        oos.writeObject(new Double(Van.getPBase()));
+        
 
         oos.close();
         fos.close();
@@ -97,6 +102,10 @@ public class Sistema extends Observable implements Serializable {
 
         this.veiculos = (SVeiculos) ois.readObject();
         this.clientes = (SClientes) ois.readObject();
+        Furgao.setPBase(((Double) ois.readObject()).doubleValue());
+        Camiao.setPBase(((Double) ois.readObject()).doubleValue());
+        Van.setPBase(((Double) ois.readObject()).doubleValue());
+        
 
         ois.close();
         fis.close();
