@@ -37,10 +37,15 @@ public class JMain extends javax.swing.JFrame implements Observer {
         sistema = new Sistema(this);
         this.jTVeiculos.setAutoCreateRowSorter(true);
         this.jTClientes.setAutoCreateRowSorter(true);
-        sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
+        
+        
+        /*sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
         sistema.leCamiao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\camioes.txt");
         sistema.leVan("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\van.txt");
+        sistema.leNRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\nr.txt");
+        sistema.leRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\r.txt");
         sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
+        */
     }
     
     
@@ -119,6 +124,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 formComponentShown(evt);
             }
         });
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
 
         jTabbedPane2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,7 +150,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -176,15 +186,21 @@ public class JMain extends javax.swing.JFrame implements Observer {
             new String [] {
                 "Tipo", "Nome", "Nif", "Morada"
             }
-        ));
-        jTClientes.setColumnSelectionAllowed(true);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Long.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTClientesMouseClicked(evt);
             }
         });
         jScrollPane4.setViewportView(jTClientes);
-        jTClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -235,6 +251,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         });
 
         jButton2.setText("Novo Serviço");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -499,19 +520,35 @@ public class JMain extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jCheckBoxMenuItem6ActionPerformed
 
     private void jTClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClientesMouseClicked
+      
+    }//GEN-LAST:event_jTClientesMouseClicked
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
-       /* int i = jTClientes.getSelectedRowCount();
+        int i = jTClientes.getSelectedRowCount();
+        if(jPanel3.isVisible())
+            jButton2.setEnabled(false);
+        else
+            jButton2.setEnabled(true);
+        
         if(i>1 || i == 0)
             this.jButton2.setEnabled(false);
         else
-            jButton2.setEnabled(true);*/
-    }//GEN-LAST:event_jTClientesMouseClicked
+            jButton2.setEnabled(true);
+        
+    }//GEN-LAST:event_formMouseMoved
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     private void actualizaTabelas(){
 	String texto = jTFpesquisar.getText();
 	JCustomTable tabela;
 	
-	Object [][]dados = new String[0][0];
+	Object [][]dados = new Object[0][0];
 
 	if( jTabbedPane2.getSelectedIndex() == 0 )
 	    tabela = jTVeiculos;
@@ -531,7 +568,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
 
 	if( jTabbedPane2.getSelectedIndex() == 0 )
-	    tmpModel.addRow(new Object[]{"... Aguarde ...","","","","","",""});
+	    tmpModel.addRow(new Object[]{"... Aguarde ...","","",0,0,0,""});
 	else
 	    tmpModel.addRow(new Object[]{"... Aguarde ...","","",""});
 

@@ -243,7 +243,7 @@ public class SVeiculos extends Observable implements Serializable{
       
      
       
-      public String[][] getMatrix(String pesquisa, boolean filtrarMatricula, int filtrarTipo){
+      public Object[][] getMatrix(String pesquisa, boolean filtrarMatricula, int filtrarTipo){
 	  Collection<Veiculo> col;
 	  
 	  if( filtrarTipo == SVeiculos.MATRIX_PARADOS )
@@ -270,7 +270,7 @@ public class SVeiculos extends Observable implements Serializable{
 	  }else
 	      arr.addAll(col);
 	  
-	  String[][] res = new String[ col.size() ][7];
+	  Object[][] res = new Object[ col.size() ][7];
 	  
 	  Collections.sort(arr, new VComparaTotal());
 	  
@@ -278,9 +278,9 @@ public class SVeiculos extends Observable implements Serializable{
 	      res[i][0] = arr.get(i).getClass().getSimpleName();
 	      res[i][1] = arr.get(i).getMatricula();
 	      res[i][2] = arr.get(i).getMarca();
-	      res[i][3] = Double.toString(arr.get(i).getCapacidade());
-	      res[i][4] = Double.toString(arr.get(i).getCargaActual());
-	      res[i][5] = Double.toString(arr.get(i).getTotal());
+	      res[i][3] = arr.get(i).getCapacidade();
+	      res[i][4] = arr.get(i).getCargaActual();
+	      res[i][5] = arr.get(i).getTotal();
 	      res[i][6] = arr.get(i).getParado() ? "Parado" : "Movimento";
 	  }
 	  
