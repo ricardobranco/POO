@@ -152,6 +152,17 @@ public class SClientes extends Observable implements  Serializable{
           return res.iterator();
     }
     
+    public Iterator<Cliente> sortGasto()
+    {
+        TreeSet<Cliente> res = new TreeSet<Cliente>(new CComparaGasto());
+          for(Cliente c : this.clientes.values())
+          {
+              res.add(c.clone());
+          }
+          return res.iterator();
+    }
+    
+    
     public Iterator<Cliente> sortNome()
     {
         TreeSet<Cliente> res = new TreeSet<Cliente>(new CComparaNome());

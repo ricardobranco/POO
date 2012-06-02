@@ -251,6 +251,7 @@ public class Sistema extends Observable implements Serializable {
             }
         }
 
+        s.setCargas(lcarga);
         return true;
     }
     
@@ -319,7 +320,75 @@ public class Sistema extends Observable implements Serializable {
           }
       }
     
+        public void leVan(String filepath)
+      {
+        try{
+            FileInputStream fstream = new FileInputStream(filepath);
     
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            String delimiter = ":";
+    
+            while ((strLine = br.readLine()) != null)   {
+                StringTokenizer tokens = new StringTokenizer(strLine, delimiter);
+                while (tokens.hasMoreTokens())
+                {
+                    String marca = new String(tokens.nextToken());
+                    String matricula = new String(tokens.nextToken());
+                    Double custoKm = Double.parseDouble(tokens.nextToken());
+                    Double capacidade = Double.parseDouble(tokens.nextToken());
+                    Van inserirVan = new Van(marca,matricula, custoKm, capacidade);
+                    // Meter metodo de inserÃ§ao no TreeMap
+                    this.veiculos.addVeiculo(inserirVan);
+                }
+            }
+    
+            in.close();
+        }
+          catch (Exception e){
+          System.err.println("Error: " + e.getMessage());
+          }
+      }
+    
+    public void leCamiao(String filepath)
+      {
+        try{
+            FileInputStream fstream = new FileInputStream(filepath);
+    
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+            String delimiter = ":";
+            Camiao inserirCamiao;
+    
+            while ((strLine = br.readLine()) != null)   {
+                StringTokenizer tokens = new StringTokenizer(strLine, delimiter);
+                while (tokens.hasMoreTokens())
+                {
+                    String marca = new String(tokens.nextToken());
+                    String matricula = new String(tokens.nextToken());
+                    Double custoKm = Double.parseDouble(tokens.nextToken());
+                    Double capacidade = Double.parseDouble(tokens.nextToken());
+                    String condutor = new String(tokens.nextToken());
+                    String atrelado = new String(tokens.nextToken());
+                    Double altura = Double.parseDouble(tokens.nextToken());
+                    
+                    if(atrelado.equals("v"))
+                        inserirCamiao = new Camiao(marca,matricula,condutor,altura,custoKm, capacidade, true);
+                    else 
+                        inserirCamiao = new Camiao(marca,matricula,condutor,altura,custoKm, capacidade, false);
+                    // Meter metodo de inserÃ§ao no TreeMap
+                    this.veiculos.addVeiculo(inserirCamiao);
+                }
+            }
+    
+            in.close();
+        }
+          catch (Exception e){
+          System.err.println("Error: " + e.getMessage());
+          }
+      }
 
     
 }

@@ -125,6 +125,14 @@ public abstract class Cliente implements Serializable,Comparable<Cliente> {
             return -1;       
     }
     
+    public double totalGasto()
+    {
+        double res = 0;
+        for(Servico s : this.servicos)
+            res+=s.preco();
+        return res;
+    }
+    
     public abstract Cliente clone();
 
     

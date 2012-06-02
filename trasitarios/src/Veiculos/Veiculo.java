@@ -137,6 +137,7 @@ public abstract class Veiculo implements Serializable,Comparable<Veiculo>
         return res;
     }
     
+   
     
     public boolean mais60(){return (this.getCargaActual()/this.capacidade) >= 0.6;}  
     

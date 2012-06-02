@@ -58,7 +58,7 @@ public class ServPPD extends Servico implements Serializable{
         double res = 0;
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
-        return res+getCusto()*super.getCargas().size();
+        return res+getCusto()*super.getCargas().size()*pesoTotal();
     }
     
     

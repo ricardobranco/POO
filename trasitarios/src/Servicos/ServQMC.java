@@ -58,7 +58,7 @@ public class ServQMC extends Servico implements Serializable{
         double res = 0;
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
-        return res+getCusto();
+        return res+getCusto()*pesoTotal();
     }
     
     

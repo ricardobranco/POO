@@ -49,9 +49,24 @@ public abstract class Servico implements Serializable{
         for(Carga c : this.cargas)
             res.add(c.clone());
         return res;
-    }     
+    }
+
+    public void setCargas(List<Carga> cargas) {
+        this.cargas = cargas;
+    }
+
+    public void setInicio(GregorianCalendar inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setVeiculos(SVeiculos veiculos) {
+        this.veiculos = veiculos;
+    }
+    
     
 
+    
+    
     @Override
     public boolean equals(Object obj){
         

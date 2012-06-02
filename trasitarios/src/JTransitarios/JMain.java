@@ -35,8 +35,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
     public JMain(){
         initComponents();
         sistema = new Sistema(this);
-        
+        this.jTVeiculos.setAutoCreateRowSorter(true);
+        this.jTClientes.setAutoCreateRowSorter(true);
         sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
+        sistema.leCamiao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\camioes.txt");
+        sistema.leVan("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\van.txt");
         sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
     }
     
@@ -133,7 +136,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
             },
             new String [] {
-                "Tipo", "Matricula", "Marca", "Carga", "Carga Livre", "Carga Transporte", "Estado"
+                "Tipo", "Matricula", "Marca", "Carga", "Carga Actual", "Carga Transporte", "Estado"
             }
         ) {
             Class[] types = new Class [] {
@@ -151,18 +154,17 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 return canEdit [columnIndex];
             }
         });
-        jTVeiculos.setColumnSelectionAllowed(true);
         jScrollPane3.setViewportView(jTVeiculos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Veiculos", jPanel3);
@@ -175,17 +177,24 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 "Tipo", "Nome", "Nif", "Morada"
             }
         ));
+        jTClientes.setColumnSelectionAllowed(true);
+        jTClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTClientesMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTClientes);
+        jTClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Clientes", jPanel4);
@@ -251,7 +260,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
                 .addComponent(jRBmatriculaNome)
                 .addGap(48, 48, 48)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
 
@@ -470,7 +479,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
 	jTFpesquisar.setText("");
-	actualizaTabelas();
+        if(jPanel3.isVisible())
+            jButton2.setEnabled(false);
+        else
+            jButton2.setEnabled(true);
+     actualizaTabelas();
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -484,6 +497,15 @@ public class JMain extends javax.swing.JFrame implements Observer {
     private void jCheckBoxMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem6ActionPerformed
 	actualizaTabelas();
     }//GEN-LAST:event_jCheckBoxMenuItem6ActionPerformed
+
+    private void jTClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClientesMouseClicked
+        // TODO add your handling code here:
+       /* int i = jTClientes.getSelectedRowCount();
+        if(i>1 || i == 0)
+            this.jButton2.setEnabled(false);
+        else
+            jButton2.setEnabled(true);*/
+    }//GEN-LAST:event_jTClientesMouseClicked
     
     private void actualizaTabelas(){
 	String texto = jTFpesquisar.getText();
