@@ -4,6 +4,7 @@
  */
 package JTransitarios;
 
+import Clientes.Cliente;
 import Clientes.SClientes;
 import Sistema.Sistema;
 import Veiculos.SVeiculos;
@@ -16,12 +17,13 @@ import Veiculos.SVeiculos;
 public class JEscolhaServico extends javax.swing.JFrame {
     
     Sistema sistema;
-            
+    Cliente cliente;        
     JMain root;
     
-    public JEscolhaServico(JMain root, Sistema sistema){
+    public JEscolhaServico(JMain root, Sistema sistema, Cliente c){
 	this.sistema = sistema;
 	this.root = root;
+        this.cliente = c;
 	this.root.setVisible(false);
 	initComponents();
     }
@@ -142,23 +144,23 @@ public class JEscolhaServico extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-	new JAddCargas(this,sistema, JAddCargas.SERVICO_SIMPLES).setVisible(true);
+	new JAddCargas(this,sistema,cliente, JAddCargas.SERVICO_SIMPLES).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-	new JAddCargas(this,sistema, JAddCargas.SERVICO_AEROPORTO).setVisible(true);
+	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_AEROPORTO).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-	new JAddCargas(this,sistema, JAddCargas.SERVICO_QUERIDO_MUDEI_A_CASA).setVisible(true);
+	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_QUERIDO_MUDEI_A_CASA).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-	new JAddCargas(this,sistema, JAddCargas.SERVICO_PROFISSIONAIS_DISTRIBUICAO).setVisible(true);
+	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_PROFISSIONAIS_DISTRIBUICAO).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-	new JAddCargas(this,sistema, JAddCargas.SERVICO_SERVICOS_SECRETOS).setVisible(true);
+	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_SERVICOS_SECRETOS).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     

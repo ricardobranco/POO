@@ -4,6 +4,7 @@
  */
 package JTransitarios;
 
+import Clientes.Cliente;
 import Clientes.SClientes;
 import Sistema.Sistema;
 import Veiculos.SVeiculos;
@@ -30,9 +31,10 @@ public class JAddCargas extends javax.swing.JFrame {
 
     public JAddCargas() {
 	initComponents();
+        Cliente cliente;
     }
     
-    public JAddCargas(JEscolhaServico root, Sistema sistema , int tipo){
+    public JAddCargas(JEscolhaServico root, Sistema sistema ,Cliente cliente, int tipo){
 	//this.veiculos = veiculos;
 	//this.clientes = clientes;
 	this.sistema = sistema;

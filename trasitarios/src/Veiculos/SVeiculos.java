@@ -278,9 +278,9 @@ public class SVeiculos extends Observable implements Serializable{
 	      res[i][0] = arr.get(i).getClass().getSimpleName();
 	      res[i][1] = arr.get(i).getMatricula();
 	      res[i][2] = arr.get(i).getMarca();
-	      res[i][3] = arr.get(i).getCapacidade();
-	      res[i][4] = arr.get(i).getCargaActual();
-	      res[i][5] = arr.get(i).getTotal();
+	      res[i][3] = new Double(arr.get(i).getCapacidade());
+	      res[i][4] = new Double(arr.get(i).getCargaActual());
+	      res[i][5] = new Double(arr.get(i).getTotal());
 	      res[i][6] = arr.get(i).getParado() ? "Parado" : "Movimento";
 	  }
 	  

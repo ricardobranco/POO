@@ -19,7 +19,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Ricardo Branco
@@ -29,49 +28,47 @@ public class JMain extends javax.swing.JFrame implements Observer {
     /**
      * Creates new form JMain
      */
-    
     Sistema sistema;
-    
-    public JMain(){
+
+    public JMain() {
         initComponents();
         sistema = new Sistema(this);
         this.jTVeiculos.setAutoCreateRowSorter(true);
         this.jTClientes.setAutoCreateRowSorter(true);
-        
-        
-        /*sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
+
+
+        sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
         sistema.leCamiao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\camioes.txt");
         sistema.leVan("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\van.txt");
         sistema.leNRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\nr.txt");
         sistema.leRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\r.txt");
         sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
-        */
+
     }
-    
-    
+
     public static boolean isWindows() {
- 
-		String os = System.getProperty("os.name").toLowerCase();
-		// windows
-		return (os.indexOf("win") >= 0);
- 
-	}
- 
-	public static boolean isMac() {
- 
-		String os = System.getProperty("os.name").toLowerCase();
-		// Mac
-		return (os.indexOf("mac") >= 0);
- 
-	}
- 
-	public static boolean isUnix() {
- 
-		String os = System.getProperty("os.name").toLowerCase();
-		// linux or unix
-		return (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0);
- 
-	}
+
+        String os = System.getProperty("os.name").toLowerCase();
+        // windows
+        return (os.indexOf("win") >= 0);
+
+    }
+
+    public static boolean isMac() {
+
+        String os = System.getProperty("os.name").toLowerCase();
+        // Mac
+        return (os.indexOf("mac") >= 0);
+
+    }
+
+    public static boolean isUnix() {
+
+        String os = System.getProperty("os.name").toLowerCase();
+        // linux or unix
+        return (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,6 +138,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
             }
         });
 
+        jTVeiculos.setAutoCreateRowSorter(true);
         jTVeiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -429,7 +427,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        new JAddCliente(this,sistema).setVisible(true);
+        new JAddCliente(this, sistema).setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jCheckBoxMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem5ActionPerformed
@@ -438,27 +436,27 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if( jTabbedPane2.getSelectedIndex() == 0 )
-	    new JAddVeic(this,sistema).setVisible(true);
-        else
-            new JAddCliente(this,sistema).setVisible(true);
+        if (jTabbedPane2.getSelectedIndex() == 0) {
+            new JAddVeic(this, sistema).setVisible(true);
+        } else {
+            new JAddCliente(this, sistema).setVisible(true);
+        }
 
-            
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        new JLoad(this,sistema).setVisible(true);
+        new JLoad(this, sistema).setVisible(true);
         actualizaTabelas();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        new JSave(this,sistema).setVisible(true);
+        new JSave(this, sistema).setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jTFpesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFpesquisarActionPerformed
@@ -467,17 +465,15 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
         // TODO add your handling code here:
-        if(jPanel3.isVisible()){
+        if (jPanel3.isVisible()) {
             jRBmarcaNif.setText("Marca");
             jRBmatriculaNome.setText("Matricula");
-        }
-        else
-        {
+        } else {
             jRBmarcaNif.setText("NIF");
             jRBmatriculaNome.setText("Nome");
-            
+
         }
-            
+
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -499,112 +495,130 @@ public class JMain extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
-	jTFpesquisar.setText("");
-        if(jPanel3.isVisible())
+        jTFpesquisar.setText("");
+        if (jPanel3.isVisible()) {
             jButton2.setEnabled(false);
-        else
+        } else {
             jButton2.setEnabled(true);
-     actualizaTabelas();
+        }
+        actualizaTabelas();
     }//GEN-LAST:event_jTabbedPane2StateChanged
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-	actualizaTabelas();
+        actualizaTabelas();
     }//GEN-LAST:event_formComponentShown
 
     private void jCheckBoxMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem2ActionPerformed
-	actualizaTabelas();
+        actualizaTabelas();
     }//GEN-LAST:event_jCheckBoxMenuItem2ActionPerformed
 
     private void jCheckBoxMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem6ActionPerformed
-	actualizaTabelas();
+        actualizaTabelas();
     }//GEN-LAST:event_jCheckBoxMenuItem6ActionPerformed
 
     private void jTClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClientesMouseClicked
-      
     }//GEN-LAST:event_jTClientesMouseClicked
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         // TODO add your handling code here:
         int i = jTClientes.getSelectedRowCount();
-        if(jPanel3.isVisible())
+        if (jPanel3.isVisible()) {
             jButton2.setEnabled(false);
-        else
+        } else {
             jButton2.setEnabled(true);
-        
-        if(i>1 || i == 0)
+        }
+
+        if (i > 1 || i == 0) {
             this.jButton2.setEnabled(false);
-        else
+        } else {
             jButton2.setEnabled(true);
-        
+        }
+
     }//GEN-LAST:event_formMouseMoved
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-        
+
+        int[] seleccionadas = jTClientes.getSelectedRows();
+        int i = seleccionadas.length;
+
+        if (i > 1 || i == 0) {
+            JOptionPane.showMessageDialog(this, "APENAS É POSSIVEL ESCOLHER 1 CLIENTE", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            Cliente c;
+
+            Long l = new Long((String) jTClientes.getValueAt(seleccionadas[0], 2));
+            c = this.sistema.getClientes().getMClientes().get(l);
+            new JEscolhaServico(this, sistema, c).setVisible(true);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
-    
-    private void actualizaTabelas(){
-	String texto = jTFpesquisar.getText();
-	JCustomTable tabela;
-	
-	Object [][]dados = new Object[0][0];
 
-	if( jTabbedPane2.getSelectedIndex() == 0 )
-	    tabela = jTVeiculos;
-	else
-	    tabela = jTClientes;
+    private void actualizaTabelas() {
+        String texto = jTFpesquisar.getText();
+        JCustomTable tabela;
 
-	String []nomesColunas = new String[tabela.getModel().getColumnCount()];
-	for(int i=0; i<nomesColunas.length; i++)
-	    nomesColunas[i] = tabela.getModel().getColumnName(i);
+        Object[][] dados = new Object[0][0];
 
-	DefaultTableModel tmpModel = new DefaultTableModel(null, nomesColunas);
-	DefaultTableModel model;
-	tabela.setModel(tmpModel);
+        if (jTabbedPane2.getSelectedIndex() == 0) {
+            tabela = jTVeiculos;
+        } else {
+            tabela = jTClientes;
+        }
 
-	if( !jRBmarcaNif.isSelected() && !jRBmatriculaNome.isSelected() )
-	    return;
+        Object[] nomesColunas = new String[tabela.getModel().getColumnCount()];
+        for (int i = 0; i < nomesColunas.length; i++) {
+            nomesColunas[i] = tabela.getModel().getColumnName(i);
+        }
+
+        DefaultTableModel tmpModel = new DefaultTableModel(null, nomesColunas);
+        DefaultTableModel model;
+        tabela.setModel(tmpModel);
+
+        if (!jRBmarcaNif.isSelected() && !jRBmatriculaNome.isSelected()) {
+            return;
+        }
+
+        /*
+         * if( jTabbedPane2.getSelectedIndex() == 0 ) tmpModel.addRow(new
+         * Object[]{"... Aguarde ...","","",0,0,0,""}); else tmpModel.addRow(new
+         * Object[]{"... Aguarde ...","",0,""});
+         */
+        if (texto.equals(jTFpesquisar.getText())) {
+
+            //recolher dados
+            if (jTabbedPane2.getSelectedIndex() == 0) { //veiculos
+                if (jCheckBoxMenuItem1.isSelected() && jCheckBoxMenuItem2.isSelected()) {
+                    dados = sistema.getVeiculos().getMatrix(texto, !jRBmarcaNif.isSelected(), SVeiculos.MATRIX_AMBOS);
+                } else if (jCheckBoxMenuItem1.isSelected()) {
+                    dados = sistema.getVeiculos().getMatrix(texto, !jRBmarcaNif.isSelected(), SVeiculos.MATRIX_PARADOS);
+                } else if (jCheckBoxMenuItem2.isSelected()) {
+                    dados = sistema.getVeiculos().getMatrix(texto, !jRBmarcaNif.isSelected(), SVeiculos.MATRIX_SERVICO);
+                }
+
+            } else { //clientes
+                if (jCheckBoxMenuItem5.isSelected() && jCheckBoxMenuItem6.isSelected()) {
+                    dados = sistema.getClientes().getMatrix(texto, !jRBmarcaNif.isSelected(), SClientes.MATRIX_AMBOS);
+                } else if (jCheckBoxMenuItem5.isSelected()) {
+                    dados = sistema.getClientes().getMatrix(texto, !jRBmarcaNif.isSelected(), SClientes.MATRIX_INDIVIDUAIS);
+                } else if (jCheckBoxMenuItem6.isSelected()) {
+                    dados = sistema.getClientes().getMatrix(texto, !jRBmarcaNif.isSelected(), SClientes.MATRIX_EMPRESARIAIS);
+                }
+            }
+
+            if (texto.equals(jTFpesquisar.getText())) {
+                model = new DefaultTableModel(dados, nomesColunas);
+                tabela.setModel(model);
+            }
+        }
+
+        tabela.setPreferredSize(new Dimension(tabela.getPreferredSize().width,
+                tabela.getRowCount() * tabela.getRowHeight()));
 
 
-	if( jTabbedPane2.getSelectedIndex() == 0 )
-	    tmpModel.addRow(new Object[]{"... Aguarde ...","","",0,0,0,""});
-	else
-	    tmpModel.addRow(new Object[]{"... Aguarde ...","","",""});
 
-	if (texto.equals(jTFpesquisar.getText())) {
-
-	    //recolher dados
-	    if( jTabbedPane2.getSelectedIndex() == 0 ){ //veiculos
-		if( jCheckBoxMenuItem1.isSelected() && jCheckBoxMenuItem2.isSelected() )
-		    dados = sistema.getVeiculos().getMatrix(texto, !jRBmarcaNif.isSelected(), SVeiculos.MATRIX_AMBOS);
-		else if( jCheckBoxMenuItem1.isSelected() )
-		    dados = sistema.getVeiculos().getMatrix(texto, !jRBmarcaNif.isSelected(), SVeiculos.MATRIX_PARADOS);
-		else if( jCheckBoxMenuItem2.isSelected() )
-		    dados = sistema.getVeiculos().getMatrix(texto, !jRBmarcaNif.isSelected(), SVeiculos.MATRIX_SERVICO);
-		    
-	    }else{ //clientes
-		if( jCheckBoxMenuItem5.isSelected() && jCheckBoxMenuItem6.isSelected() )
-		    dados = sistema.getClientes().getMatrix(texto, !jRBmarcaNif.isSelected(), SClientes.MATRIX_AMBOS);
-		else if( jCheckBoxMenuItem5.isSelected() )
-		    dados = sistema.getClientes().getMatrix(texto, !jRBmarcaNif.isSelected(), SClientes.MATRIX_INDIVIDUAIS);
-		else if( jCheckBoxMenuItem6.isSelected() )
-		    dados = sistema.getClientes().getMatrix(texto, !jRBmarcaNif.isSelected(), SClientes.MATRIX_EMPRESARIAIS);
-	    }
-
-	    if (texto.equals(jTFpesquisar.getText())){
-		model = new DefaultTableModel(dados, nomesColunas);
-		tabela.setModel(model);
-	    }
-	}
-
-	tabela.setPreferredSize( new Dimension(tabela.getPreferredSize().width,
-		tabela.getRowCount()*tabela.getRowHeight()) );
-
-
-	
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -621,12 +635,13 @@ public class JMain extends javax.swing.JFrame implements Observer {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    if(isWindows())
-                    javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-                    else if(isUnix())
-                        javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-                    else
+                    if (isWindows()) {
                         javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                    } else if (isUnix()) {
+                        javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+                    } else {
+                        javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+                    }
 
                     break;
                 }
@@ -692,16 +707,7 @@ public class JMain extends javax.swing.JFrame implements Observer {
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    public void update(){
-        
+
+    public void update() {
     }
-        
-        
-    
-    
-    
-        
-       
-        
 }

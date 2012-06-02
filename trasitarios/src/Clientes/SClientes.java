@@ -206,7 +206,7 @@ public class SClientes extends Observable implements  Serializable{
     
     
       
-      public String[][] getMatrix(String pesquisa, boolean filtrarNome, int filtrarTipo){
+      public Object[][] getMatrix(String pesquisa, boolean filtrarNome, int filtrarTipo){
 	  Collection<Cliente> col;
 	  
 	  if( filtrarTipo == SClientes.MATRIX_EMPRESARIAIS )
@@ -234,7 +234,7 @@ public class SClientes extends Observable implements  Serializable{
 	      arr.addAll(col);
 	  
 	  
-	  String[][] res = new String[ col.size() ][7];
+	  Object[][] res = new Object[ col.size() ][7];
 	  
 	  if( filtrarNome )
 	    Collections.sort(arr, new CComparaNome());
@@ -244,6 +244,7 @@ public class SClientes extends Observable implements  Serializable{
 	  for( int i=0; i<arr.size(); i++ ){
 	      res[i][0] = arr.get(i).getClass().getSimpleName();
 	      res[i][1] = arr.get(i).getNome();
+	     // res[i][2] = arr.get(i);
 	      res[i][2] = Long.toString(arr.get(i).getNif());
 	      res[i][3] = arr.get(i).getMorada();
 	  }
