@@ -1,21 +1,18 @@
 package Clientes;
 
 import Servicos.Servico;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Cliente implements Comparable<Cliente> {
+public abstract class Cliente implements Serializable,Comparable<Cliente> {
     String nome;
     String morada;
     long nif; //numero de contribuinte
     LinkedList<Servico> servicos; //serviços, adicionar sempre à cabeça
     
     public Cliente() {
-        this.nome="";
-        this.morada="";
-        this.nif=0;
-        this.servicos=new LinkedList<Servico>();
     }
 
     public Cliente(String nome, String morada, long nif) {
@@ -36,6 +33,7 @@ public abstract class Cliente implements Comparable<Cliente> {
     {
         this.nome = c.getNome();
         this.nif = c.getNif();
+        this.morada = c.getMorada();
         this.setServicos(c.getServicos());
     }
 
@@ -125,6 +123,14 @@ public abstract class Cliente implements Comparable<Cliente> {
             return 1;
         else
             return -1;       
+    }
+    
+    public double totalGasto()
+    {
+        double res = 0;
+        for(Servico s : this.servicos)
+            res+=s.preco();
+        return res;
     }
     
     public abstract Cliente clone();

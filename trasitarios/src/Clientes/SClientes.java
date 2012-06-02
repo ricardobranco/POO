@@ -1,11 +1,16 @@
 
 package Clientes;
 
+import Veiculos.VComparaTotal;
+import Veiculos.Veiculo;
 import java.io.*;
 import java.util.*;
 
 
-public class SClientes extends Observable implements Serializable{
+public class SClientes extends Observable implements  Serializable{
+    public static final int MATRIX_INDIVIDUAIS = 0;
+    public static final int MATRIX_EMPRESARIAIS = 1;
+    public static final int MATRIX_AMBOS = 2;
     
     private Map<Long,Cliente> clientes;
     
@@ -15,7 +20,7 @@ public class SClientes extends Observable implements Serializable{
         this.clientes = new TreeMap<Long,Cliente>();
     }
     
-    public SClientes(Map<Long,Cliente> clientes)
+    public SClientes(Map<Long,? extends Cliente> clientes)
     {
         this.setMClientes(clientes);
     }
@@ -26,7 +31,7 @@ public class SClientes extends Observable implements Serializable{
     }
     
     
-    public SClientes(Collection<Cliente> clientes)
+    public SClientes(Collection<? extends Cliente> clientes)
     {
         this.setCClientes(clientes);
     }
@@ -62,7 +67,7 @@ public class SClientes extends Observable implements Serializable{
     }
      
      
-    public void setMClientes(Map<Long,Cliente> Clientes)
+    public void setMClientes(Map<Long,? extends Cliente> Clientes)
     {
         this.clientes = new TreeMap<Long,Cliente>();
         for(Cliente c : Clientes.values())
@@ -71,7 +76,7 @@ public class SClientes extends Observable implements Serializable{
         }
     }
     
-     public void setCClientes(Collection<Cliente> Clientes)
+     public void setCClientes(Collection<? extends Cliente> Clientes)
     {
         this.clientes = new TreeMap<Long,Cliente>();
         for(Cliente c : Clientes)
@@ -111,7 +116,8 @@ public class SClientes extends Observable implements Serializable{
     
     public boolean addCliente(Cliente c)
     {
-        if(this.clientes.containsValue(c)) return false;
+        if(this.clientes.containsKey(new Long(c.getNif()))) 
+            return false;
         this.clientes.put(new Long(c.getNif()),c);
         return true;
     }
@@ -128,7 +134,7 @@ public class SClientes extends Observable implements Serializable{
         Collection<Cliente> res = new ArrayList<Cliente>(); 
         for(Cliente c : this.clientes.values())
         {
-            if(c.getClass().getName().equals(s));
+            if(c.getClass().getSimpleName().equals(s))
             res.add(c.clone());
         }
         return res;
@@ -145,6 +151,17 @@ public class SClientes extends Observable implements Serializable{
           }
           return res.iterator();
     }
+    
+    public Iterator<Cliente> sortGasto()
+    {
+        TreeSet<Cliente> res = new TreeSet<Cliente>(new CComparaGasto());
+          for(Cliente c : this.clientes.values())
+          {
+              res.add(c.clone());
+          }
+          return res.iterator();
+    }
+    
     
     public Iterator<Cliente> sortNome()
     {
@@ -177,6 +194,7 @@ public class SClientes extends Observable implements Serializable{
          fos.close();
       }
       
+      
       public void load(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException 
       {
           FileInputStream fis = new FileInputStream(fileName);
@@ -187,6 +205,49 @@ public class SClientes extends Observable implements Serializable{
       }
     
     
-    
-    
+      
+      public String[][] getMatrix(String pesquisa, boolean filtrarNome, int filtrarTipo){
+	  Collection<Cliente> col;
+	  
+	  if( filtrarTipo == SClientes.MATRIX_EMPRESARIAIS )
+	      col = this.clienteTipo("Empresarial");
+	  else if( filtrarTipo == SClientes.MATRIX_INDIVIDUAIS )
+	      col = this.clienteTipo("Individual");
+	  else 
+	      col = this.clientes.values();
+	  
+	  ArrayList<Cliente> arr = new ArrayList<Cliente>(col.size());
+	  
+	  if( !pesquisa.isEmpty() ){
+	    if( filtrarNome ){
+		for( Cliente c : col ){
+		    if( c.getNome().contains(pesquisa) )
+			arr.add(c);
+		}
+	    }else{
+		for( Cliente c : col ){
+		    if( Long.toString( c.getNif() ).toString().contains(pesquisa) )
+			arr.add(c);
+		}
+	    }
+	  }else
+	      arr.addAll(col);
+	  
+	  
+	  String[][] res = new String[ col.size() ][7];
+	  
+	  if( filtrarNome )
+	    Collections.sort(arr, new CComparaNome());
+	  else
+	    Collections.sort(arr, new CComparaNif());
+	  
+	  for( int i=0; i<arr.size(); i++ ){
+	      res[i][0] = arr.get(i).getClass().getSimpleName();
+	      res[i][1] = arr.get(i).getNome();
+	      res[i][2] = Long.toString(arr.get(i).getNif());
+	      res[i][3] = arr.get(i).getMorada();
+	  }
+	  
+	  return res;
+      }
 }

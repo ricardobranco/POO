@@ -8,6 +8,7 @@ import Cargas.Carga;
 import Cargas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -15,46 +16,31 @@ import java.util.List;
  *
  * @author Ricardo Branco
  */
-public class ServSimples extends Servico{
+public class ServSimples extends Servico implements Serializable{
 
-    private static double custo = 25; 
+    private static double custo = 10; 
+    private static final int size = 1;        
     
-    private Carga carga;
-
     
     
     public ServSimples() {
         super();
-        this.carga = new Indiferenciada();
     }
 
-    public ServSimples(Carga carga, GregorianCalendar inicio, SVeiculos veiculos) {
-        super(inicio, veiculos);
-        this.carga = carga;
+    public ServSimples(GregorianCalendar inicio, SVeiculos veiculos, List<Carga> cargas) {
+        super(inicio, veiculos, cargas);
     }
 
     public ServSimples(ServSimples s) {
         super(s);
-        this.carga = s.getCarga();
     }
 
-    
-    
     public static double getCusto() {
         return custo;
     }
 
     public static void setCusto(double custo) {
         ServSimples.custo = custo;
-    }
-
-    
-    public Carga getCarga() {
-        return carga;
-    }
-
-    public void setCarga(Carga carga) {
-        this.carga = carga;
     }
 
     
@@ -68,13 +54,11 @@ public class ServSimples extends Servico{
         return sb.toString();
     }
     
-    
-    
     public double preco() {
         double res = 0;
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
-        return res+getCusto();
+        return res+getCusto()*pesoTotal();
     }
     
     

@@ -1,12 +1,14 @@
 package Cargas;
 
-public class Toxica extends Carga implements NaoRefrigerados{
+import java.io.Serializable;
+
+public class Toxica extends Carga implements NaoRefrigerados, Serializable{
     public Toxica(){
         super();
     }
 
-    public Toxica(double carga) {
-        super(carga);
+    public Toxica(double carga, String descricao) {
+        super(carga, descricao);
     }
     
     public Toxica(Toxica p){

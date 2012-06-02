@@ -1,14 +1,16 @@
 package Cargas;
 
-public class Perecivel extends Carga{
+import java.io.Serializable;
+
+public class Perecivel extends Carga implements Serializable{
     
     
     public Perecivel(){
         super();
     }
 
-    public Perecivel(double carga) {
-        super(carga);
+    public Perecivel(double carga, String descricao) {
+        super(carga, descricao);
     }
     
     public Perecivel(Perecivel p){

@@ -4,6 +4,7 @@
  */
 package JTransitarios;
 
+import Sistema.Sistema;
 import Veiculos.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -14,27 +15,25 @@ import javax.swing.JTextField;
  */
 public class JAddVeic extends javax.swing.JFrame {
 
-     SVeiculos veiculos;
-     JMain root;
-    
+    Sistema sistema;
+    SVeiculos veiculos;
+    JMain root;
+
     /**
      * Creates new form JCriaVeiculo
      */
-    public JAddVeic(JMain root, SVeiculos nveiculos) {
-        initComponents();
-        this.veiculos = nveiculos;
+    public JAddVeic(JMain root, Sistema sistema) {
+        this.sistema = sistema;
+        this.veiculos = this.sistema.getVeiculos();
         this.root = root;
+        this.root.setVisible(false);
+        initComponents();
         jPanel5.setVisible(false);
-        
-        btiposV.add(bvan);
-        btiposV.add(bcamiao);
-        btiposV.add(bfurgao);
-        
-        
+
+
     }
-    
-     
-     public JAddVeic() {
+
+    public JAddVeic() {
         initComponents();
     }
 
@@ -83,6 +82,11 @@ public class JAddVeic extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Novo Veiculo");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +173,7 @@ public class JAddVeic extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btiposV.add(bvan);
         bvan.setText("Van");
         bvan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +181,7 @@ public class JAddVeic extends javax.swing.JFrame {
             }
         });
 
+        btiposV.add(bfurgao);
         bfurgao.setText("Furgão");
         bfurgao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +189,7 @@ public class JAddVeic extends javax.swing.JFrame {
             }
         });
 
+        btiposV.add(bcamiao);
         bcamiao.setSelected(true);
         bcamiao.setText("Camião");
         bcamiao.addActionListener(new java.awt.event.ActionListener() {
@@ -258,7 +265,7 @@ public class JAddVeic extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                         .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,10 +282,10 @@ public class JAddVeic extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel5.setBounds(0, 0, 180, 187);
+        jPanel5.setBounds(0, 0, 180, 130);
         jLayeredPane1.add(jPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel5.setText("Condutor");
@@ -316,7 +323,7 @@ public class JAddVeic extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckBox2)
-                        .addGap(0, 92, Short.MAX_VALUE))
+                        .addGap(0, 63, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -349,7 +356,7 @@ public class JAddVeic extends javax.swing.JFrame {
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
-        jPanel4.setBounds(0, 0, 180, 190);
+        jPanel4.setBounds(0, 0, 180, 207);
         jLayeredPane1.add(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -375,8 +382,8 @@ public class JAddVeic extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
@@ -385,7 +392,7 @@ public class JAddVeic extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -393,11 +400,11 @@ public class JAddVeic extends javax.swing.JFrame {
 
     private void bcamiaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcamiaoActionPerformed
         // TODO add your handling code here:
-        
+
         jPanel4.setVisible(true);
         jPanel5.setVisible(false);
-        
-        
+
+
     }//GEN-LAST:event_bcamiaoActionPerformed
 
     private void bfurgaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bfurgaoActionPerformed
@@ -440,127 +447,120 @@ public class JAddVeic extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        if (jTextField1.getText().equals("") ||
-            jTextField2.getText().equals("") ||
-            jTextField3.getText().equals("") ||
-            jTextField4.getText().equals(""))
-        {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+
+        if (jTextField1.getText().equals("")
+                || jTextField2.getText().equals("")
+                || jTextField3.getText().equals("")
+                || jTextField4.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
-        try{Double d1 = Double.valueOf(jTextField2.getText());
+        try {
+            Double d1 = Double.valueOf(jTextField2.getText());
             Double d2 = Double.valueOf(jTextField4.getText());
-        }
-           catch (NumberFormatException ex)
-           {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
             return;
-           }
+        }
         String smatricula = jTextField3.getText();
         String smarca = jTextField1.getText();
         double dcusto = Double.valueOf(jTextField2.getText()).doubleValue();
         double dcarga = Double.valueOf(jTextField4.getText()).doubleValue();
-                
-        
-        
+
+
+
         //SE FOR CAMIAO
-        if(bcamiao.isSelected())
-        {
-            
-            if (jTextField8.getText().equals("") ||jTextField7.getText().equals(""))
-            {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+        if (bcamiao.isSelected()) {
+
+            if (jTextField8.getText().equals("") || jTextField7.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-            
-            try{
+
+            try {
                 Double d3 = Double.valueOf(jTextField8.getText());
-            }
-            
-            catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            
+
             double daltura = Double.valueOf(jTextField8.getText()).doubleValue();
             String scondutor = jTextField7.getText();
             boolean batrelado = jCheckBox2.isSelected();
-            
+
             Veiculo v = new Camiao(smarca, smatricula, scondutor, daltura, dcusto, dcarga, batrelado);
-            
-            if (this.veiculos.addVeiculo(v))
-            {
+
+            if (this.veiculos.addVeiculo(v)) {
+                this.sistema.setVeiculos(this.veiculos);
+                this.root.setVisible(true);
                 this.dispose();
                 root.update();
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        //Se for um furgao
-        
-        else if(bfurgao.isSelected())
-        {
-            
-            if (jTextField5.getText().equals(""))
-            {
-               JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
-               return;
+        } //Se for um furgao
+        else if (bfurgao.isSelected()) {
+
+            if (jTextField5.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Prencha todos os campos.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+                return;
             }
-            
-            try{
+
+            try {
                 Double autonomia = Double.valueOf(jTextField5.getText());
-                        }
-            
-            catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "DADOS invalidos", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            
+
             String scomb = jComboBox1.getActionCommand();
-            
+
             Veiculo v;
             double Autonomia = Double.valueOf(jTextField5.getText()).doubleValue();
-            
-            
-            if(jCheckBox1.isSelected())
+
+
+            if (jCheckBox1.isSelected()) {
                 v = new RFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
-            else
+            } else {
                 v = new NRFurgao(smarca, smatricula, scomb, Autonomia, dcusto, dcarga);
-            
-            if (this.veiculos.addVeiculo(v))
-            {
-                this.dispose();
-            root.update();
-        }else {
-                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-        }
-        else
-        {
-            Veiculo v = new Van(smarca, smatricula, dcusto, dcarga);
-            if (this.veiculos.addVeiculo(v))
-            {
+
+            if (this.veiculos.addVeiculo(v)) {
+                this.sistema.setVeiculos(this.veiculos);
+                this.root.setVisible(true);
                 this.dispose();
                 root.update();
-        }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
             }
-            
+        } else {
+            Veiculo v = new Van(smarca, smatricula, dcusto, dcarga);
+            if (this.veiculos.addVeiculo(v)) {
+                this.sistema.setVeiculos(this.veiculos);
+                this.root.setVisible(true);
+                this.dispose();
+                root.update();
+            } else {
+                JOptionPane.showMessageDialog(this, "Já existe um veiculo com essa matricula", "Informação", JOptionPane.INFORMATION_MESSAGE);
+            }
+
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-                this.dispose();
+        this.root.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.root.setVisible(true);
+    }//GEN-LAST:event_formWindowClosing
     /**
      * @param args the command line arguments
      */
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton bcamiao;
     private javax.swing.JRadioButton bfurgao;

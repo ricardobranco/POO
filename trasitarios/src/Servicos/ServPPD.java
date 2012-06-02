@@ -5,8 +5,10 @@
 package Servicos;
 
 import Cargas.Carga;
+import Cargas.Indiferenciada;
 import Veiculos.SVeiculos;
 import Veiculos.Veiculo;
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -14,81 +16,36 @@ import java.util.List;
  *
  * @author Ricardo Branco
  */
-public class ServPPD extends Servico{
+public class ServPPD extends Servico implements Serializable{
 
-    private static double custo = 20;
-
-    private Carga[] carga;
-
+    private static double custo = 10; 
+    private static final int size = 10;        
+    
+    
+    
     public ServPPD() {
         super();
-        this.carga = new Carga[10];
     }
 
-    public ServPPD(Carga[] carga, GregorianCalendar inicio, SVeiculos veiculos) {
-        super(inicio, veiculos);
-        this.carga = carga;
+    public ServPPD(Carga carga, GregorianCalendar inicio, SVeiculos veiculos, List<Carga> cargas) {
+        super(inicio, veiculos, cargas);
     }
 
     public ServPPD(ServPPD s) {
         super(s);
-        this.carga = s.getCarga();
     }
 
-    
     public static double getCusto() {
         return custo;
     }
-    
+
     public static void setCusto(double custo) {
         ServPPD.custo = custo;
     }
-    
-    
-    public Carga[] getCarga() {
-        
-        Carga[] aux = new Carga[3];
-        for(int i = 0; i<this.carga.length;i++)
-            aux[i] = this.carga[i].clone();
-        return aux;
-    }
 
-    public void setCarga(Carga[] carga) {
-        this.carga = carga;
-    }
     
-   private boolean contemCarga(Carga c)
-   {
-       for(int i = 0; i<this.carga.length;i++ )
-       {
-           if(this.carga[i].equals(c))
-               return true;
-       }
-       return false;
-   }
-   
-   
-   public boolean equals(Object o)
-   {
-       if(this==o)
-           return true;
-       if((o==null) || (o.getClass() != this.getClass()))
-           return false;
-       
-       ServPPD s = (ServPPD) o;
-       if(s.getCarga().length != this.carga.length)
-           return false;
-       for(int i = 0; i<this.carga.length;i++)
-       {
-           if(!(s.contemCarga(this.carga[i])))
-               return false;
-       }
-       return true;
-   }
-    
-    
-   
-    public ServPPD clone(){return new ServPPD(this);}
+    public  ServPPD clone() {return new ServPPD(this);}
+
     
     public String toString()
     {
@@ -97,13 +54,27 @@ public class ServPPD extends Servico{
         return sb.toString();
     }
     
-    public double preco()
-    {
+    public double preco() {
         double res = 0;
         for(Veiculo v : super.getVeiculos().getCVeiculos())
             res+=v.preco();
-        return this.carga.length * getCusto();     
+        return res+getCusto()*super.getCargas().size()*pesoTotal();
     }
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

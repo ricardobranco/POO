@@ -1,23 +1,32 @@
 package Cargas;
 
-public abstract class Carga {
-   
+import java.io.Serializable;
+
+public abstract class Carga implements Serializable {
+    public static final int REFRIGERACAO_INDIFERENTE = 0;
+    public static final int REFRIGERACAO_SIM = 1;
+    public static final int REFRIGERACAO_NAO = 2;
+    
     private double carga;
     private String descricao;
     
     public Carga(){
         this.carga = 0;
+        this.descricao = "";
     }
     
-    public Carga(double carga){
+    public Carga(double carga, String descricao){
         this.carga = carga;
+        this.descricao = descricao;
     }
     
     public Carga(Carga c){
         this.carga = c.getCarga();
+        this.descricao = c.getDescricao();
     }
     
     public double getCarga(){return this.carga;}
+    public String getDescricao(){return this.descricao;}
     
     public void setCarga(double carga){this.carga = carga;}
     

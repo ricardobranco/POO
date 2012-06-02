@@ -4,10 +4,13 @@ import java.io.*;
 import java.util.*;
 
 public class SVeiculos extends Observable implements Serializable{
-    
+    public static final int MATRIX_PARADOS = 0;
+    public static final int MATRIX_SERVICO = 1;
+    public static final int MATRIX_AMBOS = 2;
    
     
     private Map<String,Veiculo> veiculos;
+    
     
     
     //Construtores
@@ -123,6 +126,11 @@ public class SVeiculos extends Observable implements Serializable{
          }
      }
      
+     public void remove(Veiculo v)
+     {
+         this.veiculos.remove(v.getMatricula());
+     }
+     
      public Collection<Veiculo> refrigerados()
      {
          Collection<Veiculo> ref = new ArrayList<Veiculo>();
@@ -133,7 +141,7 @@ public class SVeiculos extends Observable implements Serializable{
              boolean flag = true;
              for(int i = 0; i<interfaces.length && flag; i++)
              {
-                 if(interfaces[i].getName().equals("Refrigerado"))
+                 if(interfaces[i].getSimpleName().equals("Refrigerado"))
                  {
                      ref.add(v.clone());
                      flag = false;
@@ -142,6 +150,28 @@ public class SVeiculos extends Observable implements Serializable{
          }
          return ref;
      }
+     
+     
+      public Collection<Veiculo> naoRefrigerados()
+     {
+         Collection<Veiculo> ref = new ArrayList<Veiculo>();
+              
+         for(Veiculo v : this.veiculos.values())
+         {
+             Class[] interfaces = v.getClass().getInterfaces();
+             boolean flag = true;
+             for(int i = 0; i<interfaces.length && flag; i++)
+             {
+                 if(!(interfaces[i].getSimpleName().equals("Refrigerado")))
+                 {
+                     ref.add(v.clone());
+                     flag = false;
+                 }
+             }
+         }
+         return ref;
+     }
+     
      
      public Collection<Veiculo> parados()
      {
@@ -202,8 +232,6 @@ public class SVeiculos extends Observable implements Serializable{
           
       }
       
-      
-      
       public void alteraEstado(Veiculo c)
       {
           Veiculo aux = this.veiculos.get(c.getMatricula());
@@ -213,24 +241,50 @@ public class SVeiculos extends Observable implements Serializable{
       
       
       
-      public void save(String path)throws FileNotFoundException, IOException 
-      {
-         FileOutputStream fos = new FileOutputStream(path);
-         ObjectOutputStream oos = new ObjectOutputStream(fos);
-         oos.writeObject(this.veiculos);
-         oos.close();
-         fos.close();
-      }
+     
       
-      public void load(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException 
-      {
-          FileInputStream fis = new FileInputStream(fileName);
-          ObjectInputStream ois = new ObjectInputStream(fis);
-          this.veiculos = (HashMap<String,Veiculo>) ois.readObject();
-          ois.close();
-          fis.close();
+      public String[][] getMatrix(String pesquisa, boolean filtrarMatricula, int filtrarTipo){
+	  Collection<Veiculo> col;
+	  
+	  if( filtrarTipo == SVeiculos.MATRIX_PARADOS )
+	      col = this.parados();
+	  else if( filtrarTipo == SVeiculos.MATRIX_SERVICO )
+	      col = this.emServico();
+	  else
+	      col = this.veiculos.values();
+	  
+	  ArrayList<Veiculo> arr = new ArrayList<Veiculo>(col.size());
+	  
+	  if( !pesquisa.isEmpty() ){
+	    if( filtrarMatricula ){
+		for( Veiculo v : col ){
+		    if( v.getMatricula().contains(pesquisa) )
+			arr.add(v);
+		}
+	    }else{
+		for( Veiculo v : col ){
+		    if( v.getMarca().contains(pesquisa) )
+			arr.add(v);
+		}
+	    }
+	  }else
+	      arr.addAll(col);
+	  
+	  String[][] res = new String[ col.size() ][7];
+	  
+	  Collections.sort(arr, new VComparaTotal());
+	  
+	  for( int i=0; i<arr.size(); i++ ){
+	      res[i][0] = arr.get(i).getClass().getSimpleName();
+	      res[i][1] = arr.get(i).getMatricula();
+	      res[i][2] = arr.get(i).getMarca();
+	      res[i][3] = Double.toString(arr.get(i).getCapacidade());
+	      res[i][4] = Double.toString(arr.get(i).getCargaActual());
+	      res[i][5] = Double.toString(arr.get(i).getTotal());
+	      res[i][6] = arr.get(i).getParado() ? "Parado" : "Movimento";
+	  }
+	  
+	  return res;
       }
-      
-      public int total(){return this.veiculos.size();}
       
 }

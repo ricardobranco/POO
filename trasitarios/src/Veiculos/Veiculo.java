@@ -1,12 +1,13 @@
 package Veiculos;
 
 import Cargas.Carga;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class Veiculo implements Comparable<Veiculo>
+public abstract class Veiculo implements Serializable,Comparable<Veiculo>
 {
     //Variaveis de instancia
     private String marca;
@@ -136,6 +137,9 @@ public abstract class Veiculo implements Comparable<Veiculo>
         return res;
     }
     
+   
+    
+    public boolean mais60(){return (this.getCargaActual()/this.capacidade) >= 0.6;}  
     
     public boolean addCarga(Carga c){
         return c.getCarga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
