@@ -105,4 +105,5 @@ public abstract class Servico implements Serializable{
     
     
     public abstract double preco();
+    
 }

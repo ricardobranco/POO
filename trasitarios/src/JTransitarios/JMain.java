@@ -36,14 +36,14 @@ public class JMain extends javax.swing.JFrame implements Observer {
         this.jTVeiculos.setAutoCreateRowSorter(true);
         this.jTClientes.setAutoCreateRowSorter(true);
 
-
+/*
         sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
         sistema.leCamiao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\camioes.txt");
         sistema.leVan("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\van.txt");
         sistema.leNRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\nr.txt");
         sistema.leRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\r.txt");
         sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
-
+*/
     }
 
     public static boolean isWindows() {
@@ -328,6 +328,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         jMenu2.add(jMenuItem3);
 
         jMenuItem4.setText("Estado");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenu4.setText("Mostrar");
@@ -553,6 +558,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        new JVecState(this, sistema).setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void actualizaTabelas() {
         String texto = jTFpesquisar.getText();

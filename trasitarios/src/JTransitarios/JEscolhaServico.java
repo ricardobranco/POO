@@ -6,30 +6,30 @@ package JTransitarios;
 
 import Clientes.Cliente;
 import Clientes.SClientes;
+import Servicos.*;
 import Sistema.Sistema;
 import Veiculos.SVeiculos;
 
 /**
  *
- * @author
- * chalkos
+ * @author chalkos
  */
 public class JEscolhaServico extends javax.swing.JFrame {
-    
+
     Sistema sistema;
-    Cliente cliente;        
+    Cliente cliente;
     JMain root;
-    
-    public JEscolhaServico(JMain root, Sistema sistema, Cliente c){
-	this.sistema = sistema;
-	this.root = root;
+
+    public JEscolhaServico(JMain root, Sistema sistema, Cliente c) {
+        this.sistema = sistema;
+        this.root = root;
         this.cliente = c;
-	this.root.setVisible(false);
-	initComponents();
+        this.root.setVisible(false);
+        initComponents();
     }
-    
+
     public JEscolhaServico() {
-	initComponents();
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")
@@ -140,94 +140,72 @@ public class JEscolhaServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-	this.root.setVisible(true);
+        this.root.setVisible(true);
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-	new JAddCargas(this,sistema,cliente, JAddCargas.SERVICO_SIMPLES).setVisible(true);
+        JAddCargas.setMAX_SIZE(ServSimples.getSize());
+        new JAddCargas(this, sistema, cliente,new ServSimples(), JAddCargas.SERVICO_SIMPLES).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_AEROPORTO).setVisible(true);
+        JAddCargas.setMAX_SIZE(ServAero.getSize());
+        new JAddCargas(this, sistema, cliente,new ServAero(), JAddCargas.SERVICO_AEROPORTO).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_QUERIDO_MUDEI_A_CASA).setVisible(true);
+        JAddCargas.setMAX_SIZE(ServQMC.getSize());
+        new JAddCargas(this, sistema, cliente,new ServQMC(), JAddCargas.SERVICO_QUERIDO_MUDEI_A_CASA).setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_PROFISSIONAIS_DISTRIBUICAO).setVisible(true);
+        JAddCargas.setMAX_SIZE(ServPPD.getSize());
+
+        new JAddCargas(this, sistema, cliente,new ServPPD(), JAddCargas.SERVICO_PROFISSIONAIS_DISTRIBUICAO).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-	new JAddCargas(this,sistema, cliente, JAddCargas.SERVICO_SERVICOS_SECRETOS).setVisible(true);
+        JAddCargas.setMAX_SIZE(ServTox.getSize());
+        new JAddCargas(this, sistema, cliente,new ServTox(), JAddCargas.SERVICO_SERVICOS_SECRETOS).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    
     public static void main(String args[]) {
-	/*
-	 * Set
-	 * the
-	 * Nimbus
-	 * look
-	 * and
-	 * feel
-	 */
-	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /*
-	 * If
-	 * Nimbus
-	 * (introduced
-	 * in
-	 * Java
-	 * SE
-	 * 6)
-	 * is
-	 * not
-	 * available,
-	 * stay
-	 * with
-	 * the
-	 * default
-	 * look
-	 * and
-	 * feel.
-	 * For
-	 * details
-	 * see
-	 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-	 */
-	try {
-	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-		if ("Nimbus".equals(info.getName())) {
-		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-		    break;
-		}
-	    }
-	} catch (ClassNotFoundException ex) {
-	    java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (InstantiationException ex) {
-	    java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (IllegalAccessException ex) {
-	    java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-	    java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-	}
-	//</editor-fold>
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(JEscolhaServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-	/*
-	 * Create
-	 * and
-	 * display
-	 * the
-	 * form
-	 */
-	java.awt.EventQueue.invokeLater(new Runnable() {
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
-	    public void run() {
-		new JEscolhaServico().setVisible(true);
-	    }
-	});
+            public void run() {
+                new JEscolhaServico().setVisible(true);
+            }
+        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

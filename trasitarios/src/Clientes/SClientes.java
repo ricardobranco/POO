@@ -128,6 +128,12 @@ public class SClientes extends Observable implements  Serializable{
             this.clientes.remove(new Long(c.getNif()));
     }
     
+    public void remove(Cliente c)
+    {
+        
+            this.clientes.remove(new Long(c.getNif()));
+    }
+    
     
     public Collection<Cliente> clienteTipo(String s)
     {

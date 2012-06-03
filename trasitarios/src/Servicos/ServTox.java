@@ -35,6 +35,10 @@ public class ServTox extends Servico implements Serializable{
         super(s);
     }
 
+    public static int getSize() {
+        return size;
+    }
+    
     public static double getCusto() {
         return custo;
     }

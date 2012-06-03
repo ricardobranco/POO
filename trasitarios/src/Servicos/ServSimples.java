@@ -43,6 +43,9 @@ public class ServSimples extends Servico implements Serializable{
         ServSimples.custo = custo;
     }
 
+    public static int getSize() {
+        return size;
+    }
     
     public  ServSimples clone() {return new ServSimples(this);}
 

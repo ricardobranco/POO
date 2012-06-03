@@ -19,7 +19,7 @@ import java.util.List;
 public class ServQMC extends Servico implements Serializable{
 
     private static double custo = 25; 
-    private static final int size = 1;        
+    private static final int size = 10;        
     
     
     
@@ -41,6 +41,10 @@ public class ServQMC extends Servico implements Serializable{
 
     public static void setCusto(double custo) {
         ServQMC.custo = custo;
+    }
+    
+    public static int getSize() {
+        return size;
     }
 
     

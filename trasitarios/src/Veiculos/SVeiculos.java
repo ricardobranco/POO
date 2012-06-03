@@ -235,7 +235,11 @@ public class SVeiculos extends Observable implements Serializable{
       public void alteraEstado(Veiculo c)
       {
           Veiculo aux = this.veiculos.get(c.getMatricula());
-          aux.setParado(!(aux.getParado()));
+          if(aux.getParado())
+          aux.setParado(false);
+          else aux.setParado(true);
+          
+          return;
       }
       
       

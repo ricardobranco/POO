@@ -35,6 +35,11 @@ public class ServAero extends Servico implements Serializable{
         super(s);
     }
 
+    
+    public static int getSize() {
+        return size;
+    }
+    
     public static double getCusto() {
         return custo;
     }

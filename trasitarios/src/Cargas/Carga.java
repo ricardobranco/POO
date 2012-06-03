@@ -2,7 +2,7 @@ package Cargas;
 
 import java.io.Serializable;
 
-public abstract class Carga implements Serializable {
+public abstract class Carga implements Comparable<Carga>,Serializable {
     public static final int REFRIGERACAO_INDIFERENTE = 0;
     public static final int REFRIGERACAO_SIM = 1;
     public static final int REFRIGERACAO_NAO = 2;
@@ -58,7 +58,7 @@ public abstract class Carga implements Serializable {
     public int compareTo(Carga c){
         Double f1 = new Double(this.carga);
         Double f2 = new Double(c.getCarga());
-        return f1.compareTo(f2);
+        if (f1.compareTo(f2)>0) return 1; else return -1;
     }
     
     public boolean tipo( String nomeClasse ){

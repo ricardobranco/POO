@@ -4,6 +4,14 @@
  */
 package JTransitarios;
 
+import Cargas.Carga;
+import Sistema.Sistema;
+import Veiculos.SVeiculos;
+import Veiculos.Veiculo;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Vector;
+
 /**
  *
  * @author Ricardo
@@ -13,9 +21,52 @@ public class JVecState extends javax.swing.JFrame {
     /**
      * Creates new form JVecState
      */
-    public JVecState() {
+    
+    JMain root;
+    Sistema sistema;
+    public JVecState(JMain root, Sistema sistema) {
+        this.root = root;
+        this.root.setVisible(false);
+        this.sistema = sistema;
         initComponents();
+        
+        this.update();
     }
+    
+    public void update(){
+        SVeiculos sv = this.sistema.getVeiculos();       
+        
+        Collection<Veiculo> cvp = sv.parados();
+        Collection<Veiculo> cvs = sv.emServico();
+        Vector<String> vvp = new Vector<String>();
+        Vector<String> vvs = new Vector<String>();
+        
+        for(Veiculo v: cvp)
+        {
+            if(v.getCargaActual()!=0)
+                vvp.add(v.getMatricula());
+        }
+        
+        for(Veiculo v: cvs)
+            vvs.add(v.getMatricula());
+        
+        if(vvp.size()>0)
+            jButton1.setEnabled(true);
+        else
+            jButton1.setEnabled(false);
+        
+        if(vvs.size()>0)
+            jButton2.setEnabled(true);
+        else
+            jButton2.setEnabled(false);
+        this.jList1.setListData(vvp);
+        this.jList2.setListData(vvs);
+   }
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,13 +89,15 @@ public class JVecState extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
         });
+
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         jScrollPane1.setBounds(0, 40, 130, 230);
@@ -55,11 +108,6 @@ public class JVecState extends javax.swing.JFrame {
         jLabel3.setBounds(10, 10, 90, 22);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList2);
 
         jScrollPane2.setBounds(0, 40, 130, 230);
@@ -71,10 +119,20 @@ public class JVecState extends javax.swing.JFrame {
         jLayeredPane2.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setText("»»»");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jButton1.setBounds(0, 110, 75, 23);
         jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setText("«««");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jButton2.setBounds(0, 140, 75, 23);
         jLayeredPane3.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -86,7 +144,7 @@ public class JVecState extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -105,47 +163,39 @@ public class JVecState extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JVecState.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JVecState.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JVecState.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JVecState.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        // PARADO TO SERVIÇO
+        String selec = (String) jList1.getSelectedValue();
+        SVeiculos sv = this.sistema.getVeiculos();
+        Veiculo v = sv.getveiculos().get(selec);
+        v.setParado(false);
+        sv.remove(v);
+        sv.addVeiculo(v);
+        this.sistema.setVeiculos(sv);
+        this.update();    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String selec = (String) jList2.getSelectedValue();
+        SVeiculos sv = this.sistema.getVeiculos();
+        Veiculo v = sv.getveiculos().get(selec);
+        v.setMercadoria(new ArrayList<Carga>());
+        
+        v.setParado(true);
+        sv.remove(v);
+        sv.addVeiculo(v);
+        this.sistema.setVeiculos(sv);
+        this.update(); 
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-            public void run() {
-                new JVecState().setVisible(true);
-            }
-        });
-    }
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        this.root.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
