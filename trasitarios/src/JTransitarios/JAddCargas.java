@@ -20,10 +20,6 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author chalkos
- */
 public class JAddCargas extends javax.swing.JFrame {
 
     public static final int SERVICO_SIMPLES = 0;
