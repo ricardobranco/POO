@@ -49,6 +49,7 @@ public class Van extends Veiculo implements Refrigeravel,Serializable{
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
+        sb.append("VAN\n");
         sb.append(super.toString());
         sb.append("REFRIGERADO\n");
         return sb.toString();

@@ -223,9 +223,12 @@ public class JAddCargas extends javax.swing.JFrame {
         SClientes sc = this.sistema.getClientes();
         sc.remove(cliente);
         sc.addCliente(cliente);
+        new JShowServ(servico).setVisible(true);
         } 
         else {
+            
             this.sistema.setVeiculos(sv);
+            JOptionPane.showMessageDialog(this, "O PEDIDO NAO PODE SER EFECTUADO", "Informação", JOptionPane.INFORMATION_MESSAGE);
         }
         this.dispose();
         this.root.setVisible(true);

@@ -92,6 +92,12 @@ public abstract class Servico implements Serializable{
      return res;   
     }
     
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("PREÇO:").append(this.preco()).append("\n");
+        return sb.toString();
+    }
+    
     
     public boolean addVeiculo(Veiculo v)
     {

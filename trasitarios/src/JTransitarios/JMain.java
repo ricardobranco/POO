@@ -9,6 +9,7 @@ import Clientes.Individual;
 import Clientes.SClientes;
 import Sistema.Sistema;
 import Veiculos.SVeiculos;
+import Veiculos.Veiculo;
 import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,13 +38,13 @@ public class JMain extends javax.swing.JFrame implements Observer {
         this.jTClientes.setAutoCreateRowSorter(true);
 
 
-        sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
+        /*sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
         sistema.leCamiao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\camioes.txt");
         sistema.leVan("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\van.txt");
         sistema.leNRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\nr.txt");
         sistema.leRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\r.txt");
         sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
-
+*/
     }
 
     public static boolean isWindows() {
@@ -160,6 +161,11 @@ public class JMain extends javax.swing.JFrame implements Observer {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTVeiculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTVeiculosMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(jTVeiculos);
@@ -522,6 +528,18 @@ public class JMain extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_jCheckBoxMenuItem6ActionPerformed
 
     private void jTClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTClientesMouseClicked
+        if (evt.getClickCount() == 2) {
+            int[] selecionados = jTClientes.getSelectedRows();
+
+            for (int row : selecionados) {
+                String m = (String) jTClientes.getValueAt(row, 2);
+                Cliente c = this.sistema.getClientes().getMClientes().get(new Long(m));
+                new JShowClient(c).setVisible(true);
+            }
+
+
+
+        }
     }//GEN-LAST:event_jTClientesMouseClicked
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
@@ -563,6 +581,22 @@ public class JMain extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         new JVecState(this, sistema).setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jTVeiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTVeiculosMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int[] selecionados = jTVeiculos.getSelectedRows();
+
+            for (int row : selecionados) {
+                String m = (String) jTVeiculos.getValueAt(row, 1);
+                Veiculo v = this.sistema.getVeiculos().getveiculos().get(m);
+                new JShowVeic(v).setVisible(true);
+            }
+
+
+
+        }
+    }//GEN-LAST:event_jTVeiculosMouseClicked
 
     private void actualizaTabelas() {
         String texto = jTFpesquisar.getText();

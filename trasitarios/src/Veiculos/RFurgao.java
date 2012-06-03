@@ -34,6 +34,8 @@ public class RFurgao extends Furgao implements Refrigeravel,Serializable{
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
+        
+        sb.append("FURGAO\n");
         sb.append(super.toString());
         sb.append("REFRIGERADO\n");
         return sb.toString();

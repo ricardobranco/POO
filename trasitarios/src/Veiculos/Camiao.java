@@ -62,6 +62,7 @@ public class Camiao extends Veiculo implements Serializable{
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
+        sb.append("CAMIAO\n");
         sb.append(super.toString());
         sb.append("Condutor: ").append(this.condutor).append("\n");
         sb.append("Atrelado: ").append(this.atrelado).append("\n");
