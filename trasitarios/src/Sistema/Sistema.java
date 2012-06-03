@@ -1,7 +1,3 @@
-
-
-
-
 package Sistema;
 
 import Cargas.Carga;
@@ -20,7 +16,6 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
 
 public class Sistema extends Observable implements Serializable {
 
@@ -114,6 +109,7 @@ public class Sistema extends Observable implements Serializable {
     }
 
     private void criaaux(Carga c, Veiculo v) {
+
         v.incTotal(c.getCarga());
         this.veiculos.remove(v);
         this.veiculos.addVeiculo(v);
@@ -157,67 +153,70 @@ public class Sistema extends Observable implements Serializable {
                         SVeiculos svec1 = new SVeiculos(this.veiculos.naoRefrigerados());
                         SVeiculos svec2 = new SVeiculos(svec1.parados());
                         Iterator<Veiculo> ivec = svec2.sortLivre();
-
+                        boolean mkbreak = true;
                         while (ivec.hasNext()) {
                             boolean flag2 = true;
                             for (Veiculo v : s.getVeiculos().getCVeiculos()) {
                                 if (v.addCarga(c)) {
-
                                     this.criaaux(c, v);
-
+                                    mkbreak = false;
                                     flag2 = false;
+                                    break;
+                                }
+                            }
+
+                            if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
+                            {
+                                Veiculo v = ivec.next();
+                                s.addVeiculo(v);
+                                if (v.addCarga(c)) {
+                                    mkbreak = false;
+                                    this.criaaux(c, v);
+                                    s.addVeiculo(v);
                                     break;
                                 }
 
                             }
-                            if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
-                            {
-                                Veiculo v = ivec.next();
-                                if (v.addCarga(c)) {
-                                    s.addVeiculo(v);
-                                    v.incTotal(c.getCarga());
-                                    this.veiculos.remove(v);
-                                    this.veiculos.addVeiculo(v);
 
-                                    if (v.mais60()) {
-                                        this.veiculos.alteraEstado(v);
-                                    }
-                                }
-                            }
-                            break;
                         }
+                        if (mkbreak) {
+                            return false;
+                        }
+
                     } else {
+
                         SVeiculos svec1 = new SVeiculos(this.veiculos.parados());
                         Iterator<Veiculo> ivec = svec1.sortLivre();
-                        boolean flagvec = true;
+                        boolean mkbreak = true;
                         while (ivec.hasNext()) {
                             boolean flag2 = true;
 
                             for (Veiculo v : s.getVeiculos().getCVeiculos()) {
                                 if (v.addCarga(c)) {
-
+                                    flag2 = false;
+                                    mkbreak = false;
                                     this.criaaux(c, v);
-
+                                    break;
                                 }
-                                flag2 = false;
-                                break;
-
 
                             }
 
                             if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
                             {
                                 Veiculo v = ivec.next();
+                                s.addVeiculo(v);
                                 if (v.addCarga(c)) {
-                                    flagvec = false;
-                                    this.criaaux(c, v);
-                                }
-                                break;
-                            }
 
+                                    this.criaaux(c, v);
+                                    mkbreak = false;
+                                    mkbreak = false;
+                                    break;
+                                }
+
+                            }
                         }
 
-                        if (flagvec) {
+                        if (mkbreak) {
                             return false;
                         }
                     }
@@ -227,28 +226,42 @@ public class Sistema extends Observable implements Serializable {
 
             if (flag) //NAO DESCOBRIU A INTERFACE PRETENDIDA LOGO É UMA CARGA REFRIGERADA
             {
-                boolean flagvec = true;
                 SVeiculos svec1 = new SVeiculos(this.veiculos.refrigerados());
                 SVeiculos svec2 = new SVeiculos(svec1.parados());
                 Iterator<Veiculo> ivec = svec2.sortLivre();
-
+                boolean mkbreak = true;
                 while (ivec.hasNext()) {
 
                     boolean flag2 = true;
                     for (Veiculo v : s.getVeiculos().getCVeiculos()) {
                         if (v.addCarga(c)) {
                             this.criaaux(c, v);
+
+                            mkbreak = false;
+                            flag2 = false;
+                            break;
                         }
-                        flag2 = false;
-                        break;
 
                     }
 
-                    break;
+                    if (flag2) //nenhum dos veiculos aconcelhados para o serviço podem levar a carga
+                    {
+                        Veiculo v = ivec.next();
+                        s.addVeiculo(v);
+                        if (v.addCarga(c)) {
+
+                            mkbreak = false;
+                            s.addVeiculo(v);
+                            this.criaaux(c, v);
+                            break;
+                        }
+
+                    }
                 }
-                if (flagvec) {
+                if (mkbreak) {
                     return false;
                 }
+
             }
         }
 

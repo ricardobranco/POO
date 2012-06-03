@@ -60,12 +60,13 @@ public abstract class Veiculo implements Serializable,Comparable<Veiculo>
         this.custoKm = v.getCustoKm();
         this.capacidade = v.getCapacidade();
         this.mercadoria = new ArrayList<Carga>();
+        this.total = getTotal();
         for (Iterator<Carga> it = v.getMercadoria().iterator(); it.hasNext();) {
             Carga c = it.next();
             this.mercadoria.add(c);
         }
         this.parado = v.getParado();
-        this.total = getTotal();
+        
     }
     
     
@@ -107,6 +108,7 @@ public abstract class Veiculo implements Serializable,Comparable<Veiculo>
         sb.append("Matricula: ").append(this.matricula).append("\n");
         sb.append("Custo Km: ").append(this.custoKm).append("\n");
         sb.append("Capacidade: ").append(this.capacidade).append("\n");
+        sb.append("TOTAL TRANSPORTADO: ").append(this.getTotal()).append("\n");
         return sb.toString();
     }
     
@@ -142,9 +144,15 @@ public abstract class Veiculo implements Serializable,Comparable<Veiculo>
     public boolean mais60(){return (this.getCargaActual()/this.capacidade) >= 0.6;}  
     
     public boolean addCarga(Carga c){
-        return c.getCarga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c);
+        return c.getCarga()+this.getCargaActual() <= this.getCapacidade() && this.mercadoria.add(c) && this.actcarga(c.getCarga());
     }
     
+    private boolean actcarga(double s){
+        if ((new Double(s)).compareTo(new Double(0)) < 0) return false;
+        this.total+=s;
+        return true;
+        
+    }
     public boolean addCarga(List<Carga> c){
         double cargaTotal = 0;
         for( Carga valor : c )
