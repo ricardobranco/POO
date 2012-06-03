@@ -141,7 +141,8 @@ public class SVeiculos extends Observable implements Serializable{
              boolean flag = true;
              for(int i = 0; i<interfaces.length && flag; i++)
              {
-                 if(interfaces[i].getSimpleName().equals("Refrigerado"))
+                 if(interfaces[i].getSimpleName().indexOf("Refrigeravel") >= 0)
+                  
                  {
                      ref.add(v.clone());
                      flag = false;
@@ -162,7 +163,7 @@ public class SVeiculos extends Observable implements Serializable{
              boolean flag = true;
              for(int i = 0; i<interfaces.length && flag; i++)
              {
-                 if(!(interfaces[i].getSimpleName().equals("Refrigerado")))
+                 if(interfaces[i].getSimpleName().indexOf("Refrigeravel") < 0)
                  {
                      ref.add(v.clone());
                      flag = false;
