@@ -169,8 +169,6 @@ public abstract class Veiculo implements Serializable,Comparable<Veiculo>
     
     public abstract double preco();
     
-    //FALTA METODO QUE ESVAZIA UM VEICULO
-    //VAI SER TRATADO QUANDO COMEÇAR A TRABALHAR NO AMBIENTE GRAFICO
-    //public void esvazia(List<Carga>)
+    
 
     }

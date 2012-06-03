@@ -81,9 +81,13 @@ public abstract class Cliente implements Serializable,Comparable<Cliente> {
     
     public String toStringServicos(){
         StringBuilder str = new StringBuilder();
-        for( Servico s : this.servicos ){
-            str.append(s.toString()).append("\n");
+
+        if(this.servicos.size()>0){
+        Servico s = this.servicos.get(0);
+        str.append(s.toString()).append("\n");
         }
+        str.append("TOTAL SERVIÇOS: ").append(this.servicos.size()).append("\n");
+
         return str.toString();
     }
     
@@ -96,7 +100,7 @@ public abstract class Cliente implements Serializable,Comparable<Cliente> {
         sb.append("NOME: ").append(this.nome).append("\n");
         sb.append("MORADA: ").append(this.morada).append("\n");
         sb.append("TIPO: ").append(this.getClass().getName()).append("\n");
-        sb.append("PEDIDOS: ").append(this.toStringServicos()).append("\n");
+        sb.append("ÚLTIMO SERVIÇO: ").append(this.toStringServicos()).append("\n");
     
         return sb.toString();
     }
