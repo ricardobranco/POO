@@ -36,14 +36,14 @@ public class JMain extends javax.swing.JFrame implements Observer {
         this.jTVeiculos.setAutoCreateRowSorter(true);
         this.jTClientes.setAutoCreateRowSorter(true);
 
-/*
+
         sistema.leFileClientesb("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\b.txt");
         sistema.leCamiao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\camioes.txt");
         sistema.leVan("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\van.txt");
         sistema.leNRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\nr.txt");
         sistema.leRFurgao("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\r.txt");
         sistema.leFileClientesa("C:\\Documents and Settings\\Ricardo\\Os meus documentos\\Dropbox\\POO\\trasitarios\\saves\\a.txt");
-*/
+
     }
 
     public static boolean isWindows() {
