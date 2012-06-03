@@ -12,10 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
 
-/**
- *
- * @author Ricardo
- */
+
 public class JVecState extends javax.swing.JFrame {
 
     /**

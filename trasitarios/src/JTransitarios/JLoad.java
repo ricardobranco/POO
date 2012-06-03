@@ -17,9 +17,7 @@ public class JLoad extends javax.swing.JFrame {
     JFileChooser fileChooser;
     JMain root;
     
-    /**
-     * Creates new form JLoad
-     */
+   
     public JLoad(JMain root, Sistema sistema) {
         this.root = root;
 	this.root.setVisible(false);

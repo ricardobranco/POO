@@ -13,10 +13,7 @@ import Veiculos.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Ricardo Branco
- */
+
 public class JAddCliente extends javax.swing.JFrame {
 
     Sistema sistema;

@@ -7,10 +7,7 @@ package JTransitarios;
 import Servicos.Servico;
 import Veiculos.Veiculo;
 
-/**
- *
- * @author Daniel
- */
+
 public class JShowServ extends javax.swing.JFrame {
 
     /**

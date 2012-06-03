@@ -9,10 +9,7 @@ import Veiculos.Furgao;
 import Veiculos.Van;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Ricardo Branco
- */
+
 public class JVeicPref extends javax.swing.JFrame {
 
     /**

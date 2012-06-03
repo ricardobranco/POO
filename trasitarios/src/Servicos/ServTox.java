@@ -12,10 +12,7 @@ import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-/**
- *
- * @author Ricardo Branco
- */
+
 public class ServTox extends Servico implements Serializable{
 
     private static double custo = 20; 

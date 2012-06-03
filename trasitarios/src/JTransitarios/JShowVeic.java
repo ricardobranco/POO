@@ -6,10 +6,6 @@ package JTransitarios;
 
 import Veiculos.Veiculo;
 
-/**
- *
- * @author Daniel
- */
 public class JShowVeic extends javax.swing.JFrame {
 
     /**

@@ -10,10 +10,6 @@ import Servicos.*;
 import Sistema.Sistema;
 import Veiculos.SVeiculos;
 
-/**
- *
- * @author chalkos
- */
 public class JEscolhaServico extends javax.swing.JFrame {
 
     Sistema sistema;

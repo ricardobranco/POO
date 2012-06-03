@@ -6,11 +6,6 @@ package JTransitarios;
 
 import javax.swing.JTable;
 
-/**
- *
- * @author
- * chalkos
- */
 public class JCustomTable extends JTable{
     @Override
     public boolean isCellEditable(int row, int column) {

@@ -20,10 +20,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Ricardo Branco
- */
+
 public class JMain extends javax.swing.JFrame implements Observer {
 
     /**
